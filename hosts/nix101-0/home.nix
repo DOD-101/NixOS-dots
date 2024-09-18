@@ -1,13 +1,7 @@
 { pkgs, inputs, ... }:
 {
   imports = [
-    ../../modules/home-manager/dev.nix
-    ../../modules/home-manager/cursor.nix
-    ../../modules/home-manager/shell/zsh.nix
-    ../../modules/home-manager/foot.nix
-    ../../modules/home-manager/fastfetch.nix
-    ../../modules/home-manager/dev.nix
-    ../../modules/home-manager/wofi.nix
+    ../../modules/home-manager
   ];
 
   home.username = "david";
@@ -54,7 +48,6 @@
 
       # Dots
       eww
-      wofi
       slurp
       grim
       cliphist
