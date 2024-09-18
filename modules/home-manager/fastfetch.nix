@@ -10,7 +10,7 @@
   };
 
   config = lib.mkIf config.fastfetch-config.enable {
-    home.file.".config/fastfetch/config.jsonc".source = ./fastfetch.jsonc;
+    home.file.".config/fastfetch/config.jsonc".source = ../../resources/fastfetch/fastfetch.jsonc;
     home.packages = with pkgs; [
       fastfetch
     ];

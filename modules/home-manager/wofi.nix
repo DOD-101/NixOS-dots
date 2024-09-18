@@ -15,7 +15,7 @@
         prompt = "";
         image_size = 20;
       };
-      style = builtins.readFile ./wofi.css;
+      style = builtins.readFile ../../resources/wofi/wofi.css;
     };
   };
 }
