@@ -7,6 +7,7 @@
     ../../modules/home-manager/foot.nix
     ../../modules/home-manager/fastfetch.nix
     ../../modules/home-manager/dev.nix
+    ../../modules/home-manager/wofi.nix
   ];
 
   home.username = "david";
@@ -15,6 +16,7 @@
   zsh-config.enable = true;
   foot-config.enable = true;
   fastfetch-config.enable = true;
+  wofi-config.enable = true;
 
   dconf = {
     enable = true;
