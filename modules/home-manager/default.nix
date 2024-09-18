@@ -8,5 +8,6 @@
     ./fastfetch.nix
     ./dev.nix
     ./wofi.nix
+    ./yazi.nix
   ];
 }

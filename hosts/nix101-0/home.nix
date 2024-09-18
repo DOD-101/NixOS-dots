@@ -12,6 +12,9 @@
   fastfetch-config.enable = true;
   wofi-config.enable = true;
 
+  yazi-config.enable = true;
+  yazi-config.enableZshIntegration = true;
+
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
