@@ -11,6 +11,7 @@
   foot-config.enable = true;
   fastfetch-config.enable = true;
   wofi-config.enable = true;
+  spotify-player-config.enable = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
