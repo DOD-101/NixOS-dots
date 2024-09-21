@@ -22,6 +22,7 @@
       jq
       poppler
       imagemagick
+      swayimg
       p7zip
     ];
 
