@@ -12,6 +12,8 @@
       lfs.enable = true;
       aliases = {
         cc = "commit";
+        ce = "commit --amend --no-edit";
+        ca = "commit --amend";
         st = "status";
 
       };
