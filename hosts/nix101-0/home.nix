@@ -13,6 +13,7 @@
   wofi-config.enable = true;
   spotify-player-config.enable = true;
   vis-config.enable = true;
+  mpv-config.enable = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
@@ -45,7 +46,6 @@
     [
       foot
       firefox
-      mpv
       swayimg
       webkitgtk_4_1
       keepassxc

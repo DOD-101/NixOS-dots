@@ -11,5 +11,6 @@
     ./yazi.nix
     ./spotify-player.nix
     ./vis.nix
+    ./mpv.nix
   ];
 }
