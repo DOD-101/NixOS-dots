@@ -1,0 +1,146 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+$background-color: #272c44;
+$color: #df5a4e;
+$color-blue: #77a1df;
+$color-yellow: #feb301;
+
+//Global Styles
+.BarWin0,
+.BarWin1,
+.BarWin2,
+.BarWin3,
+.SingleBarWin0,
+.playing_window {
+  font-family: FiraCode Nerd Font Mono;
+  font-size: medium;
+  background-color: $background-color;
+  color: $color;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+
+.WS-Widget {
+  padding-left: 5px;
+}
+
+.WS-Widget button:hover {
+  color: #fef2d0;
+}
+
+.activeWS {
+  color: #feb301;
+}
+
+.WS {
+  transition: 0.7s;
+}
+
+.hwinfo {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.icon-module__icon,
+.off {
+  color: $color-blue;
+}
+
+.icon-module__icon {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+revealer {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: $color-yellow;
+}
+
+.on {
+  color: #fef2d0;
+}
+
+.status {
+  padding-right: 3px;
+}
+
+.status * {
+  padding-right: 3px;
+}
+
+.internet_units {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.ram_icon {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.ram_value {
+  font-size: medium;
+}
+
+.keyboard-btn {
+  font-size: x-large;
+  margin-bottom: -15px;
+  margin-top: -15px;
+}
+
+.internet_revealer {
+  padding-right: 0px;
+}
+
+.bat_low {
+  color: red;
+}
+
+.playing_img_box {
+  padding: 5px;
+}
+
+.playing_progress trough {
+  background-color: $color-blue;
+  border-radius: 50px;
+  min-height: 3px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.playing_progress trough highlight {
+  background-color: $color;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.playing_artist {
+  padding-left: 5px;
+}
+
+.playing_title {
+  font-size: small;
+  padding: 2px;
+  padding-left: 5px;
+}
+
+.playing_img {
+  padding: 0;
+  margin: 0;
+}
+
+.playing_controls * {
+  transition: 0.3s;
+  padding-bottom: 3px;
+}
+
+.playing_controls *:hover {
+  color: $color-yellow;
+}

@@ -1,0 +1,88 @@
+; contains all of the windows
+
+(include "final_widgets.yuck")
+
+(defwindow playing_window [monitor]
+  :monitor monitor
+  :exclusive false
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "200px"
+    :height "50px"
+    :anchor "top center"
+  )
+  (music_player)
+)
+
+
+(defwindow BarWin0
+  :monitor 3
+  :stacking 'foreground'
+  :exclusive true
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "1190px" ; Temporary fix until https://github.com/elkowar/eww/issues/925 is resolved
+    :height "10px"
+  :anchor "top center")
+  (bar0 :num1 1 :num2 2 :num3 3 :playing_monitor 3)
+)
+
+(defwindow BarWin1
+  :monitor 0
+  :stacking 'bottom'
+  :exclusive true
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "99%"
+    :height "10px"
+  :anchor "top center")
+  (bar0 :num1 4 :num2 5 :num3 6 :playing_monitor 0)
+)
+
+(defwindow BarWin2
+  :monitor 2
+  :stacking 'bottom'
+  :exclusive true
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "99%"
+    :height "10px"
+  :anchor "top center")
+  (bar0 :num1 7 :num2 8 :num3 9 :playing_monitor 2)
+)
+
+(defwindow BarWin3
+  :monitor 1
+  :stacking 'bottom'
+  :exclusive true
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "99%"
+    :height "10px"
+  :anchor "top center")
+  (bar0 :num1 10 :num2 11 :num3 12 :playing_monitor 1)
+)
+
+(defwindow SingleBarWin0
+  :monitor 0
+  :stacking 'bottom'
+  :exclusive true
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "5px"
+    :width "99%"
+    :height "10px"
+  :anchor "top center")
+  (bar0 :num1 1 :num2 2 :num3 3 :playing_monitor 0)
+)

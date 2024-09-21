@@ -1,0 +1,75 @@
+; contains all polling variables used by the config
+
+(defpoll caps_lock :interval "1s"
+  "bash scripts/keystate.sh -c"
+) ; gets the state of the caps lock
+
+(defpoll num_lock :interval "1s"
+  "bash scripts/keystate.sh -n"
+) ; gets the state of num lock
+
+(defpoll internet :interval "10s"
+  "bash scripts/wifiethernet.sh $(eww get wifi_device) $(eww get ethernet_device)"
+) ; checks if you are connected via wifi, ethernet or not at all
+
+(defpoll internet_name :interval "10s"
+  "iwconfig $(eww get wifi_device) | awk -F'[:\"]' '/ESSID/{print $3}'"
+  ) ; gets the ESSID (name) of your current internet connection
+
+(defpoll internet_strengh :interval "10s"
+  :initial 70
+  "iwconfig $(eww get wifi_device) | awk -F'[=/]' '/Link Quality/{print $2}'"
+) ; gets the strengh of your internet connection
+
+(defpoll bluetooth :interval "10s"
+  "bluetoothctl devices Connected"
+) ; checks if you have a bluetooth device connected
+
+(defpoll playing :initial "Nothing playing rn" :interval "5s"
+  "playerctl metadata --format '{{ title }} - {{ artist }}'"
+) ; gets the currently playing media
+
+(defpoll volume :interval "1s"
+  :initial 50
+  "bash scripts/getvol.sh"
+) ; gets the current volume
+
+(defpoll time :interval "0.5s"
+  "date +'%T | %Y-%m-%d'"
+) ; contains the current time and date
+
+(defpoll active_workspace :interval "0.5s"
+  "bash scripts/workspace.sh"
+) ; gets the current active workspace
+
+(defpoll mem_usage :interval "3s"
+  "bash scripts/mem.sh"
+) ; contains a string formated as
+; "(total mem in GB)GB / (used mem in GB)GB"
+
+(defpoll playing_state :interval "1s"
+  "playerctl status"
+)
+
+(defpoll playing_img :interval "1s"
+  "bash scripts/playingimg.sh"
+) ; gets the img of the currently playing media and saves it returning the path
+; this path always stays the same
+
+(defpoll playing_title :interval "1s"
+  "playerctl metadata | awk '/xesam:title/ { $1=$2=\"\" ; print $0 }'"
+) ; gets the title of the currently playing media
+
+(defpoll playing_artist :interval "1s"
+  "playerctl metadata | awk '/xesam:artist/ { $1=$2=\"\" ; print $0 }'"
+) ; gets the artist of the currently playing media
+
+(defpoll playing_pos :interval "0.5s"
+  :inital 0
+  "playerctl position | awk '{ print $0 * 1000000 } '"
+) ; gets the positon within the currently playing media
+
+(defpoll playing_final_pos :interval "1s"
+  :initial 1
+  "playerctl metadata | awk '/mpris:length/ { print $3 }'"
+) ; gets the lengh of the currently playing media

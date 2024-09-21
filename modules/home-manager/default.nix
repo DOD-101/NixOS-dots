@@ -12,5 +12,6 @@
     ./spotify-player.nix
     ./vis.nix
     ./mpv.nix
+    ./eww.nix
   ];
 }
