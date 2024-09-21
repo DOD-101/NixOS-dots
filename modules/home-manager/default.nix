@@ -10,5 +10,6 @@
     ./wofi.nix
     ./yazi.nix
     ./spotify-player.nix
+    ./vis.nix
   ];
 }

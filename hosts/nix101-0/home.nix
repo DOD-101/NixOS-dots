@@ -12,6 +12,7 @@
   fastfetch-config.enable = true;
   wofi-config.enable = true;
   spotify-player-config.enable = true;
+  vis-config.enable = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
@@ -43,7 +44,6 @@
     with pkgs;
     [
       foot
-      cli-visualizer
       firefox
       mpv
       swayimg
