@@ -23,10 +23,26 @@
 
   hypr-config = {
     enable = true;
-    hyprland.enable = true;
     hypridle.enable = true;
     hyprlock.enable = true;
     hyprpaper.enable = true;
+    hyprland = {
+      enable = true;
+      extraConfig = ''
+        # Monitors
+        monitor=HDMI-A-2,1920x1200,0x0,1
+
+        # Execs
+        exec-once = eww open SingleBarWin0
+        exec-once = [workspace 1 silent] foot
+        exec-once = [workspace 2 silent] zen
+
+        # Workspaces
+        workspace = 1, monitor:HDMI-A-2, default:true, persistent:true
+        workspace = 2, monitor:HDMI-A-2, persistent:true
+        workspace = 3, monitor:HDMI-A-2, persistent:true
+      '';
+    };
   };
 
   dconf = {
@@ -52,13 +68,8 @@
       webkitgtk_4_1
       keepassxc
 
-      # Dots
-      eww
-      slurp
-      grim
-      cliphist
-      hyprlock
-      hypridle
+      # Office
+      libreoffice
 
       # discord
       vesktop

@@ -1,12 +1,21 @@
 {
   config,
+  osConfig,
+  pkgs,
   lib,
   ...
 }:
 {
   options.hypr-config = {
     enable = lib.mkEnableOption "enable hypr config";
-    hyprland.enable = lib.mkEnableOption "enable hyprland config";
+    hyprland = {
+      enable = lib.mkEnableOption "enable hyprland config";
+      extraConfig = lib.mkOption {
+        type = lib.types.str;
+        default = '''';
+        description = "additional config for hyprland, passed to wayland.windowManager.hyprland.extraConfig";
+      };
+    };
     hypridle.enable = lib.mkEnableOption "enable hypridle config";
     hyprlock.enable = lib.mkEnableOption "enable hyprlock config";
     hyprpaper.enable = lib.mkEnableOption "enable hyprpaper config";
@@ -14,15 +23,41 @@
 
   config = lib.mkIf config.hypr-config.enable {
 
+    home.packages = with pkgs; [
+      slurp
+      grim
+      cliphist
+    ];
+
     # hyprland
     wayland.windowManager.hyprland = lib.mkIf config.hypr-config.hyprland.enable {
       enable = true;
       systemd.enable = true;
-    };
+      settings = {
+        source = [
+          "${../../resources/hypr/hyprvars.conf}"
+          "${../../resources/hypr/hyprenv.conf}"
+          "${../../resources/hypr/hyprgeneral.conf}"
+          "${../../resources/hypr/hyprbinds.conf}"
+          "${../../resources/hypr/hyprstyle.conf}"
+        ];
 
-    home.file.".config/hypr" = lib.mkIf config.hypr-config.hyprland.enable {
-      source = ../../resources/hypr;
-      recursive = true;
+        workspace = [
+          "special:minimized"
+        ];
+
+        exec-once =
+          [ ]
+          ++ lib.optionals osConfig.sound-config.enable [
+            "pipewire"
+            "pipewire-pulse"
+          ]
+          ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
+          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
+          ++ lib.optionals config.hypr-config.hyprpaper.enable [ "systemctl --user start hyprpaper.service" ];
+      };
+
+      extraConfig = config.hypr-config.hyprland.extraConfig;
     };
 
     # hypridle
