@@ -60,6 +60,11 @@
       extraConfig = config.hypr-config.hyprland.extraConfig;
     };
 
+    home.file.".config/hypr/scripts" = lib.mkIf config.hypr-config.hyprland.enable {
+      source = ../../resources/hypr/scripts;
+      recursive = true;
+    };
+
     # hypridle
     services.hypridle = lib.mkIf config.hypr-config.hypridle.enable {
       enable = true;
