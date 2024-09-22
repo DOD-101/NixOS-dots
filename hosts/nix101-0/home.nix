@@ -21,6 +21,14 @@
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
 
+  hypr-config = {
+    enable = true;
+    hyprland.enable = true;
+    hypridle.enable = true;
+    hyprlock.enable = true;
+    hyprpaper.enable = true;
+  };
+
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";

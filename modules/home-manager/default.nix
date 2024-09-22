@@ -13,5 +13,6 @@
     ./vis.nix
     ./mpv.nix
     ./eww.nix
+    ./hypr.nix
   ];
 }

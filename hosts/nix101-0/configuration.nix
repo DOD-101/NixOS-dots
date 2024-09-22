@@ -46,7 +46,11 @@
     keyMap = "de-latin1";
   };
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   services.udisks2.enable = true;
 
   # Enable CUPS to print documents.
