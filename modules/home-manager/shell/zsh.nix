@@ -47,10 +47,7 @@
 
         n = "nvim";
         g = "git";
-
-        Hyprsingle = "Hyprland -c ~/.config/hypr/hyprsingle.conf";
       };
-      history.path = "/dev/null";
 
       oh-my-zsh = {
         enable = true;
