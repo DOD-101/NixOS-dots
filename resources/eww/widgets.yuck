@@ -239,7 +239,7 @@
       (revealer
         :transition "slideright"
         :reveal {show_hwinfo}
-        (label :text mem_usage)
+        (label :text "${round(EWW_RAM.used_mem / 1000000000,0)}GB / ${round(EWW_RAM.total_mem / 1000000000, 0)}GB")
       )
       (box
         :space-evenly false

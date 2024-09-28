@@ -42,11 +42,6 @@
   "bash scripts/workspace.sh"
 ) ; gets the current active workspace
 
-(defpoll mem_usage :interval "3s"
-  "bash scripts/mem.sh"
-) ; contains a string formated as
-; "(total mem in GB)GB / (used mem in GB)GB"
-
 (defpoll playing_state :interval "1s"
   "playerctl status"
 )
