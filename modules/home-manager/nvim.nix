@@ -41,6 +41,8 @@
       # rust
       rustfmt
       cargo
+      rust-analyzer
+      clippy
       rustc
       pkg-config
       openssl
