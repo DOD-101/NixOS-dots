@@ -34,7 +34,6 @@
         ls = "ls --color=auto";
         grep = "grep --color=auto";
 
-        remove-orphans = ''"sudo pacman -Rns $(pacman -Qtdq | grep -v "debug")"'';
         tzuc = "timedatectl set-timezone \$(tzupdate -p)"; # TimeZoneUpdateComplete
 
         sp = "spotify_player";
