@@ -24,12 +24,7 @@
         };
         modules = [
           ./hosts/nix101-0/configuration.nix
-          ./modules/nixos/nvidia.nix
-          ./modules/nixos/bluetooth.nix
-          ./modules/nixos/sound.nix
-          ./modules/nixos/razer.nix
-          ./modules/nixos/fonts.nix
-          ./modules/nixos/syncthing.nix
+          ./modules/nixos
           inputs.home-manager.nixosModules.default
         ];
       };
