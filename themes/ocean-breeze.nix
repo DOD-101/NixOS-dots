@@ -147,8 +147,8 @@
       };
 
       eww = {
-        eww-file = "../../resources/eww/ocean-breeze.yuck";
-        css-file = "../../resources/eww/ocean-breeze.scss";
+        eww-file = "../../resources/eww/ocean-breeze/eww.yuck";
+        css-file = "../../resources/eww/ocean-breeze/eww.scss";
       };
     };
   };
