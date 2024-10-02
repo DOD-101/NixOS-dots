@@ -14,6 +14,7 @@
         cc = "commit";
         ce = "commit --amend --no-edit";
         ca = "commit --amend";
+        dd = "diff";
         st = "status";
 
       };
