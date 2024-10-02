@@ -134,6 +134,17 @@
             }
           ];
         };
+
+        icon = {
+          prepend_exts = [
+            {
+              name = "yuck";
+              text = "󱍕";
+              fg_dark = config.theme.color.foreground;
+              fg_light = config.theme.color.foreground;
+            }
+          ];
+        };
       };
 
     };
