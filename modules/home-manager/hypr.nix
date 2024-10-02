@@ -33,13 +33,13 @@
     wayland.windowManager.hyprland = lib.mkIf config.hypr-config.hyprland.enable {
       enable = true;
       systemd.enable = true;
+      # Some additional style related config is done through the selected theme
       settings = {
         source = [
           "${../../resources/hypr/hyprvars.conf}"
           "${../../resources/hypr/hyprenv.conf}"
           "${../../resources/hypr/hyprgeneral.conf}"
           "${../../resources/hypr/hyprbinds.conf}"
-          "${../../resources/hypr/hyprstyle.conf}"
         ];
 
         workspace = [
@@ -110,7 +110,7 @@
             brightness = 0.8172;
             vibrancy = 0.1696;
             vibrancy_darkness = 0.0;
-            color = "rgba(39, 44, 68, 0.99)";
+            color = "rgba(${config.theme.hashlessColor.background}fe)";
           }
         ];
 
@@ -136,20 +136,20 @@
             dots_spacing = 0.15;
             dots_center = true;
             dots_rounding = -1;
-            outer_color = "rgb(254, 179, 1)";
-            inner_color = "rgb(39, 44, 68)";
-            font_color = "rgb(223, 90, 78)";
+            outer_color = "rgb(${config.theme.hashlessColor.yellow})";
+            inner_color = "rgb(${config.theme.hashlessColor.background})";
+            font_color = "rgb(${config.theme.hashlessColor.foreground})";
             fade_on_empty = false;
             fade_timeout = 1000;
             placeholder_text = ''<span foreground="##fef2d0">Input Password...</span>'';
             hide_input = false;
             rounding = -1;
-            check_color = "rgb(204, 136, 34)";
-            fail_color = "rgb(204, 34, 34)";
+            check_color = "rgb(${config.theme.hashlessColor.yellow})";
+            fail_color = "rgb(${config.theme.hashlessColor.red})";
             fail_text = "$FAIL <b>($ATTEMPTS)</b>";
             fail_transition = 300;
-            capslock_color = "rgb(209, 53, 222)";
-            numlock_color = "rgb(19, 221, 126)";
+            capslock_color = "rgb(${config.theme.hashlessColor.magenta})";
+            numlock_color = "rgb(${config.theme.hashlessColor.cyan})";
             bothlock_color = -1;
           }
         ];
@@ -157,7 +157,7 @@
         label = [
           {
             text = "Hello There, $USER";
-            color = "rgba(254, 242, 208, 1.0)";
+            color = "rgba(${config.theme.hashlessColor.white}ff)";
             font_size = 25;
             font_family = "FiraCode Nerd Font Mono";
             rotate = 0;
@@ -167,7 +167,7 @@
           }
           {
             text = "$TIME";
-            color = "rgba(254, 242, 208, 1.0)";
+            color = "rgba(${config.theme.hashlessColor.white}ff)";
             font_size = 20;
             font_family = "FiraCode Nerd Font Mono";
             position = "0, 50";

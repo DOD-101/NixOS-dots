@@ -37,7 +37,7 @@
         enable_streaming = "Never";
         enable_cover_image_cache = true;
         default_device = "${osConfig.networking.hostName}-daemon";
-        cover_img_scale = 2.2;
+        cover_img_scale = config.theme.spotify-player.cover_img_scale;
 
         copy_command = {
           command = "wl-copy";
@@ -58,39 +58,39 @@
         {
           name = "main";
           palette = {
-            black = "#000000";
-            red = "#ff1616";
-            green = "#7cd605";
-            yellow = "#feb301";
-            blue = "#3073d9";
-            magenta = "#d135de";
-            cyan = "#13dd7e";
-            white = "#fef2d0";
+            black = config.theme.color.black;
+            red = config.theme.color.red;
+            green = config.theme.color.green;
+            yellow = config.theme.color.yellow;
+            blue = config.theme.color.blue;
+            magenta = config.theme.color.magenta;
+            cyan = config.theme.color.cyan;
+            white = config.theme.color.white;
           };
           component_style = {
             selection = {
-              fg = "Yellow";
+              fg = config.theme.spotify-player.component_style.selection.fg;
             };
             playback_metadata = {
-              fg = "Blue";
+              fg = config.theme.spotify-player.component_style.playback_metadata.fg;
             };
             playback_track = {
-              fg = "White";
+              fg = config.theme.spotify-player.component_style.playback_track.fg;
               modifiers = [ "Bold" ];
             };
             playback_album = {
-              fg = "White";
+              fg = config.theme.spotify-player.component_style.playback_album.fg;
               modifiers = [ "Bold" ];
             };
             playback_artists = {
-              fg = "White";
+              fg = config.theme.spotify-player.component_style.playback_artists.fg;
               modifiers = [ "Bold" ];
             };
             playback_progress_bar = {
-              fg = "Green";
+              fg = config.theme.spotify-player.component_style.playback_progress_bar.fg;
             };
             playback_progress_bar_unfilled = {
-              fg = "Red";
+              fg = config.theme.spotify-player.component_style.playback_progress_bar_unfilled.fg;
             };
           };
         }

@@ -96,37 +96,41 @@
           rules = [
             {
               mime = "image/*";
-              fg = "yellow";
+              fg = config.theme.yazi.filetype.image;
             }
             {
-              mime = "{audio,video}/*";
-              fg = "white";
+              mime = "video/*";
+              fg = config.theme.yazi.filetype.video;
+            }
+            {
+              mime = "audio/*";
+              fg = config.theme.yazi.filetype.audio;
             }
             {
               mime = "application/{,g}zip";
-              fg = "red";
+              fg = config.theme.yazi.filetype.archive;
             }
             {
               mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}";
-              fg = "red";
+              fg = config.theme.yazi.filetype.archive;
             }
             {
               mime = "application/{pdf,doc,rtf,vnd.*}";
-              fg = "cyan";
+              fg = config.theme.yazi.filetype.doc;
             }
             {
               name = "*";
               is = "orphan";
-              fg = "red";
+              fg = config.theme.yazi.filetype.orphan;
             }
             {
               name = "*";
               is = "exec";
-              fg = "green";
+              fg = config.theme.yazi.filetype.exec;
             }
             {
               name = "*/";
-              fg = "blue";
+              fg = config.theme.yazi.filetype.dir;
             }
           ];
         };

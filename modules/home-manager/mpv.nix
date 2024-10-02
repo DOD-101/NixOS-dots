@@ -42,7 +42,7 @@
           volume_size = 30;
           top_bar_controls = true;
           languages = "slang,en,de";
-          color = "foreground=feb301,foreground_text=df5a4e,background=272c44,background_text=df5a4e,curtain=111111,success=a5e075,error=ff616e";
+          color = "foreground=${config.theme.hashlessColor.yellow},foreground_text=${config.theme.hashlessColor.foreground},background=${config.theme.hashlessColor.background},background_text=${config.theme.hashlessColor.foreground},curtain=111111,success=a5e075,error=ff616e";
         };
       };
     };
