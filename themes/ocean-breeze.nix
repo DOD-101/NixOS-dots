@@ -146,6 +146,10 @@
         };
       };
 
+      eww = {
+        eww-file = "../../resources/eww/ocean-breeze.yuck";
+        css-file = "../../resources/eww/ocean-breeze.scss";
+      };
     };
   };
 }

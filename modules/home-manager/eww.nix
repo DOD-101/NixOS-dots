@@ -1,19 +1,29 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.eww-config = {
-    enable = lib.mkEnableOption "enable eww-config config";
-    enableBashIntegration = lib.mkEnableOption "enable eww-config bash integration, passed to programs.eww-config.enableBashIntegration";
-    enableFishIntegration = lib.mkEnableOption "enable eww-config fish integration, passed to programs.eww-config.enableFishIntegration";
-    enableZshIntegration = lib.mkEnableOption "enable eww-config zsh integration, passed to programs.eww-config.enableZshIntegration";
+    enable = lib.mkEnableOption "enable eww config ";
   };
 
   config = lib.mkIf config.eww-config.enable {
-    programs.eww = {
-      enable = true;
-      enableBashIntegration = config.eww-config.enableBashIntegration;
-      enableFishIntegration = config.eww-config.enableFishIntegration;
-      enableZshIntegration = config.eww-config.enableZshIntegration;
-      configDir = ../../resources/eww;
+    home.packages = with pkgs; [
+      eww
+    ];
+
+    home.file = {
+      ".config/eww" = {
+        recursive = true;
+        source = ../../resources/eww;
+      };
+
+      # This will not work in pure eval mode if the var is a path,
+      # hence the conversion.
+      ".config/eww/eww.yuck".source = ../. + config.theme.eww.eww-file;
+      ".config/eww/eww.scss".source = ../. + config.theme.eww.css-file;
     };
   };
 }

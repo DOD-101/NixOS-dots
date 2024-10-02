@@ -130,6 +130,10 @@ in
       description = "Additional style related config passed to wayland.windowManager.hyprland.settings";
     };
 
+    eww = {
+      eww-file = lib.mkOption { type = lib.types.str; };
+      css-file = lib.mkOption { type = lib.types.str; };
+    };
   };
 
   config = {

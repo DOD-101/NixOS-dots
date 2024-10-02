@@ -23,7 +23,6 @@
   mpv-config.enable = true;
 
   eww-config.enable = true;
-  eww-config.enableZshIntegration = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
