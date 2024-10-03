@@ -134,6 +134,8 @@ in
       eww-file = lib.mkOption { type = lib.types.str; };
       css-file = lib.mkOption { type = lib.types.str; };
     };
+
+    swww.script = lib.mkOption { type = lib.types.str; };
   };
 
   config = {
@@ -142,6 +144,8 @@ in
     };
 
     wayland.windowManager.hyprland.settings = config.theme.hyprland.themeSettings;
+
+    swww-config.script = config.theme.swww.script;
 
   };
 }

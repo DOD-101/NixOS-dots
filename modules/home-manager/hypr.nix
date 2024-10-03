@@ -18,7 +18,6 @@
     };
     hypridle.enable = lib.mkEnableOption "enable hypridle config";
     hyprlock.enable = lib.mkEnableOption "enable hyprlock config";
-    hyprpaper.enable = lib.mkEnableOption "enable hyprpaper config";
   };
 
   config = lib.mkIf config.hypr-config.enable {
@@ -53,8 +52,7 @@
             "pipewire-pulse"
           ]
           ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
-          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
-          ++ lib.optionals config.hypr-config.hyprpaper.enable [ "systemctl --user start hyprpaper.service" ];
+          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ];
       };
 
       extraConfig = config.hypr-config.hyprland.extraConfig;
@@ -174,20 +172,6 @@
             halign = "center";
             valign = "bottom";
           }
-        ];
-      };
-    };
-
-    # hyprpaper 
-    services.hyprpaper = lib.mkIf config.hypr-config.hyprpaper.enable {
-      enable = true;
-      settings = {
-        ipc = "on";
-
-        preload = [ "${../../resources/hypr/hyprpaper.jpg}" ];
-
-        wallpaper = [
-          "HDMI-A-2,${../../resources/hypr/hyprpaper.jpg}"
         ];
       };
     };

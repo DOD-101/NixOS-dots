@@ -150,6 +150,10 @@
         eww-file = "../../resources/eww/ocean-breeze/eww.yuck";
         css-file = "../../resources/eww/ocean-breeze/eww.scss";
       };
+
+      swww = {
+        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/ocean-breeze/1.png";
+      };
     };
   };
 }

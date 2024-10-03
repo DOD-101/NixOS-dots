@@ -21,6 +21,7 @@
   spotify-player-config.enable = true;
   vis-config.enable = true;
   mpv-config.enable = true;
+  swww-config.enable = true;
 
   eww-config.enable = true;
 
@@ -31,7 +32,6 @@
     enable = true;
     hypridle.enable = true;
     hyprlock.enable = true;
-    hyprpaper.enable = true;
     hyprland = {
       enable = true;
       extraConfig = ''

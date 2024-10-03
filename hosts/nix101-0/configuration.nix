@@ -42,6 +42,7 @@
     keyMap = "de-latin1";
   };
 
+  programs.uwsm.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
