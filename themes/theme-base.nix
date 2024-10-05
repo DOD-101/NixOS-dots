@@ -1,13 +1,14 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 let
-  colorLib = import ./color-lib.nix { };
+  colorLib = import ./color-lib.nix { inputs = inputs; };
 in
 {
-  options.theme = {
+  options.theme = rec {
     font = {
       mono = {
         main = lib.mkOption { type = lib.types.str; };
@@ -57,30 +58,9 @@ in
       };
     };
 
-    hashlessColor = {
-      background = lib.mkOption { type = lib.types.str; };
-      foreground = lib.mkOption { type = lib.types.str; };
+    hashlessColor = color;
 
-      black = lib.mkOption { type = lib.types.str; };
-      red = lib.mkOption { type = lib.types.str; };
-      green = lib.mkOption { type = lib.types.str; };
-      yellow = lib.mkOption { type = lib.types.str; };
-      blue = lib.mkOption { type = lib.types.str; };
-      magenta = lib.mkOption { type = lib.types.str; };
-      cyan = lib.mkOption { type = lib.types.str; };
-      white = lib.mkOption { type = lib.types.str; };
-
-      bright = {
-        black = lib.mkOption { type = lib.types.str; };
-        red = lib.mkOption { type = lib.types.str; };
-        green = lib.mkOption { type = lib.types.str; };
-        yellow = lib.mkOption { type = lib.types.str; };
-        blue = lib.mkOption { type = lib.types.str; };
-        magenta = lib.mkOption { type = lib.types.str; };
-        cyan = lib.mkOption { type = lib.types.str; };
-        white = lib.mkOption { type = lib.types.str; };
-      };
-    };
+    rgbColor = color;
 
     vis.defaultColorScheme = lib.mkOption { type = lib.types.str; };
     wofi.style = lib.mkOption { type = lib.types.str; };
@@ -141,6 +121,8 @@ in
   config = {
     theme = {
       hashlessColor = builtins.mapAttrs (name: value: colorLib.removeHash value) config.theme.color;
+
+      rgbColor = builtins.mapAttrs (name: value: colorLib.convertToRgb value) config.theme.hashlessColor;
     };
 
     wayland.windowManager.hyprland.settings = config.theme.hyprland.themeSettings;
