@@ -23,6 +23,7 @@
   vis-config.enable = true;
   mpv-config.enable = true;
   swww-config.enable = true;
+  zathura-config.enable = true;
 
   eww-config.enable = true;
 
@@ -94,9 +95,6 @@
       blender
       drawio
       xournalpp
-
-      # pdf 
-      zathura
 
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
