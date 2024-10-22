@@ -81,6 +81,7 @@
   users.users.david = {
     isNormalUser = true;
     home = "/home/david";
+    # TODO: this needs to be changed
     hashedPassword = "$y$j9T$0QvrKa4enFuufCu14r0NC/$Xvij.zytnbXdHt64yoJZxA4JF99LtFuhNsJMzxM1md1";
     extraGroups = [
       "wheel"
