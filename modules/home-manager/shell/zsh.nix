@@ -18,6 +18,8 @@
       tzupdate
     ];
 
+    home.file.".dircolors".source = ../../../resources/.dircolors;
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
