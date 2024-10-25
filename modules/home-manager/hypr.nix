@@ -114,7 +114,7 @@
 
         image = [
           {
-            path = "~/.dotfiles/001-Ocean Breeze/.config/hypr/hyprlock.png";
+            path = builtins.toString ../../resources/hypr/hyprlock.png;
             size = "150";
             rounding = -1;
             border_size = 0;
