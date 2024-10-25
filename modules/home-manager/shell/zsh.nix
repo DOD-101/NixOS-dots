@@ -20,6 +20,11 @@
 
     home.file.".dircolors".source = ../../../resources/.dircolors;
 
+    home.file.".oh-my-zsh/custom" = {
+      recursive = true;
+      source = ../../../resources/.oh-my-zsh/custom;
+    };
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
