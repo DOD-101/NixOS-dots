@@ -6,7 +6,7 @@
 }:
 {
   options = {
-    fastfetch-config.enable = lib.mkEnableOption "enable foot config";
+    fastfetch-config.enable = lib.mkEnableOption "enable fastfetch config";
   };
 
   config = lib.mkIf config.fastfetch-config.enable {
