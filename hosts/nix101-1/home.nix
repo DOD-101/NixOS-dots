@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -25,6 +26,10 @@
 
   eww-config.enable = true;
 
+  kitty-config.enable = true;
+  kitty-config.default = true;
+  kitty-config.enableZshIntegration = true;
+
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
 
@@ -34,13 +39,14 @@
     hyprlock.enable = true;
     hyprland = {
       enable = true;
+      # INFO: Here we could not name zen explicitly
       extraConfig = ''
         # Monitors
         monitor=eDP-1,1920x1200,0x0,1
 
         # Execs
         exec-once = eww open SingleBarWin0
-        exec-once = [workspace 1 silent] foot
+        exec-once = [workspace 1 silent] ${config.term}
         exec-once = [workspace 2 silent] zen
 
         # Workspaces

@@ -1,10 +1,14 @@
 { lib, config, ... }:
 {
-  options = {
-    foot-config.enable = lib.mkEnableOption "enable foot config";
+  options.foot-config = {
+    enable = lib.mkEnableOption "enable foot config";
+    default = lib.mkEnableOption "If true will set config.term to foot";
   };
 
   config = lib.mkIf config.foot-config.enable {
+
+    term = lib.mkIf config.foot-config.default "foot";
+
     programs.foot = {
       enable = true;
       settings = {
