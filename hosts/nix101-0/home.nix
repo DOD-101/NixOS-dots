@@ -38,17 +38,21 @@
       enable = true;
       extraConfig = ''
         # Monitors
-        monitor=HDMI-A-2,1920x1200,0x0,1
+        monitor=DP-4,3440x1440,0x0,1
+        monitor=DP-6,3440x1440,3440x0,1
 
         # Execs
-        exec-once = eww open SingleBarWin0
+        exec-once = eww open-many BarWin0 BarWin1
         exec-once = [workspace 1 silent] foot
         exec-once = [workspace 2 silent] zen
 
         # Workspaces
-        workspace = 1, monitor:HDMI-A-2, default:true, persistent:true
-        workspace = 2, monitor:HDMI-A-2, persistent:true
-        workspace = 3, monitor:HDMI-A-2, persistent:true
+        workspace = 1, monitor:DP-4, default:true, persistent:true
+        workspace = 2, monitor:DP-6, default:true, persistent:true
+        workspace = 3, monitor:DP-4, persistent:true
+        workspace = 4, monitor:DP-6, persistent:true
+        workspace = 5, monitor:DP-4, persistent:true
+        workspace = 6, monitor:DP-6, persistent:true
       '';
     };
   };
