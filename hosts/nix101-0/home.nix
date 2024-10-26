@@ -108,7 +108,7 @@
       # '')
     ]
     ++ [
-      inputs.zen-browser.packages.x86_64-linux.zen-browser
+      inputs.zen-browser.packages."${system}".default
     ];
 
   home.activation.createSyncDir = {
