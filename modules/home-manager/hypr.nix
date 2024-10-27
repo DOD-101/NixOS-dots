@@ -35,7 +35,6 @@
       # Some additional style related config is done through the selected theme
       settings = {
         source = [
-          "${../../resources/hypr/hyprvars.conf}"
           "${../../resources/hypr/hyprenv.conf}"
           "${../../resources/hypr/hyprgeneral.conf}"
           "${../../resources/hypr/hyprbinds.conf}"
@@ -43,6 +42,17 @@
 
         workspace = [
           "special:minimized"
+        ];
+
+        "$terminal" = config.term;
+        # TODO: This asumes that wofi is installed and is the preferred "launch menu"
+        "$menu" = "wofi --show drun -O alphabetical -a -i -I";
+        "$mainMod" = "Super";
+        # TODO: This doesn't work, nor does the rest of the disabling of the Touchpad
+        "$touchpadEnabled" = "true";
+
+        windowrulev2 = [
+          "opacity 0.95 override 0.7 override,class:(${config.term})"
         ];
 
         exec-once =
