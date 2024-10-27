@@ -27,6 +27,8 @@
       };
 
       settings = {
+        enable_audio_bell = false;
+
         scrollback_lines = 10000;
 
         background = config.theme.color.background;
