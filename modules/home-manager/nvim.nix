@@ -70,5 +70,12 @@
       EDITOR = "nvim";
       NVIM_APPNAME = "nvim/janc";
     };
+
+    home.shellAliases = {
+      n = "nvim";
+
+      pyserver = "python -m http.server";
+      pyvenv = "python -m venv .venv";
+    };
   };
 }

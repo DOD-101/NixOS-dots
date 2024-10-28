@@ -131,5 +131,9 @@
         ExecStart = "${config.programs.spotify-player.package}/bin/spotify_player -d -c ${config.home.homeDirectory}/.config/spotify-player/daemon/";
       };
     };
+
+    home.shellAliases = {
+      sp = "spotify_player";
+    };
   };
 }

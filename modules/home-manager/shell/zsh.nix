@@ -38,19 +38,6 @@
 
         ls = "ls --color=auto";
         grep = "grep --color=auto";
-
-        tzuc = "timedatectl set-timezone \$(tzupdate -p)"; # TimeZoneUpdateComplete
-
-        sp = "spotify_player";
-
-        pyserver = "python -m http.server";
-        pyvenv = "python -m venv .venv";
-
-        stowh = "stow -t ~ -S .";
-        stowu = "stow -t ~ -D .";
-
-        n = "nvim";
-        g = "git";
       };
 
       oh-my-zsh = {
@@ -78,60 +65,49 @@
         GTRASH_ONLY_HOME_TRASH = "true";
       };
 
-      initExtra = ''
-        export PATH=$PATH:~/.bin/:~/node_modules/.bin/
+      initExtra =
+        ''
+          eval "$(atuin init zsh)"
+          eval "$(dircolors ~/.dircolors)"
+          eval "$(zoxide init zsh)"
 
-        eval "$(atuin init zsh)"
-        eval "$(dircolors ~/.dircolors)"
-        eval "$(zoxide init zsh)"
+          setopt globdots
+          setopt extended_glob
 
-        setopt globdots
-        setopt extended_glob
-
-        if [[ "$(tty)" == "/dev/tty1" ]]; then
-          if command -v fastfetch &> /dev/null; then
-            fastfetch
-          else
-            echo "Current time: $(date)"
+          if [[ "$(tty)" == "/dev/tty1" ]]; then
+            if command -v fastfetch &> /dev/null; then
+              fastfetch
+            else
+              echo "Current time: $(date)"
+            fi
           fi
-        fi
 
-        # yazi
+          # mkcd
 
-        yy() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-          yazi "$@" --cwd-file="$tmp"
-          if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            cd -- "$cwd"
-          fi
-          rm -f -- "$tmp"
-        }
+          mkcd () {
+              mkdir -p "$1" && cd "$1"
+          }
 
-        # mkcd
+          countdown() {
+              start="$(( $(date '+%s') + $1))"
+              while [ $start -ge $(date +%s) ]; do
+                  time="$(( $start - $(date +%s) ))"
+                  printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+                  sleep 0.1
+              done
+          }
 
-        mkcd () {
-            mkdir -p "$1" && cd "$1"
-        }
+          stopwatch() {
+              start=$(date +%s)
+              while true; do
+                  time="$(( $(date +%s) - $start))"
+                  printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+                  sleep 0.1
+              done
+          }
 
-        countdown() {
-            start="$(( $(date '+%s') + $1))"
-            while [ $start -ge $(date +%s) ]; do
-                time="$(( $start - $(date +%s) ))"
-                printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
-                sleep 0.1
-            done
-        }
-
-        stopwatch() {
-            start=$(date +%s)
-            while true; do
-                time="$(( $(date +%s) - $start))"
-                printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
-                sleep 0.1
-            done
-        }
-
-      '';
+        ''
+        + lib.optionals config.eww-config.enable ''eval "$(eww shell-completions --shell zsh)"'';
     };
   };
 }

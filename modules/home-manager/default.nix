@@ -2,9 +2,9 @@
 {
   imports = [
     ./term
+    ./shell
     ./dev.nix
     ./cursor.nix
-    ./shell/zsh.nix
     ./fastfetch.nix
     ./dev.nix
     ./wofi.nix
