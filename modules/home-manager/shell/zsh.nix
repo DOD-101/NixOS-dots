@@ -36,8 +36,6 @@
         rt = "gtrash put";
         l = "ls -vAlh --group-directories-first";
 
-        cf = ''T="$(find . -type f | fzf)" ; if [[ -f "$T" ]] ; then T="$(dirname "$T")" ; fi ; cd "$T""'';
-
         ls = "ls --color=auto";
         grep = "grep --color=auto";
 
@@ -61,8 +59,9 @@
           "git"
           "rust"
         ];
-        theme = "agnoster-custom";
+        theme = config.theme.zsh.theme;
       };
+
       localVariables = {
         ZSH_CUSTOM = "$HOME/.oh-my-zsh/custom";
         ENABLE_CORRECTION = "true";
@@ -113,8 +112,6 @@
         mkcd () {
             mkdir -p "$1" && cd "$1"
         }
-
-        # Hyprlaunch
 
         countdown() {
             start="$(( $(date '+%s') + $1))"

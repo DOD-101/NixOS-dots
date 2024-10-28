@@ -154,6 +154,8 @@
       swww = {
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/ocean-breeze/1.png";
       };
+
+      zsh.theme = "agnoster-custom";
     };
   };
 }

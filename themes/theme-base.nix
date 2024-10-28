@@ -116,6 +116,11 @@ in
     };
 
     swww.script = lib.mkOption { type = lib.types.str; };
+
+    zsh.theme = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+    };
   };
 
   config = {
