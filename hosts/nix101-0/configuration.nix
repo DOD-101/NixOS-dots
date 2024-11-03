@@ -86,6 +86,12 @@
           "android101-0"
         ];
       };
+      "School" = {
+        path = "~/Data/School-Schule";
+        devices = [
+          "nix101-1"
+        ];
+      };
     };
   };
 
