@@ -82,6 +82,7 @@
 
       # Office
       libreoffice
+      teams-for-linux
 
       # discord
       vesktop
