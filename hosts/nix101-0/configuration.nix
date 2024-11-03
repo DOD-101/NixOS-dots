@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  lib,
+  config,
   ...
 }:
 {
@@ -67,15 +69,22 @@
   syncthing-config.enable = true;
   syncthing-config.settings = {
     devices = {
-      "arch101-1" = {
-        id = "NC3FNWV-5S7BPR7-5YNRZME-P34OTM2-IRPOPOV-6IHGUZP-BFPZKJA-RIG5EQL";
+      "nix101-1" = {
+        id = "YWZ23VE-MJZEY2A-3WLNHNX-IP4EJO7-ZYTDVUD-JQBPP3Q-ZKMIQ6R-RP7FFQJ";
+      };
+      "android101-0" = {
+        id = "XTGPRWO-5OPQ5JX-YC4524J-QKQ2HWH-DU5O5SR-FPKGGVU-4XDNPWT-YGZPHAC";
       };
     };
 
+    # INFO: Don't forget to create the .stfolder
     folders = {
       "Main" = {
         path = "~/Sync";
-        devices = [ "arch101-1" ];
+        devices = [
+          "nix101-1"
+          "android101-0"
+        ];
       };
     };
   };
