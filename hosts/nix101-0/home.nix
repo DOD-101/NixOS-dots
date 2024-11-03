@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -27,6 +28,10 @@
 
   eww-config.enable = true;
 
+  kitty-config.enable = true;
+  kitty-config.default = true;
+  kitty-config.enableZshIntegration = true;
+
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
 
@@ -43,7 +48,7 @@
 
         # Execs
         exec-once = eww open-many BarWin0 BarWin1
-        exec-once = [workspace 1 silent] foot
+        exec-once = [workspace 1 silent] ${config.term}
         exec-once = [workspace 2 silent] zen
 
         # Workspaces
