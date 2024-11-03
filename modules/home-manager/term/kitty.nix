@@ -26,6 +26,10 @@
         size = 14;
       };
 
+      keybindings = {
+        "ctrl+shift+n" = "launch --cwd=current --type=os-window";
+      };
+
       settings = {
         enable_audio_bell = false;
 
