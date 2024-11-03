@@ -103,17 +103,10 @@
 
       # pdf 
       zathura
-
     ]
     ++ [
       inputs.zen-browser.packages."${system}".default
     ];
-
-  home.activation.createSyncDir = {
-    before = [ "writeBoundary" ]; # Optional, but recommended
-    after = [ "writeGlobalProfile" ]; # Optional, but recommended
-    data = "mkdir -p ~/Sync/.stfolder";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

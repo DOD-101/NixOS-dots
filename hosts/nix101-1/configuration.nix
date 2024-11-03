@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  lib,
+  config,
   ...
 }:
 {
@@ -64,17 +66,32 @@
   # Syncthing config
   syncthing-config.enable = true;
   syncthing-config.settings = {
-    # devices = {
-    #   "arch101-1" = {
-    #     id = "NC3FNWV-5S7BPR7-5YNRZME-P34OTM2-IRPOPOV-6IHGUZP-BFPZKJA-RIG5EQL";
-    #   };
-    # };
+    devices = {
+      "nix101-0" = {
+        id = "E7NJQEN-MWDRATB-KKPMDJX-4YH5DCL-Y7S6PJA-F5DZE5O-YF7IWRD-QDMXJAO";
+      };
+      "android101-0" = {
+        id = "XTGPRWO-5OPQ5JX-YC4524J-QKQ2HWH-DU5O5SR-FPKGGVU-4XDNPWT-YGZPHAC";
+      };
+    };
 
     folders = {
       "Main" = {
         path = "~/Sync";
-        devices = [ "arch101-1" ];
+        devices = [
+          "nix101-0"
+          "android101-0"
+        ];
       };
+    };
+  };
+
+  systemd.services."create-syncthing-dirs" = lib.mkIf config.syncthing-config.enable {
+    description = "Creates the syncthing dirs";
+    wantedBy = [ "syncthing-init.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.coreutils}/bin/mkdir -p /home/david/Sync/.stfolder";
+      Type = "oneshot";
     };
   };
 

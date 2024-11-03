@@ -1,8 +1,12 @@
-{ lib, config, ... }:
 {
-  options = {
-    syncthing-config.enable = lib.mkEnableOption "enable syncthing config";
-    syncthing-config.settings = lib.mkOption {
+  lib,
+  config,
+  ...
+}:
+{
+  options.syncthing-config = {
+    enable = lib.mkEnableOption "enable syncthing config";
+    settings = lib.mkOption {
       type = lib.types.attrs;
       default = { };
       description = "Syncthing settings, passed to services.syncthing.settings";
