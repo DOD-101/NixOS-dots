@@ -86,15 +86,6 @@
     };
   };
 
-  systemd.services."create-syncthing-dirs" = lib.mkIf config.syncthing-config.enable {
-    description = "Creates the syncthing dirs";
-    wantedBy = [ "syncthing-init.service" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.coreutils}/bin/mkdir -p /home/david/Sync/.stfolder";
-      Type = "oneshot";
-    };
-  };
-
   users.users.david = {
     isNormalUser = true;
     home = "/home/david";
