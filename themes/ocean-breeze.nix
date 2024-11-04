@@ -155,6 +155,8 @@
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/ocean-breeze/1.png";
       };
 
+      btop.theme = "tokyo-night";
+
       zsh.theme = "agnoster-custom";
     };
   };

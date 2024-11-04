@@ -16,5 +16,6 @@
     ./hypr.nix
     ./swww.nix
     ./zathura.nix
+    ./btop.nix
   ];
 }

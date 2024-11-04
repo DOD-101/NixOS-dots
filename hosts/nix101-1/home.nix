@@ -21,6 +21,7 @@
   wofi-config.enable = true;
   spotify-player-config.enable = true;
   vis-config.enable = true;
+  btop-config.enable = true;
   mpv-config.enable = true;
   swww-config.enable = true;
 
