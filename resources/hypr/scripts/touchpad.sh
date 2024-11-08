@@ -1,23 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-export STATUS_FILE="$XDG_RUNTIME_DIR/keyboard.status"
+var_name="hyprbind_touchpad"
 
-enable_touchpad() {
-    printf "true" >"$STATUS_FILE"
-    hyprctl keyword '$touchpadEnabled' "true" -r
-}
-
-disable_touchpad() {
-    printf "false" >"$STATUS_FILE"
+if [ $(config-store check "$var_name") = "false" ]; then
+    config-store set "$var_name" --value "false" --alternate "true"
     hyprctl keyword '$touchpadEnabled' "false" -r
-}
-
-if ! [ -f "$STATUS_FILE" ]; then
-    enable_touchpad
 else
-    if [ $(cat "$STATUS_FILE") = "true" ]; then
-        disable_touchpad
-    elif [ $(cat "$STATUS_FILE") = "false" ]; then
-        enable_touchpad
+    if [ $(config-store toggle "$var_name") = "true" ]; then
+        hyprctl keyword '$touchpadEnabled' "false" -r
+    else
+        hyprctl keyword '$touchpadEnabled' "true" -r
     fi
 fi

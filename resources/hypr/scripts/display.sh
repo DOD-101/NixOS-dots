@@ -1,23 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-export STATUS_FILE="$XDG_RUNTIME_DIR/display.status"
+var_name="hyprbind_display"
 
-enable_display() {
-    printf "true" >"$STATUS_FILE"
-    hyprctl dispatch dpms on
-}
-
-disable_display() {
-    printf "false" >"$STATUS_FILE"
+if [ $(config-store check "$var_name") = "false" ]; then
+    config-store set "$var_name" --value "false" --alternate "true"
     hyprctl dispatch dpms off
-}
-
-if ! [ -f "$STATUS_FILE" ]; then
-    display_display
 else
-    if [ $(cat "$STATUS_FILE") = "true" ]; then
-        disable_display
-    elif [ $(cat "$STATUS_FILE") = "false" ]; then
-        enable_display
+    if [ $(config-store toggle "$var_name") = "true" ]; then
+        hyprctl dispatch dpms on
+    else
+        hyprctl dispatch dpms off
     fi
 fi

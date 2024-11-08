@@ -26,6 +26,21 @@
       slurp
       grim
       cliphist
+
+      (rustPlatform.buildRustPackage rec {
+        pname = "config-store";
+        version = "7f5b37db1df50dc01ffea6005522af9bc1c6e06d";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "DOD-101";
+          repo = pname;
+          rev = version;
+          sha256 = "sha256-EIo4rUe7fwSGMbGYWGzxQkBhGJvrv0yvg+rvXBwll8E=";
+        };
+
+        cargoHash = "sha256-Kpj9D3PWi2zrvazHiQ4+YIr8F07HsNsTLF/PxsXnXNw=";
+        doCheck = false;
+      })
     ];
 
     # hyprland
