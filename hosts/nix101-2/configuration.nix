@@ -55,9 +55,9 @@
   # Enable config modules
   sound-config.enable = true;
 
-  users.users.david = {
+  users.users.server = {
     isNormalUser = true;
-    home = "/home/david";
+    home = "/home/server";
     # TODO: this needs to be changed
     hashedPassword = "$y$j9T$0QvrKa4enFuufCu14r0NC/$Xvij.zytnbXdHt64yoJZxA4JF99LtFuhNsJMzxM1md1";
     extraGroups = [
@@ -73,7 +73,7 @@
       inherit inputs;
     };
     users = {
-      "david" = import ./home.nix;
+      "server" = import ./home.nix;
     };
     backupFileExtension = "bck";
   };
