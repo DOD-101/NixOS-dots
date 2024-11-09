@@ -13,16 +13,16 @@
   home.username = "server";
   home.homeDirectory = "/home/server";
 
-  theme.ocean-breeze.enable = true;
+  # theme.ocean-breeze.enable = true;
 
-  zsh-config.enable = true;
-  fastfetch-config.enable = true;
-  btop-config.enable = true;
+  # zsh-config.enable = true;
+  # fastfetch-config.enable = true;
+  # btop-config.enable = true;
 
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
+  # dconf = {
+  #   enable = true;
+  #   settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
