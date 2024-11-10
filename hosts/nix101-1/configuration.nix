@@ -95,8 +95,7 @@
   users.users.david = {
     isNormalUser = true;
     home = "/home/david";
-    # TODO: this needs to be changed
-    hashedPassword = "$y$j9T$0QvrKa4enFuufCu14r0NC/$Xvij.zytnbXdHt64yoJZxA4JF99LtFuhNsJMzxM1md1";
+    hashedPassword = "$y$j9T$.s0C6Y6mV/Vp06fLFGN.d1$9OztuEPgV0hEwHOrOJRttqM1w0Yq2s0.4LLUXvr.dF8";
     extraGroups = [
       "wheel"
       "networkmanager"
