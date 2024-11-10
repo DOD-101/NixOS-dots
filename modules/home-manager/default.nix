@@ -17,5 +17,6 @@
     ./swww.nix
     ./zathura.nix
     ./btop.nix
+    ./office.nix
   ];
 }

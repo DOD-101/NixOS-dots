@@ -34,6 +34,8 @@
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
 
+  office-config.enable = true;
+
   hypr-config = {
     enable = true;
     hypridle.enable = true;
@@ -70,20 +72,12 @@
     nvim.enable = true;
   };
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
   home.packages =
     with pkgs;
     [
-      foot
       firefox
-      swayimg
       webkitgtk_4_1
       keepassxc
-
-      # Office
-      libreoffice
-      teams-for-linux
 
       # discord
       vesktop
@@ -100,10 +94,6 @@
       inkscape
       # blender
       drawio
-      xournalpp
-
-      # pdf 
-      zathura
     ]
     ++ [
       inputs.zen-browser.packages."${system}".default
