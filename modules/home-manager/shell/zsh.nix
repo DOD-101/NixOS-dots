@@ -14,8 +14,6 @@
       atuin
       zoxide
       gtrash
-      yazi
-      tzupdate
     ];
 
     home.file.".dircolors".source = ../../../resources/.dircolors;
