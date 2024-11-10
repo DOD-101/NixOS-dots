@@ -13,11 +13,12 @@
   home.username = "server";
   home.homeDirectory = "/home/server";
 
-  # theme.ocean-breeze.enable = true;
+  theme.ocean-breeze.enable = true;
 
-  # zsh-config.enable = true;
-  # fastfetch-config.enable = true;
-  # btop-config.enable = true;
+  zsh-config.enable = true;
+  fastfetch-config.enable = true;
+  btop-config.enable = true;
+  yazi-config.enable = true;
 
   # dconf = {
   #   enable = true;
