@@ -18,7 +18,9 @@
   zsh-config.enable = true;
   fastfetch-config.enable = true;
   btop-config.enable = true;
+
   yazi-config.enable = true;
+  yazi-config.enableZshIntegration = true;
 
   # dconf = {
   #   enable = true;
