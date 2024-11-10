@@ -8,7 +8,6 @@
   imports = [
     ../../modules/home-manager
     ../../themes
-    inputs.nix-colors.homeManagerModules.default
   ];
 
   home.username = "david";

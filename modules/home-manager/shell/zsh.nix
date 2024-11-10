@@ -65,49 +65,52 @@
         GTRASH_ONLY_HOME_TRASH = "true";
       };
 
-      initExtra =
-        ''
-          eval "$(atuin init zsh)"
-          eval "$(dircolors ~/.dircolors)"
-          eval "$(zoxide init zsh)"
+      initExtra = lib.strings.concatStrings (
+        [
+          ''
+            eval "$(atuin init zsh)"
+            eval "$(dircolors ~/.dircolors)"
+            eval "$(zoxide init zsh)"
 
-          setopt globdots
-          setopt extended_glob
+            setopt globdots
+            setopt extended_glob
 
-          if [[ "$(tty)" == "/dev/tty1" ]]; then
-            if command -v fastfetch &> /dev/null; then
-              fastfetch
-            else
-              echo "Current time: $(date)"
+            if [[ "$(tty)" == "/dev/tty1" ]]; then
+              if command -v fastfetch &> /dev/null; then
+                fastfetch
+              else
+                echo "Current time: $(date)"
+              fi
             fi
-          fi
 
-          # mkcd
+            # mkcd
 
-          mkcd () {
-              mkdir -p "$1" && cd "$1"
-          }
+            mkcd () {
+                mkdir -p "$1" && cd "$1"
+            }
 
-          countdown() {
-              start="$(( $(date '+%s') + $1))"
-              while [ $start -ge $(date +%s) ]; do
-                  time="$(( $start - $(date +%s) ))"
-                  printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
-                  sleep 0.1
-              done
-          }
+            countdown() {
+                start="$(( $(date '+%s') + $1))"
+                while [ $start -ge $(date +%s) ]; do
+                    time="$(( $start - $(date +%s) ))"
+                    printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+                    sleep 0.1
+                done
+            }
 
-          stopwatch() {
-              start=$(date +%s)
-              while true; do
-                  time="$(( $(date +%s) - $start))"
-                  printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
-                  sleep 0.1
-              done
-          }
+            stopwatch() {
+                start=$(date +%s)
+                while true; do
+                    time="$(( $(date +%s) - $start))"
+                    printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+                    sleep 0.1
+                done
+            }
 
-        ''
-        + lib.optionals config.eww-config.enable ''eval "$(eww shell-completions --shell zsh)"'';
+          ''
+        ]
+        ++ lib.optionals config.eww-config.enable [ ''eval "$(eww shell-completions --shell zsh)"'' ]
+      );
     };
   };
 }
