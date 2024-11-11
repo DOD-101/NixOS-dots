@@ -65,6 +65,11 @@
   bluetooth-config.enable = true;
   nvidia-config.enable = true;
 
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   # Syncthing config
   syncthing-config.enable = true;
   syncthing-config.settings = {
