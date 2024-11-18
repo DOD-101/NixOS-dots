@@ -10,6 +10,8 @@
     ../../themes
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   home.username = "david";
   home.homeDirectory = "/home/david";
 
@@ -93,6 +95,7 @@
       # art
       gimp
       inkscape
+
       # blender
       drawio
     ]
