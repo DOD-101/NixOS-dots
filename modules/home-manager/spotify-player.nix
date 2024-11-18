@@ -140,7 +140,7 @@
          systemctl --user restart spotify-player-daemon.service
         fi
 
-        spotify_player
+        spotify_player "$@"
       ''}";
     };
   };
