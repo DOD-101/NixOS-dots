@@ -43,6 +43,7 @@
         plugins = [
           "git"
           "rust"
+          "vi-mode"
         ];
         theme = config.theme.zsh.theme;
       };
