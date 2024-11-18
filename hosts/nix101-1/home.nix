@@ -24,6 +24,7 @@
   btop-config.enable = true;
   mpv-config.enable = true;
   swww-config.enable = true;
+  zathura-config.enable = true;
 
   eww-config.enable = true;
 
