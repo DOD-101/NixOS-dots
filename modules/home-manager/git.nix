@@ -15,6 +15,9 @@
         ce = "commit --amend --no-edit";
         ca = "commit --amend";
         dd = "diff";
+        ds = "diff --staged";
+        p = "pull";
+        P = "push";
         st = "status";
 
       };
