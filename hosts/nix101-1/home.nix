@@ -60,6 +60,7 @@
         workspace = 2, monitor:eDP-1, persistent:true
         workspace = 3, monitor:eDP-1, persistent:true
       '';
+      plugins.hyprgrass.enable = true;
     };
   };
 
