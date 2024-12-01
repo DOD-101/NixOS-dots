@@ -8,7 +8,7 @@
     programs.git = {
       enable = true;
       userName = "David Thievon";
-      userEmail = "pkfan@gmail.com";
+      userEmail = "pdkfan@gmail.com";
       lfs.enable = true;
       aliases = {
         cc = "commit";
