@@ -83,6 +83,7 @@
       firefox
       webkitgtk_4_1
       keepassxc
+      signal-desktop
 
       # discord
       vesktop
