@@ -25,6 +25,8 @@
     "udev.log_priority=3"
   ];
 
+  boot.tmp.cleanOnBoot = true;
+
   nixpkgs.config.allowUnfree = true;
   programs.nix-ld.enable = true;
 
