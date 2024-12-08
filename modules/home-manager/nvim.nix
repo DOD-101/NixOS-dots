@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 {
@@ -41,7 +42,8 @@
       # rust
       rustfmt
       cargo
-      rust-analyzer
+      # WARN: Change this as soon as a fix for the autocomplete is found
+      inputs.cursor_nixpkgs.legacyPackages."${system}".rust-analyzer
       clippy
       rustc
       pkg-config
@@ -53,6 +55,7 @@
       pylint
     ];
 
+    # TODO: This needs be changed
     home.activation.installNpmNvimPackages = {
       before = [ "writeBoundary" ]; # Optional, but recommended
       after = [ "writeGlobalProfile" ]; # Optional, but recommended
@@ -63,7 +66,7 @@
       '';
     };
 
-    # These might also be needed: 
+    # These might also be needed:
     # stylelint-config-standard-scss \
     # stylelint-config-standard
     home.sessionVariables = {
