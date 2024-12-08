@@ -64,7 +64,7 @@
         GTRASH_ONLY_HOME_TRASH = "true";
       };
 
-      initExtra = lib.strings.concatStrings (
+      initExtra = lib.strings.concatStringsSep "\n" (
         [
           ''
             eval "$(atuin init zsh)"
@@ -109,6 +109,10 @@
           ''
         ]
         ++ lib.optionals config.eww-config.enable [ ''eval "$(eww shell-completions --shell zsh)"'' ]
+        ++ lib.optionals config.spotify-player-config.enable [ ''eval "$(spotify_player generate zsh)"'' ]
+        ++ lib.optionals config.hypr-config.enable [
+          ''eval "$(config-store completions zsh)"''
+        ]
       );
     };
   };
