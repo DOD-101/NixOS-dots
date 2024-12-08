@@ -18,6 +18,7 @@
           main = "FiraCode Nerd Font Mono";
         };
 
+        # TODO: I don't think this is even used
         packages = with pkgs; [
           (nerdfonts.override {
             fonts = [
