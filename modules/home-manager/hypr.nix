@@ -32,17 +32,29 @@
 
       (rustPlatform.buildRustPackage rec {
         pname = "config-store";
-        version = "7f5b37db1df50dc01ffea6005522af9bc1c6e06d";
+        version = "1.0.0";
 
         src = pkgs.fetchFromGitHub {
           owner = "DOD-101";
           repo = pname;
-          rev = version;
-          sha256 = "sha256-EIo4rUe7fwSGMbGYWGzxQkBhGJvrv0yvg+rvXBwll8E=";
+          rev = "refs/tags/v${version}";
+          sha256 = "sha256-dmFIB9tVI5/hnI+VKeawFzKi6UJrRis0tpeQE5a5dGU=";
         };
 
-        cargoHash = "sha256-Kpj9D3PWi2zrvazHiQ4+YIr8F07HsNsTLF/PxsXnXNw=";
-        doCheck = false;
+        cargoHash = "sha256-tEhk6vDan5uaP1vvKanB+juKsGJndrJPP67kudds24s=";
+
+        meta = {
+          description = "A simple key-value store designed to be used from shell scripts written in rust";
+          homepage = "https://github.com/DOD-101/config-store";
+          mainProgram = "config-store";
+          license = with lib.licenses; [
+            mit
+            asl20
+          ];
+          maintainers = with lib.maintainers; [ dod-101 ];
+
+          platforms = lib.platforms.linux;
+        };
       })
     ];
 
