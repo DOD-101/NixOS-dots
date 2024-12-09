@@ -17,6 +17,7 @@
       ripgrep
       fzf
       gh
+      live-server
 
       # Nix
       nixfmt-rfc-style
