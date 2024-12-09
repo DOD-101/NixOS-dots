@@ -30,6 +30,8 @@
       # js
       nodejs_22
       biome
+      vtsls
+      nodePackages.prettier
 
       # sh
       shfmt
@@ -55,17 +57,6 @@
       black
       pylint
     ];
-
-    # TODO: This needs be changed
-    home.activation.installNpmNvimPackages = {
-      before = [ "writeBoundary" ]; # Optional, but recommended
-      after = [ "writeGlobalProfile" ]; # Optional, but recommended
-      data = ''
-        ${pkgs.nodejs_22}/bin/npm install \
-        prettier \
-        @vtsls/language-server
-      '';
-    };
 
     # These might also be needed:
     # stylelint-config-standard-scss \
