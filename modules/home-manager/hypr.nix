@@ -29,6 +29,7 @@
       slurp
       grim
       cliphist
+      brightnessctl
 
       (rustPlatform.buildRustPackage rec {
         pname = "config-store";
