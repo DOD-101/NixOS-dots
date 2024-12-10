@@ -12,6 +12,9 @@
 
     term = lib.mkIf config.kitty-config.default "kitty";
 
+    # NOTE: Have to overwrite the scale, since the scaling is different in kitty
+    theme.spotify-player.cover_img_scale = lib.mkForce 1;
+
     programs.kitty = {
       enable = true;
 
