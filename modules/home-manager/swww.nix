@@ -22,11 +22,6 @@
       Unit = {
         Description = "Swww wallpaper service.";
       };
-      Install = {
-        WantedBy = [
-          "graphical-session.target"
-        ];
-      };
       Service = {
         Type = "exec";
         RemainAfterExit = true;

@@ -99,7 +99,8 @@
             "pipewire-pulse"
           ]
           ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
-          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ];
+          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
+          ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ];
 
         plugin = {
           touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {
