@@ -71,6 +71,7 @@
   sound-config.enable = true;
   font-config.enable = true;
   bluetooth-config.enable = true;
+  mime-config.enable = true;
 
   # Syncthing config
   syncthing-config.enable = true;

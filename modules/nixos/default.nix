@@ -7,5 +7,6 @@
     ./nvidia.nix
     ./bluetooth.nix
     ./syncthing.nix
+    ./mime.nix
   ];
 }
