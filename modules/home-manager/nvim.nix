@@ -21,6 +21,7 @@
 
       # Nix
       nixfmt-rfc-style
+      nixd
 
       # Lua
       lua
