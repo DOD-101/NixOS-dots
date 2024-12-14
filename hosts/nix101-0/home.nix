@@ -53,14 +53,15 @@
         # Execs
         exec-once = eww open-many BarWin0 BarWin1
         exec-once = [workspace 1 silent] ${config.term}
-        exec-once = [workspace 2 silent] zen
+        exec-once = [workspace 4 silent] zen
 
         # Workspaces
         workspace = 1, monitor:DP-4, default:true, persistent:true
-        workspace = 2, monitor:DP-6, default:true, persistent:true
+        workspace = 2, monitor:DP-4, persistent:true
         workspace = 3, monitor:DP-4, persistent:true
-        workspace = 4, monitor:DP-6, persistent:true
-        workspace = 5, monitor:DP-4, persistent:true
+
+        workspace = 4, monitor:DP-6, default:true, persistent:true
+        workspace = 5, monitor:DP-6, persistent:true
         workspace = 6, monitor:DP-6, persistent:true
       '';
     };
