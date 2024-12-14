@@ -10,6 +10,7 @@
   };
 
   config = lib.mkIf config.font-config.enable {
+    fonts.enableDefaultPackages = true;
     environment.systemPackages = with pkgs; [
       fontconfig
     ];
