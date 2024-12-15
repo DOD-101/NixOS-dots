@@ -59,6 +59,11 @@
         workspace = 1, monitor:eDP-1, default:true, persistent:true
         workspace = 2, monitor:eDP-1, persistent:true
         workspace = 3, monitor:eDP-1, persistent:true
+
+        device {
+          name=elan06fa:00-04f3:31ad-touchpad
+          enabled=$touchpadEnabled
+        }
       '';
       plugins.hyprgrass.enable = true;
     };
