@@ -8,5 +8,6 @@
     ./bluetooth.nix
     ./syncthing.nix
     ./mime.nix
+    ./borg.nix
   ];
 }

@@ -74,6 +74,7 @@
   bluetooth-config.enable = true;
   nvidia-config.enable = true;
   mime-config.enable = true;
+  borg-config.enable = true;
 
   services.ollama = {
     enable = true;
