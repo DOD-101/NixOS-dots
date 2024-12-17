@@ -6,5 +6,4 @@
       description = "The terminal emulator to use.";
     };
   };
-
 }

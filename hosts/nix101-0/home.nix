@@ -34,6 +34,8 @@
   kitty-config.default = true;
   kitty-config.enableZshIntegration = true;
 
+  wezterm-config.enable = true;
+
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
 
