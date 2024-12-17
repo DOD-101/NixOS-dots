@@ -2,9 +2,14 @@
   description = "Nixos config flake";
 
   nixConfig = {
-    extra-substituters = [ "https://cuda-maintainers.cachix.org" ];
+    extra-substituters = [
+      "https://cuda-maintainers.cachix.org"
+      "https://wezterm.cachix.org"
+    ];
+
     extra-trusted-public-keys = [
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
     ];
   };
 
@@ -23,6 +28,11 @@
 
     nix-colors = {
       url = "github:misterio77/nix-colors";
+    };
+
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -44,6 +54,7 @@
         ];
       };
 
+      # TODO: Missing swap drive
       nixosConfigurations.nix101-1 = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;

@@ -81,6 +81,44 @@
     nvim.enable = true;
   };
 
+  programs.wezterm = {
+    enable = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
+    colorSchemes = {
+      current_theme = {
+        ansi = [
+          config.theme.color.black
+          config.theme.color.red
+          config.theme.color.green
+          config.theme.color.yellow
+          config.theme.color.blue
+          config.theme.color.magenta
+          config.theme.color.cyan
+          config.theme.color.white
+        ];
+        brights = [
+          config.theme.color.bright.black
+          config.theme.color.bright.red
+          config.theme.color.bright.green
+          config.theme.color.bright.yellow
+          config.theme.color.bright.blue
+          config.theme.color.bright.magenta
+          config.theme.color.bright.cyan
+          config.theme.color.bright.white
+        ];
+        background = config.theme.color.background;
+        foreground = config.theme.color.foreground;
+        cursor_bg = "#BEAF8A";
+        cursor_border = "#BEAF8A";
+        cursor_fg = "#1B1B1B";
+        selection_bg = "#444444";
+        selection_fg = "#E9E9E9";
+      };
+    };
+
+    extraConfig = builtins.readFile ../../resources/wezterm/wezterm.lua;
+  };
+
   home.packages =
     with pkgs;
     [
