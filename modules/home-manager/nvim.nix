@@ -11,37 +11,49 @@
   };
 
   config = lib.mkIf config.nvim-config.enable {
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
     home.packages = with pkgs; [
-      neovim
       git
       ripgrep
       fzf
       gh
       live-server
 
-      # Nix
-      nixfmt-rfc-style
-      nixd
-
       # Lua
       lua
+      lua-language-server
       stylua
       luajitPackages.luacheck
 
+      # html
+      emmet-language-server
+      nodePackages.prettier
+      biome
+      htmlhint
+
+      # css
+      nodePackages.vscode-langservers-extracted
+      stylelint
+
       # js
       nodejs_22
-      biome
       vtsls
-      nodePackages.prettier
+
+      # json
+
+      # python
+      python3
+      pyright
+      black
+      pylint
 
       # sh
       shfmt
-
-      # css
-      stylelint
-
-      # html
-      # nothing
+      bash-language-server
 
       # rust
       rustfmt
@@ -53,17 +65,21 @@
       pkg-config
       openssl
 
-      # python
-      python3
-      black
-      pylint
+      # Nix
+      nixfmt-rfc-style
+      nixd
+
+      # hypr
+      hyprls
+
+      #markdown
+      marksman
     ];
 
     # These might also be needed:
     # stylelint-config-standard-scss \
     # stylelint-config-standard
     home.sessionVariables = {
-      EDITOR = "nvim";
       NVIM_APPNAME = "nvim/janc";
     };
 
