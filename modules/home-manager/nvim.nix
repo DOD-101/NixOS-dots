@@ -72,8 +72,13 @@
       # hypr
       hyprls
 
-      #markdown
+      # markdown
       marksman
+
+      # yaml
+      yaml-language-server
+      yamllint
+      actionlint
     ];
 
     # These might also be needed:
