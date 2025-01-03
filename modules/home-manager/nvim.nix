@@ -68,6 +68,7 @@
       # Nix
       nixfmt-rfc-style
       nixd
+      nil
 
       # hypr
       hyprls
