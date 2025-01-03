@@ -14,6 +14,8 @@
       atuin
       zoxide
       gtrash
+      direnv
+      nix-direnv
     ];
 
     home.file.".dircolors".source = ../../../resources/.dircolors;
@@ -44,6 +46,7 @@
           "git"
           "rust"
           "vi-mode"
+          "direnv"
         ];
         theme = config.theme.zsh.theme;
       };
@@ -56,8 +59,6 @@
 
       sessionVariables = {
         VIRTUAL_ENV_DISABLE_PROMPT = "true";
-        # XCURSOR_THEME="Catppuccin-Macchiato-Dark;"
-        # XCURSOR_PATH="${XCURSOR_PATH}:~/.local/share/icons";
         SDL_VIDEODRIVER = "wayland";
         # XDG_DATA_DIRS=/home/david/.local/share/applications/:$XDG_DATA_DIRS
         GTRASH_HOME_TRASH_DIR = "$HOME/.local/share/Trash";
