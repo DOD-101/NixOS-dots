@@ -79,6 +79,9 @@
       yaml-language-server
       yamllint
       actionlint
+
+      # toml
+      taplo
     ];
 
     # These might also be needed:
