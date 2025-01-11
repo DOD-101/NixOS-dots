@@ -37,6 +37,7 @@
           monthly = -1; # Keep at least one archive for each month
         };
         compression = "auto,lzma";
+        doInit = false;
         startAt = [ ];
       };
     };
