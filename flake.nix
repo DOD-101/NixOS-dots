@@ -14,7 +14,10 @@
     # since the cursor are broken on the newest nixpkgs
     cursor_nixpkgs.url = "github:nixos/nixpkgs/574d1eac1c200690e27b8eb4e24887f8df7ac27c";
 
-    zen-browser.url = "github:Crazyroostereye1/zen-browser-flake";
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
