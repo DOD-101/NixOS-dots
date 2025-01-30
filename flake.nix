@@ -27,6 +27,11 @@
     nix-colors = {
       url = "github:misterio77/nix-colors";
     };
+
+    igneous-md = {
+      url = "github:DOD-101/igneous-md/cb9b6a080499620e62bceda260d7e53666bdbd47";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

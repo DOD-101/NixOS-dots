@@ -107,6 +107,7 @@
     ]
     ++ [
       inputs.zen-browser.packages."${system}".default
+      inputs.igneous-md.packages."${system}".igneous-md-release
     ];
 
   # Let Home Manager install and manage itself.

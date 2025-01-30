@@ -104,6 +104,7 @@
     ]
     ++ [
       inputs.zen-browser.packages."${system}".default
+      inputs.igneous-md.packages."${system}".igneous-md-release
     ];
 
   home.activation.createSyncDir = {
