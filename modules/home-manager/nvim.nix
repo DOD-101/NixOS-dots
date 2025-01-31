@@ -21,7 +21,7 @@
       ripgrep
       fzf
       gh
-      live-server
+      nodePackages.live-server
 
       # Lua
       lua
