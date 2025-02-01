@@ -96,6 +96,8 @@
       prismlauncher
       jdk17
 
+      ckan
+
       # art
       gimp
       inkscape
