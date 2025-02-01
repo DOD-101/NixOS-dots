@@ -1,0 +1,13 @@
+(include "components/icon-module.yuck")
+
+(defwidget ddisk [ ]
+  (icon-module
+    :class "ddisk_icon"
+    :icon "󰋊"
+    :visible { show_ddisk }
+    (label
+      :text "${round((1 - ((EWW_DISK?.["/data"]?.free ?: 1) / (EWW_DISK?.["/data"]?.total ?: 1))) * 100,0)}%"
+      :class "ddisk_value"
+    )
+  )
+)

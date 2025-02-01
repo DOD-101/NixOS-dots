@@ -1,0 +1,103 @@
+(include "components/keyboard.yuck")
+
+(defpoll caps_lock
+  :interval "1s"
+  "bash scripts/keystate.sh -c"
+) ; gets the state of the caps lock
+
+(defpoll num_lock
+  :interval "1s"
+  "bash scripts/keystate.sh -n"
+) ; gets the state of num lock
+
+(defpoll internet
+  :interval "10s"
+  "bash scripts/wifiethernet.sh $(eww get wifi_device) $(eww get ethernet_device)"
+) ; checks if you are connected via wifi, ethernet or not at all
+
+(defpoll internet_name
+  :interval "10s"
+  "iwconfig $(eww get wifi_device) | awk -F'[:\"]' '/ESSID/{print $3}'"
+) ; gets the ESSID (name) of your current internet connection
+
+(defpoll internet_strengh
+  :interval "10s"
+  :initial 70
+  "iwconfig $(eww get wifi_device) | awk -F'[=/]' '/Link Quality/{print $2}'"
+) ; gets the strengh of your internet connection
+
+(defwidget status_info [ ]
+  (eventbox
+    :onhover "eww update show_status=true"
+    :onhoverlost "eww update show_status=false"
+    (box
+      :class "status"
+      :space-evenly false
+
+      (revealer
+        :class "internet_revealer"
+        :transition "slideleft"
+        :reveal { show_status }
+        (box
+          :halign "end"
+          :space-evenly false
+          (label
+            :text { internet_name }
+            :class "internet_name"
+          )
+        )
+      )
+
+      (keyboard)
+
+      (label
+        :class {
+          internet == "none"
+          ? "internet internet_off off"
+          : "internet internet_on on"
+        }
+        :text {
+          internet == "none"
+          ? "󰤭"
+          : internet == "ethernet"
+          ? "󰈁"
+          : internet_strengh < 17.5
+          ? "󰤟"
+          : internet_strengh < 35
+          ? "󰤢"
+          : internet_strengh < 52.5
+          ? "󰤥"
+          : "󰤨"
+        }
+      )
+
+      (label
+        :class {
+          bluetooth != ""
+          ? "bluetooth bluetooth_on on"
+          : "bluetooth bluetooth_off off"
+        }
+        :text ""
+      )
+      (label
+        :class {
+          caps_lock == 1
+          ? "caps caps_on on"
+          : "caps caps_off off"
+        }
+        :text "󰘲"
+        :visible { show_caps_lock }
+      )
+
+      (label
+        :class {
+          num_lock == 1
+          ? "num num_on on"
+          : "num num_off off"
+        }
+        :text "󰎡"
+        :visible { show_num_lock }
+      )
+    )
+  )
+)

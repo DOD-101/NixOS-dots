@@ -1,0 +1,8 @@
+(defwidget keyboard [ ]
+  (button
+    :onclick "killall -s 34 wvkbd-mobintl"
+    :class "keyboard-btn"
+    :visible { touchscreen }
+    ""
+  )
+)

@@ -1,0 +1,13 @@
+(include "components/icon-module.yuck")
+
+(defwidget ram [ ]
+  (icon-module
+    :class "ram_icon"
+    :icon ""
+    (label
+      :text "${round(EWW_RAM.used_mem_perc,0)}%"
+      :class "ram_value"
+      :yalign 0.5
+    )
+  )
+)

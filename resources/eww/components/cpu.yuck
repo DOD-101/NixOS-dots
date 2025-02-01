@@ -1,0 +1,11 @@
+(defwidget cpu [ ]
+  (icon-module
+    :class "cpu_icon"
+    :icon "󰻠"
+    (label
+      :text "${round(EWW_CPU.avg,0)}%"
+      :class "cpu_value"
+      :yalign 0.5
+    )
+  )
+)

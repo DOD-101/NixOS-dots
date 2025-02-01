@@ -1,0 +1,174 @@
+{
+  "nodes": {
+    "advisory-db": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738178975,
+        "narHash": "sha256-qrrRzUfIWEmr+XFS4yAS+WOYETqHpshYoXCfkpTX7kA=",
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "rev": "6556cee2a5b42c209f04bd7a45d62812d6eb4eb7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "type": "github"
+      }
+    },
+    "crane": {
+      "locked": {
+        "lastModified": 1737689766,
+        "narHash": "sha256-ivVXYaYlShxYoKfSo5+y5930qMKKJ8CLcAoIBPQfJ6s=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "6fe74265bbb6d016d663b1091f015e2976c4a527",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1738142207,
+        "narHash": "sha256-NGqpVVxNAHwIicXpgaVqJEJWeyqzoQJ9oc8lnK9+WC4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9d3ae807ebd2981d593cddd0080856873139aa40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1738136902,
+        "narHash": "sha256-pUvLijVGARw4u793APze3j6mU1Zwdtz7hGkGGkD87qw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9a5db3142ce450045840cc8d832b13b8a2018e0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1736320768,
+        "narHash": "sha256-nIYdTAiKIGnFNugbomgBJR+Xv5F1ZQU+HfaBqJKroC0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4bc9c909d9ac828a039f288cf872d16d38185db8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "topiary": "topiary"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1738203884,
+        "narHash": "sha256-H48s0D1+p9G0XcP2ggMLQ9QVI2SfpgZsJGrkzp5EmyU=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "86a1ccaaca8ba20a8b4187aa8ca75c319aea16fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "topiary": {
+      "inputs": {
+        "advisory-db": "advisory-db",
+        "crane": "crane",
+        "nixpkgs": "nixpkgs_2",
+        "rust-overlay": "rust-overlay",
+        "tree-sitter-nickel": "tree-sitter-nickel",
+        "tree-sitter-openscad": "tree-sitter-openscad"
+      },
+      "locked": {
+        "lastModified": 1738245117,
+        "narHash": "sha256-0n/sKFcHMYGuuPQjnBfzhoJwGhKlFxVY1zlD3f5mXG4=",
+        "owner": "tweag",
+        "repo": "topiary",
+        "rev": "bc93aacca4be83e00cbcf94a69874d76b1441978",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tweag",
+        "repo": "topiary",
+        "type": "github"
+      }
+    },
+    "tree-sitter-nickel": {
+      "inputs": {
+        "nixpkgs": [
+          "topiary",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1736157356,
+        "narHash": "sha256-dQeUoHQHkPYywYIm3TMnTWPXUlh2xh8M5CVUiXASBu8=",
+        "owner": "nickel-lang",
+        "repo": "tree-sitter-nickel",
+        "rev": "25464b33522c3f609fa512aa9651707c0b66d48b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nickel-lang",
+        "repo": "tree-sitter-nickel",
+        "type": "github"
+      }
+    },
+    "tree-sitter-openscad": {
+      "inputs": {
+        "nixpkgs": [
+          "topiary",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737584789,
+        "narHash": "sha256-j/DordcjrrVZ9ZI2p46z4TULyf2A+4mNjcM9btowyQU=",
+        "owner": "mkatychev",
+        "repo": "tree-sitter-openscad",
+        "rev": "270e5ff749edfacc84a6e4a434abd4e8b0f70bbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mkatychev",
+        "repo": "tree-sitter-openscad",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

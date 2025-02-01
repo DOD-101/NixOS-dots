@@ -8,7 +8,7 @@
 (defvar show_disk true)
 (defvar show_ddisk false)
 (defvar wifi_device "wlp12s0")
-(defvar ethernet_device "enp59s0") 
+(defvar ethernet_device "enp59s0")
 
 ;  vars for controlling revealers
 (defvar show_status false)

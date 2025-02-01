@@ -1,0 +1,35 @@
+(include "components/icon-module.yuck")
+
+(defpoll volume
+  :interval "0.5s"
+  :initial 50
+  "bash scripts/getvol.sh"
+) ; gets the current volume
+
+(defwidget volume [ ]
+  (eventbox
+    :onscroll "
+    if [ {} == \"up\" ]; then wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+;
+    else wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-; fi
+    && eww update volume=$(scripts/getvol)"
+    :onclick "pavucontrol & disown"
+    (icon-module
+      :class "volume_icon"
+      :icon {
+        bluetooth != ""
+        ? "󰂰"
+        : volume >= 70
+        ? ""
+        : volume >= 30
+        ? ""
+        : volume == 0
+        ? "󰝟"
+        : ""
+      }
+      (label
+        :text "${volume}%"
+        :class "volume_value"
+      )
+    )
+  )
+)
