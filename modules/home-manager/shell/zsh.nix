@@ -11,12 +11,20 @@
 
   config = lib.mkIf config.zsh-config.enable {
     home.packages = with pkgs; [
-      atuin
       zoxide
       gtrash
       direnv
       nix-direnv
     ];
+
+    programs.atuin = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        style = "full";
+        inline_height = 0;
+      };
+    };
 
     home.file.".dircolors".source = ../../../resources/.dircolors;
 
