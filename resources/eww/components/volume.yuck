@@ -12,11 +12,13 @@
     if [ {} == \"up\" ]; then wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%+;
     else wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 1%-; fi
     && eww update volume=$(scripts/getvol)"
-    :onclick "pavucontrol & disown"
+    :onclick "foot -e pulsemixer & disown"
     (icon-module
-      :class "volume_icon"
+      :class { volume == "muted" ? "volume_icon muted" : "volume_icon" }
       :icon {
-        bluetooth != ""
+        volume == "muted"
+        ? "󰖁"
+        : bluetooth != ""
         ? "󰂰"
         : volume >= 70
         ? ""
@@ -27,7 +29,7 @@
         : ""
       }
       (label
-        :text "${volume}%"
+        :text { volume != "muted" ? "${volume}%" : "" }
         :class "volume_value"
       )
     )

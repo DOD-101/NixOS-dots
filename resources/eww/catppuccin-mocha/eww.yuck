@@ -12,8 +12,8 @@
   :exclusive true
   :focusable false
   :geometry (geometry
-    :x "0px"
-    :y "5px"
+    :x "5px"
+    :y "10px"
     :width "99%"
     :height "10px"
     :anchor "top center"
@@ -33,7 +33,7 @@
   :focusable false
   :geometry (geometry
     :x "0px"
-    :y "5px"
+    :y "10px"
     :width "99%"
     :height "10px"
     :anchor "top center"
@@ -53,7 +53,7 @@
   :focusable false
   :geometry (geometry
     :x "0px"
-    :y "5px"
+    :y "15px"
     :width "99%"
     :height "10px"
     :anchor "top center"
@@ -63,26 +63,6 @@
     :num2 8
     :num3 9
     :playing_monitor 2
-  )
-)
-
-(defwindow BarWin3
-  :monitor 1
-  :stacking "bottom"
-  :exclusive true
-  :focusable false
-  :geometry (geometry
-    :x "0px"
-    :y "5px"
-    :width "99%"
-    :height "10px"
-    :anchor "top center"
-  )
-  (bar0
-    :num1 10
-    :num2 11
-    :num3 12
-    :playing_monitor 1
   )
 )
 

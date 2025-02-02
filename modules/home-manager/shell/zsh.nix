@@ -23,6 +23,7 @@
       settings = {
         style = "full";
         inline_height = 0;
+        enter_accept = true;
       };
     };
 

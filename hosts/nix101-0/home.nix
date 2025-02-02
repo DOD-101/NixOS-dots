@@ -15,7 +15,7 @@
   home.username = "david";
   home.homeDirectory = "/home/david";
 
-  theme.ocean-breeze.enable = true;
+  theme.catppuccin-mocha.enable = true;
 
   zsh-config.enable = true;
   foot-config.enable = true;

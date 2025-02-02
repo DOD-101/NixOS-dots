@@ -34,14 +34,5 @@
       audio.high.cutoff.frequency=22050
     '';
 
-    # color themes
-    home.file.".config/vis/colors/ocean".text = ''
-      gradient=true
-      #df5a4e
-      #d135de
-      #feb301
-      #13dd7e
-    '';
-
   };
 }

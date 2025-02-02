@@ -16,7 +16,7 @@
         :transition "slideright"
         :reveal { show_hwinfo }
         (label
-          :text "${EWW_TEMPS.ACPITZ_TEMP1} °C"
+          :text "${round(EWW_TEMPS[cpu_temp],0)} °C"
         )
       )
       (ram)

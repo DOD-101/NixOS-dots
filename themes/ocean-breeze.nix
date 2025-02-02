@@ -51,7 +51,6 @@
         };
       };
 
-      vis.defaultColorScheme = "ocean";
       wofi.style = builtins.readFile ../resources/wofi/ocean-breeze.css;
 
       yazi = {
@@ -96,6 +95,14 @@
 
       hyprland = {
         themeSettings = {
+
+          general = {
+            gaps_in = 6;
+            gaps_out = 10;
+            border_size = 2;
+            col.active_border = "rgba(4154bbff)";
+            col.inactive_border = "rgba(2e0a1500)";
+          };
 
           windowrulev2 = [
             "opacity 0.95 override 0.90, class:.*"
@@ -142,6 +149,87 @@
         };
       };
 
+      hyprlock.settings = {
+        general = {
+          ignore_empty_input = true;
+        };
+
+        background = [
+          {
+            blur_passes = 1;
+            blur_size = 7;
+            noise = 1.17e-2;
+            contrast = 0.8916;
+            brightness = 0.8172;
+            vibrancy = 0.1696;
+            vibrancy_darkness = 0.0;
+            color = "rgba(${config.theme.hashlessColor.background}fe)";
+          }
+        ];
+
+        image = [
+          {
+            path = builtins.toString ../resources/hypr/hyprlock.png;
+            size = "150";
+            rounding = -1;
+            border_size = 0;
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+
+        input-field = [
+          {
+            size = "300, 40";
+            position = "0, -20";
+            monitor = "";
+            outline_thickness = 1;
+            dots_size = 0.33;
+            dots_spacing = 0.15;
+            dots_center = true;
+            dots_rounding = -1;
+            outer_color = "rgb(${config.theme.hashlessColor.yellow})";
+            inner_color = "rgb(${config.theme.hashlessColor.background})";
+            font_color = "rgb(${config.theme.hashlessColor.foreground})";
+            fade_on_empty = false;
+            fade_timeout = 1000;
+            placeholder_text = ''<span foreground="##fef2d0">Input Password...</span>'';
+            hide_input = false;
+            rounding = -1;
+            check_color = "rgb(${config.theme.hashlessColor.yellow})";
+            fail_color = "rgb(${config.theme.hashlessColor.red})";
+            fail_text = "$FAIL <b>($ATTEMPTS)</b>";
+            fail_transition = 300;
+            capslock_color = "rgb(${config.theme.hashlessColor.magenta})";
+            numlock_color = "rgb(${config.theme.hashlessColor.cyan})";
+            bothlock_color = -1;
+          }
+        ];
+
+        label = [
+          {
+            text = "Hello There, $USER";
+            color = "rgba(${config.theme.hashlessColor.white}ff)";
+            font_size = 25;
+            font_family = "FiraCode Nerd Font Mono";
+            rotate = 0;
+            position = "0, 80";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            text = "$TIME";
+            color = "rgba(${config.theme.hashlessColor.white}ff)";
+            font_size = 20;
+            font_family = "FiraCode Nerd Font Mono";
+            position = "0, 50";
+            halign = "center";
+            valign = "bottom";
+          }
+        ];
+      };
+
       eww = {
         eww-file = "../../resources/eww/ocean-breeze/eww.yuck";
         css-file = "../../resources/eww/ocean-breeze/eww.scss";
@@ -154,6 +242,19 @@
       btop.theme = "tokyo-night";
 
       zsh.theme = "agnoster-custom";
+
+      vis.defaultColorScheme = "ocean";
+
+      fastfetch.config = "../../resources/fastfetch/fastfetch.jsonc";
     };
+
+    home.file.".config/vis/colors/ocean".text = ''
+      gradient=true
+      #df5a4e
+      #d135de
+      #feb301
+      #13dd7e
+    '';
+
   };
 }

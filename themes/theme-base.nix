@@ -56,6 +56,8 @@ in
         cyan = lib.mkOption { type = lib.types.str; };
         white = lib.mkOption { type = lib.types.str; };
       };
+
+      extras = lib.mkOption { };
     };
 
     hashlessColor = color;
@@ -82,6 +84,9 @@ in
       # This value needs to be kept in relation to the terminal font size
       cover_img_scale = lib.mkOption { type = lib.types.int; };
       component_style = {
+        border = {
+          fg = lib.mkOption { type = lib.types.str; };
+        };
         selection = {
           fg = lib.mkOption { type = lib.types.str; };
         };
@@ -110,6 +115,8 @@ in
       description = "Additional style related config passed to wayland.windowManager.hyprland.settings";
     };
 
+    hyprlock.settings = lib.mkOption { };
+
     eww = {
       eww-file = lib.mkOption { type = lib.types.str; };
       css-file = lib.mkOption { type = lib.types.str; };
@@ -123,6 +130,20 @@ in
       type = lib.types.str;
       default = "";
     };
+
+    nvim.theme = lib.mkOption { type = lib.types.str; };
+
+    discord.theme = lib.mkOption { type = lib.types.str; };
+
+    # NOTE: This is somewhat temporary since I'm still waiting on home-manager support for zen
+    zen-browser = {
+      enable = lib.mkEnableOption "enable zen browser theming";
+      userChrome = lib.mkOption { type = lib.types.str; };
+      userContent = lib.mkOption { type = lib.types.str; };
+      zen-logo = lib.mkOption { type = lib.types.str; };
+    };
+
+    fastfetch.config = lib.mkOption { type = lib.types.str; };
   };
 
   config = {
@@ -135,6 +156,21 @@ in
     wayland.windowManager.hyprland.settings = config.theme.hyprland.themeSettings;
 
     swww-config.script = config.theme.swww.script;
+
+    home.sessionVariables = {
+      JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;
+    };
+
+    home.file.".config/vesktop/themes/theme.css".source = config.theme.discord.theme;
+
+    home.file.".zen/1kiwrwon.default/chrome/userChrome.css".source =
+      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.userChrome;
+    home.file.".zen/1kiwrwon.default/chrome/userContent.css".source =
+      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.userContent;
+    home.file.".zen/1kiwrwon.default/chrome/zen-logo.svg".source =
+      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.zen-logo;
+
+    home.file.".config/fastfetch/config.jsonc".source = ./. + config.theme.fastfetch.config;
 
   };
 }

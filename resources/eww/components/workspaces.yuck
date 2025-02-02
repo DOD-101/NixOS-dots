@@ -7,11 +7,12 @@
   (box
     :class "WS-Widget"
     :orientation "h"
-    :space-evenly true
+    :space-evenly false
     :halign "start"
-    :spacing 10
+    :hexpand true
     (button
-      :onclick "hyprctl dispatch workspace ${num1}"
+      :onclick "hyprctl dispatch workspace ${num1}" 
+    :width 30
       :class {
         active_workspace == num1
         ? "activeWS WS"
@@ -21,6 +22,7 @@
     )
     (button
       :onclick "hyprctl dispatch workspace ${num2}"
+    :width 30
       :class {
         active_workspace == num2
         ? "activeWS WS"
@@ -30,6 +32,7 @@
     )
     (button
       :onclick "hyprctl dispatch workspace ${num3}"
+    :width 30
       :class {
         active_workspace == num3
         ? "activeWS WS"
