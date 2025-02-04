@@ -12,14 +12,25 @@ let
     rev = "b048e8bd54f784d004812036fb83e725a7454ab4";
     hash = "sha256-SoaJV83rOgsQpLKO6PtpTyKFGj75FssdWfTITU7psXM=";
   };
+
+  capitalize =
+    str:
+    lib.strings.toUpper (builtins.substring 0 1 str)
+    + builtins.substring 1 (builtins.stringLength str) str;
+
+  flavour = "mocha";
+  accent = "maroon";
 in
 {
-  options.theme.catppuccin-mocha.enable = lib.mkEnableOption "Enable catppuccin-mocha theme";
-  config = lib.mkIf config.theme.catppuccin-mocha.enable {
+  options.theme."catppuccin-${flavour}".enable =
+    lib.mkEnableOption "Enable catppuccin-${flavour} theme";
+  config = lib.mkIf config.theme."catppuccin-${flavour}".enable {
     # Things styled non-declaratively:
     #   - vimium (https://github.com/catppuccin/vimium)
     #   - dark-reader (https://github.com/catppuccin/dark-reader)
     theme = {
+      # NOTE: We might want to add the accent to the name
+      name = "catppuccin-${flavour}";
       font = {
         mono = {
           main = "FiraCode Nerd Font Mono";
@@ -33,8 +44,10 @@ in
       cursor = {
         package =
           with pkgs;
-          inputs.cursor_nixpkgs.legacyPackages."${system}".catppuccin-cursors.mochaMaroon;
-        name = "catppuccin-mocha-maroon-cursors";
+          inputs.cursor_nixpkgs.legacyPackages."${
+            system
+          }".catppuccin-cursors."${flavour}${capitalize accent}";
+        name = "catppuccin-${flavour}-${accent}-cursors";
       };
 
       color = rec {
@@ -278,6 +291,7 @@ in
             valign = "center";
           }
           {
+            # TODO: This doesn't work on different sized screens
             path = builtins.toString ../resources/hypr/catppuccin-line.png;
             size = "900";
             rounding = 0;
@@ -339,19 +353,19 @@ in
       };
 
       eww = {
-        eww-file = "../../resources/eww/catppuccin-mocha/eww.yuck";
-        css-file = "../../resources/eww/catppuccin-mocha/eww.scss";
+        eww-file = "../../resources/eww/catppuccin-${flavour}/eww.yuck";
+        css-file = "../../resources/eww/catppuccin-${flavour}/eww.scss";
       };
 
       swww = {
-        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-mocha/evening-sky.png";
+        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/evening-sky.png";
       };
 
-      btop.theme = "catppuccin-mocha";
+      btop.theme = "catppuccin-${flavour}";
 
       zsh.theme = "";
 
-      nvim.theme = "catppuccin-mocha";
+      nvim.theme = "catppuccin-${flavour}";
 
       discord.theme =
         pkgs.fetchFromGitHub {
@@ -360,18 +374,18 @@ in
           rev = "16b1e5156583ee376ded4fa602842fa540826bbc";
           hash = "sha256-ECVHRuHbe3dvwrOsi6JAllJ37xb18HaUPxXoysyPP70=";
         }
-        + "/themes/mocha.theme.css";
+        + "/themes/${flavour}.theme.css";
 
       zen-browser = {
         enable = true;
-        userChrome = zen-repo + "/themes/Mocha/Maroon/userChrome.css";
-        userContent = zen-repo + "/themes/Mocha/Maroon/userContent.css";
-        zen-logo = zen-repo + "/themes/Mocha/Maroon/zen-logo-mocha.svg";
+        userChrome = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css";
+        userContent = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css";
+        zen-logo = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
       };
 
-      vis.defaultColorScheme = "catppuccin-mocha";
+      vis.defaultColorScheme = "catppuccin-${flavour}";
 
-      fastfetch.config = "../../resources/fastfetch/catppuccin-mocha.jsonc";
+      fastfetch.config = "../../resources/fastfetch/catppuccin-${flavour}.jsonc";
     };
 
     programs.starship = {
@@ -424,7 +438,7 @@ in
       };
     };
 
-    home.file.".config/vis/colors/catppuccin-mocha".text = ''
+    home.file.".config/vis/colors/catppuccin-${flavour}".text = ''
       gradient=true
       ${config.theme.color.black}
       ${config.theme.color.red}
@@ -436,14 +450,14 @@ in
       ${config.theme.color.white}
     '';
 
-    home.file.".config/btop/themes/catppuccin-mocha.theme".source =
+    home.file.".config/btop/themes/catppuccin-${flavour}.theme".source =
       pkgs.fetchFromGitHub {
         owner = "catppuccin";
         repo = "btop";
         rev = "1.0.0";
         hash = "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=";
       }
-      + "/themes/catppuccin_mocha.theme";
+      + "/themes/catppuccin_${flavour}.theme";
 
     home.file.".config/fastfetch/kitty.txt".source = ./. + "../../resources/fastfetch/kitty.txt";
   };

@@ -9,6 +9,7 @@ let
 in
 {
   options.theme = rec {
+    name = lib.mkOption { type = lib.types.str; };
     font = {
       mono = {
         main = lib.mkOption { type = lib.types.str; };
@@ -65,6 +66,7 @@ in
     rgbColor = color;
 
     vis.defaultColorScheme = lib.mkOption { type = lib.types.str; };
+
     wofi.style = lib.mkOption { type = lib.types.str; };
 
     yazi = {
@@ -171,6 +173,5 @@ in
       lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.zen-logo;
 
     home.file.".config/fastfetch/config.jsonc".source = ./. + config.theme.fastfetch.config;
-
   };
 }
