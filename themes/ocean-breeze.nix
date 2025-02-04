@@ -9,6 +9,7 @@
   options.theme.ocean-breeze.enable = lib.mkEnableOption "Enable Ocean Breeze theme";
   config = lib.mkIf config.theme.ocean-breeze.enable {
     theme = {
+      name = "ocean-breeze";
       font = {
         mono = {
           main = "FiraCode Nerd Font Mono";
@@ -49,6 +50,8 @@
           cyan = "#64f2af";
           white = "#fef7e1";
         };
+
+        extras = { };
       };
 
       wofi.style = builtins.readFile ../resources/wofi/ocean-breeze.css;
@@ -69,6 +72,9 @@
       spotify-player = {
         cover_img_scale = 2;
         component_style = {
+          border = {
+            fg = config.color.foreground;
+          };
           selection = {
             fg = "Yellow";
           };
@@ -243,18 +249,16 @@
 
       zsh.theme = "agnoster-custom";
 
-      vis.defaultColorScheme = "ocean";
+      vis.colorScheme = ''
+        gradient=true
+        #df5a4e
+        #d135de
+        #feb301
+        #13dd7e
+      '';
 
-      fastfetch.config = "../../resources/fastfetch/fastfetch.jsonc";
+      fastfetch.config = builtins.readFile ../resources/fastfetch/fastfetch.jsonc;
     };
-
-    home.file.".config/vis/colors/ocean".text = ''
-      gradient=true
-      #df5a4e
-      #d135de
-      #feb301
-      #13dd7e
-    '';
 
   };
 }

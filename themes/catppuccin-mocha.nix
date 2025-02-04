@@ -361,7 +361,15 @@ in
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/evening-sky.png";
       };
 
-      btop.theme = "catppuccin-${flavour}";
+      btop.theme = builtins.readFile (
+        pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "btop";
+          rev = "1.0.0";
+          hash = "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=";
+        }
+        + "/themes/catppuccin_${flavour}.theme"
+      );
 
       zsh.theme = "";
 
@@ -377,15 +385,32 @@ in
         + "/themes/${flavour}.theme.css";
 
       zen-browser = {
-        enable = true;
         userChrome = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css";
         userContent = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css";
         zen-logo = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
       };
 
-      vis.defaultColorScheme = "catppuccin-${flavour}";
+      vis.colorScheme = ''
+        gradient=true
+        ${config.theme.color.black}
+        ${config.theme.color.red}
+        ${config.theme.color.green}
+        ${config.theme.color.yellow}
+        ${config.theme.color.blue}
+        ${config.theme.color.magenta}
+        ${config.theme.color.cyan}
+        ${config.theme.color.white}
+      '';
 
-      fastfetch.config = "../../resources/fastfetch/catppuccin-${flavour}.jsonc";
+      fastfetch.config =
+        builtins.replaceStrings
+          [
+            "@logo@"
+          ]
+          [
+            (builtins.toString ../resources/fastfetch/kitty.txt)
+          ]
+          (builtins.readFile (./. + "/../resources/fastfetch/catppuccin-${flavour}.jsonc"));
     };
 
     programs.starship = {
@@ -437,28 +462,5 @@ in
 
       };
     };
-
-    home.file.".config/vis/colors/catppuccin-${flavour}".text = ''
-      gradient=true
-      ${config.theme.color.black}
-      ${config.theme.color.red}
-      ${config.theme.color.green}
-      ${config.theme.color.yellow}
-      ${config.theme.color.blue}
-      ${config.theme.color.magenta}
-      ${config.theme.color.cyan}
-      ${config.theme.color.white}
-    '';
-
-    home.file.".config/btop/themes/catppuccin-${flavour}.theme".source =
-      pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "btop";
-        rev = "1.0.0";
-        hash = "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=";
-      }
-      + "/themes/catppuccin_${flavour}.theme";
-
-    home.file.".config/fastfetch/kitty.txt".source = ./. + "../../resources/fastfetch/kitty.txt";
   };
 }

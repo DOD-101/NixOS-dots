@@ -28,6 +28,9 @@
   zathura-config.enable = true;
   btop-config.enable = true;
 
+  zen-config.enable = true;
+  zen-config.profile = "1kiwrwon.default";
+
   eww-config.enable = true;
 
   kitty-config.enable = true;
@@ -105,7 +108,6 @@
       drawio
     ]
     ++ [
-      inputs.zen-browser.packages."${system}".default
       inputs.igneous-md.packages."${system}".igneous-md-release
     ];
 

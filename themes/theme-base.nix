@@ -65,7 +65,7 @@ in
 
     rgbColor = color;
 
-    vis.defaultColorScheme = lib.mkOption { type = lib.types.str; };
+    vis.colorScheme = lib.mkOption { type = lib.types.str; };
 
     wofi.style = lib.mkOption { type = lib.types.str; };
 
@@ -137,9 +137,7 @@ in
 
     discord.theme = lib.mkOption { type = lib.types.str; };
 
-    # NOTE: This is somewhat temporary since I'm still waiting on home-manager support for zen
     zen-browser = {
-      enable = lib.mkEnableOption "enable zen browser theming";
       userChrome = lib.mkOption { type = lib.types.str; };
       userContent = lib.mkOption { type = lib.types.str; };
       zen-logo = lib.mkOption { type = lib.types.str; };
@@ -165,13 +163,18 @@ in
 
     home.file.".config/vesktop/themes/theme.css".source = config.theme.discord.theme;
 
-    home.file.".zen/1kiwrwon.default/chrome/userChrome.css".source =
-      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.userChrome;
-    home.file.".zen/1kiwrwon.default/chrome/userContent.css".source =
-      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.userContent;
-    home.file.".zen/1kiwrwon.default/chrome/zen-logo.svg".source =
-      lib.mkIf config.theme.zen-browser.enable config.theme.zen-browser.zen-logo;
+    home.file.".zen/${config.zen-config.profile}/chrome/userChrome.css".source =
+      lib.mkIf config.zen-config.enable config.theme.zen-browser.userChrome;
+    home.file.".zen/${config.zen-config.profile}/chrome/userContent.css".source =
+      lib.mkIf config.zen-config.enable config.theme.zen-browser.userContent;
+    home.file.".zen/${config.zen-config.profile}/chrome/zen-logo.svg".source =
+      lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
-    home.file.".config/fastfetch/config.jsonc".source = ./. + config.theme.fastfetch.config;
+    home.file.".config/fastfetch/config.jsonc".text = config.theme.fastfetch.config;
+
+    home.file.".config/vis/colors/${config.theme.name}".text = config.theme.vis.colorScheme;
+
+    home.file.".config/btop/themes/${config.theme.name}.theme".text = config.theme.btop.theme;
+
   };
 }

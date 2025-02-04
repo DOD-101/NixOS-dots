@@ -16,7 +16,7 @@
 
     home.file.".config/vis/config".text = ''
       visualizer.fps=60
-      colors.scheme=${config.theme.vis.defaultColorScheme}
+      colors.scheme=${config.theme.name}
       #Available smoothing options are monstercat, sgs, none.
       visualizer.spectrum.smoothing.mode=sgs
       visualizer.spectrum.smoothing.factor=2

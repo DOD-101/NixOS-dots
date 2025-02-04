@@ -40,6 +40,8 @@
         # for inverted colors
         recolor-lightcolor = config.theme.color.background;
         recolor-darkcolor = config.theme.color.foreground;
+
+        selection-clipboard = "clipboard";
       };
     };
   };

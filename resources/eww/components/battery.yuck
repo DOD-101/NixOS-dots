@@ -2,16 +2,16 @@
 
 (defpoll battery
   :interval "3s"
-  :initial 0
+  :initial ""
   "eww get EWW_BATTERY | jq .BAT0"
 )
 
 (defwidget battery [ ]
   (icon-module
     :visible { show_battery }
-    :class { battery == "null" ? "no_battery" : jq(battery, ".capacity") <= 25 ? "battery bat_low" : "battery" }
+    :class { battery == "" ? "no_battery" : jq(battery, ".capacity") <= 25 ? "battery bat_low" : "battery" }
     :icon {
-      battery == "null"
+      battery == ""
       ? "n/a"
       : jq(battery, ".status") == "Charging"
       ? "󰂄"

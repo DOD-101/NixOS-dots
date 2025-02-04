@@ -8,7 +8,7 @@
     programs.btop = {
       enable = true;
       settings = {
-        color_theme = config.theme.btop.theme;
+        color_theme = config.theme.name;
         vim_keys = true;
       };
     };
