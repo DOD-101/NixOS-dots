@@ -1,21 +1,27 @@
 (include "components/icon-module.yuck")
 
+(defpoll battery
+  :interval "3s"
+  :initial 0
+  "eww get EWW_BATTERY | jq .BAT0"
+)
+
 (defwidget battery [ ]
   (icon-module
     :visible { show_battery }
-    :class { strlength(EWW_BATTERY) == 0 ? "no_battery" : EWW_BATTERY?.["BAT0"]?.capacity ?: 0 <= 25 ? "battery bat_low" : "battery" }
+    :class { battery == "null" ? "no_battery" : jq(battery, ".capacity") <= 25 ? "battery bat_low" : "battery" }
     :icon {
-      strlength(EWW_BATTERY) == 0
+      battery == "null"
       ? "n/a"
-      : EWW_BATTERY?.["BAT0"]?.status ?: "" == "Charging"
-      ? ""
-      : EWW_BATTERY?.["BAT0"]?.capacity ?: 0 == 100
+      : jq(battery, ".status") == "Charging"
+      ? "󰂄"
+      : jq(battery, ".capacity") == 100
       ? ""
-      : EWW_BATTERY?.["BAT0"]?.capacity ?: 0 >= 75
+      : jq(battery, ".capacity") >= 75
       ? ""
-      : EWW_BATTERY?.["BAT0"]?.capacity ?: 0 >= 50
+      : jq(battery, ".capacity") >= 50
       ? ""
-      : EWW_BATTERY?.["BAT0"]?.capacity ?: 0 >= 25
+      : jq(battery, ".capacity") >= 25
       ? ""
       : ""
     }
