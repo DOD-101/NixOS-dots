@@ -86,7 +86,7 @@
 
             if [[ "$(tty)" == "/dev/tty1" ]]; then
               if command -v fastfetch &> /dev/null; then
-                fastfetch
+                ${if config.hypr-config.hyprland.enable then ''Hyprland'' else ''fastfetch''}
               else
                 echo "Current time: $(date)"
               fi

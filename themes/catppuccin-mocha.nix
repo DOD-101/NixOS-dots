@@ -269,14 +269,15 @@ in
 
         background = [
           {
-            blur_passes = 1;
-            blur_size = 7;
-            noise = 1.17e-2;
-            contrast = 0.8916;
-            brightness = 0.8172;
-            vibrancy = 0.1696;
-            vibrancy_darkness = 0.0;
-            color = "rgba(${config.theme.hashlessColor.background}fe)";
+            path = builtins.toString ../resources/hypr/catppuccin-line-bg.png;
+            # blur_passes = 1;
+            # blur_size = 7;
+            # noise = 1.17e-2;
+            # contrast = 0.8916;
+            # brightness = 0.8172;
+            # vibrancy = 0.1696;
+            # vibrancy_darkness = 0.0;
+            # color = "rgba(${config.theme.hashlessColor.background}fe)";
           }
         ];
 
@@ -288,15 +289,6 @@ in
             border_size = 0;
             position = "0, 200";
             halign = "center";
-            valign = "center";
-          }
-          {
-            # TODO: This doesn't work on different sized screens
-            path = builtins.toString ../resources/hypr/catppuccin-line.png;
-            size = "900";
-            rounding = 0;
-            border_size = 0;
-            position = "80, 0";
             valign = "center";
           }
         ];
@@ -341,7 +333,7 @@ in
             valign = "center";
           }
           {
-            text = "$TIME";
+            text = ''cmd[update:5000] echo $(eww get EWW_BATTERY | jq .BAT0.capacity)"% | $TIME"'';
             color = "rgba(${config.theme.hashlessColor.white}ff)";
             font_size = 20;
             font_family = "FiraCode Nerd Font Mono";

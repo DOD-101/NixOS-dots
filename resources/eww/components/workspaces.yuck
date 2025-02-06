@@ -3,15 +3,16 @@
   "bash scripts/workspace.sh"
 ) ; gets the current active workspace
 
-(defwidget workspaces [ num1 num2 num3 ]
+(defwidget workspaces [ workspaces ]
   (box
     :class "WS-Widget"
     :orientation "h"
     :space-evenly false
     :halign "start"
     :hexpand true
+    (for w in workspaces 
     (button
-      :onclick "hyprctl dispatch workspace ${num1}" 
+      :onclick "hyprctl dispatch workspace ${w}" 
     :width 30
       :class {
         active_workspace == num1
@@ -19,6 +20,7 @@
         : "WS"
       }
       num1
+    )
     )
     (button
       :onclick "hyprctl dispatch workspace ${num2}"
