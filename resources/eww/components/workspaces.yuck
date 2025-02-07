@@ -11,36 +11,16 @@
     :halign "start"
     :hexpand true
     (for w in workspaces 
-    (button
-      :onclick "hyprctl dispatch workspace ${w}" 
-    :width 30
-      :class {
-        active_workspace == num1
-        ? "activeWS WS"
-        : "WS"
-      }
-      num1
-    )
-    )
-    (button
-      :onclick "hyprctl dispatch workspace ${num2}"
-    :width 30
-      :class {
-        active_workspace == num2
-        ? "activeWS WS"
-        : "WS"
-      }
-      num2
-    )
-    (button
-      :onclick "hyprctl dispatch workspace ${num3}"
-    :width 30
-      :class {
-        active_workspace == num3
-        ? "activeWS WS"
-        : "WS"
-      }
-      num3
+      (button
+        :onclick "hyprctl dispatch workspace ${w}" 
+        :width 30
+        :class {
+          active_workspace == w
+          ? "activeWS WS"
+          : "WS"
+        }
+        w
+      )
     )
   )
 )

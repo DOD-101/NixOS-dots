@@ -13,6 +13,7 @@
     :icon {
       battery == ""
       ? "n/a"
+      ; TODO: Charging isn't working
       : jq(battery, ".status") == "Charging"
       ? "󰂄"
       : jq(battery, ".capacity") == 100

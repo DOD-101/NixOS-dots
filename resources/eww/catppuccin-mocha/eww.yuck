@@ -19,9 +19,7 @@
     :anchor "top center"
   )
   (bar0
-    :num1 1
-    :num2 2
-    :num3 3
+    :workspaces "[1, 2, 3]"
     :playing_monitor 0
   )
 )
@@ -39,30 +37,8 @@
     :anchor "top center"
   )
   (bar0
-    :num1 4
-    :num2 5
-    :num3 6
+    :workspaces "[4, 5, 6]"
     :playing_monitor 1
-  )
-)
-
-(defwindow BarWin2
-  :monitor 2
-  :stacking "bottom"
-  :exclusive true
-  :focusable false
-  :geometry (geometry
-    :x "0px"
-    :y "15px"
-    :width "99%"
-    :height "10px"
-    :anchor "top center"
-  )
-  (bar0
-    :num1 7
-    :num2 8
-    :num3 9
-    :playing_monitor 2
   )
 )
 
@@ -79,9 +55,7 @@
     :anchor "top center"
   )
   (bar0
-    :num1 1
-    :num2 2
-    :num3 3
+    :workspaces "[1, 2, 3]"
     :playing_monitor 0
   )
 )
