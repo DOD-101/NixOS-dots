@@ -10,9 +10,9 @@
     :space-evenly false
     :halign "start"
     :hexpand true
-    (for w in workspaces 
+    (for w in workspaces
       (button
-        :onclick "hyprctl dispatch workspace ${w}" 
+        :onclick "hyprctl dispatch workspace ${w}"
         :width 30
         :class {
           active_workspace == w

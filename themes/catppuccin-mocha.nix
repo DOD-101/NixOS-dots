@@ -269,7 +269,7 @@ in
 
         background = [
           {
-            path = builtins.toString ../resources/hypr/catppuccin-line-bg.png;
+            path = "~/.config/hypr/catppuccin-line-bg.png";
             # blur_passes = 1;
             # blur_size = 7;
             # noise = 1.17e-2;
@@ -333,7 +333,7 @@ in
             valign = "center";
           }
           {
-            text = ''cmd[update:5000] echo $(eww get EWW_BATTERY | jq .BAT0.capacity)"% | $TIME"'';
+            text = ''cmd[update:1000] sh ${../resources/hypr/scripts/lock_time.sh}'';
             color = "rgba(${config.theme.hashlessColor.white}ff)";
             font_size = 20;
             font_family = "FiraCode Nerd Font Mono";
@@ -454,5 +454,16 @@ in
 
       };
     };
+
+    home.activation.createHyprlockBg = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      width=$(cut -d',' -f1 /sys/class/graphics/fb0/virtual_size)
+      height=$(cut -d',' -f2 /sys/class/graphics/fb0/virtual_size)
+
+      ${pkgs.inkscape}/bin/inkscape ${../resources/hypr/catppuccin-line-bg.svg} -w "$width" \
+                                                                                -b \${config.theme.color.background} \
+                                                                                -y 255 \
+                                                                                -o $HOME/.config/hypr/catppuccin-line-bg.png
+    '';
+
   };
 }

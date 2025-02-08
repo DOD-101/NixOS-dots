@@ -9,20 +9,19 @@
 (defwidget battery [ ]
   (icon-module
     :visible { show_battery }
-    :class { battery == "" ? "no_battery" : jq(battery, ".capacity") <= 25 ? "battery bat_low" : "battery" }
+    :class { battery == "" ? "no_battery" : jq(battery,".capacity") <= 25 ? "battery bat_low" : "battery" }
     :icon {
       battery == ""
       ? "n/a"
-      ; TODO: Charging isn't working
-      : jq(battery, ".status") == "Charging"
+      : jq(battery,".status") == "\"Charging\""
       ? "󰂄"
-      : jq(battery, ".capacity") == 100
+      : jq(battery,".capacity") == 100
       ? ""
-      : jq(battery, ".capacity") >= 75
+      : jq(battery,".capacity") >= 75
       ? ""
-      : jq(battery, ".capacity") >= 50
+      : jq(battery,".capacity") >= 50
       ? ""
-      : jq(battery, ".capacity") >= 25
+      : jq(battery,".capacity") >= 25
       ? ""
       : ""
     }
