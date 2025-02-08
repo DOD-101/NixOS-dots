@@ -135,7 +135,10 @@ in
 
     nvim.theme = lib.mkOption { type = lib.types.str; };
 
-    discord.theme = lib.mkOption { type = lib.types.str; };
+    discord.theme = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+    };
 
     zen-browser = {
       userChrome = lib.mkOption { type = lib.types.str; };
@@ -161,20 +164,23 @@ in
       JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;
     };
 
-    home.file.".config/vesktop/themes/theme.css".source = config.theme.discord.theme;
+    home.file = {
+      ".config/vesktop/themes/theme.css".text = config.theme.discord.theme;
 
-    home.file.".zen/${config.zen-config.profile}/chrome/userChrome.css".source =
-      lib.mkIf config.zen-config.enable config.theme.zen-browser.userChrome;
-    home.file.".zen/${config.zen-config.profile}/chrome/userContent.css".source =
-      lib.mkIf config.zen-config.enable config.theme.zen-browser.userContent;
-    home.file.".zen/${config.zen-config.profile}/chrome/zen-logo.svg".source =
-      lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
+      ".zen/${config.zen-config.profile}/chrome/userChrome.css".text =
+        lib.mkIf config.zen-config.enable config.theme.zen-browser.userChrome;
 
-    home.file.".config/fastfetch/config.jsonc".text = config.theme.fastfetch.config;
+      ".zen/${config.zen-config.profile}/chrome/userContent.css".text =
+        lib.mkIf config.zen-config.enable config.theme.zen-browser.userContent;
 
-    home.file.".config/vis/colors/${config.theme.name}".text = config.theme.vis.colorScheme;
+      ".zen/${config.zen-config.profile}/chrome/zen-logo.svg".text =
+        lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
-    home.file.".config/btop/themes/${config.theme.name}.theme".text = config.theme.btop.theme;
+      ".config/fastfetch/config.jsonc".text = config.theme.fastfetch.config;
 
+      ".config/vis/colors/${config.theme.name}".text = config.theme.vis.colorScheme;
+
+      ".config/btop/themes/${config.theme.name}.theme".text = config.theme.btop.theme;
+    };
   };
 }

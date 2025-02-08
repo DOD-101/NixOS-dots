@@ -22,7 +22,7 @@ let
   accent = "maroon";
 
   hyprlock-imgs =
-    pkgs.runCommand "hyprlock-catppuccin-line-${flavour}-${accent}"
+    pkgs.runCommand "hyprlock-catppuccin-${flavour}-${accent}-imgs"
       {
         buildInputs = with pkgs; [ inkscape ];
       }
@@ -47,7 +47,7 @@ in
     # Things styled non-declaratively:
     #   - vimium (https://github.com/catppuccin/vimium)
     #   - dark-reader (https://github.com/catppuccin/dark-reader)
-    theme = {
+    theme = rec {
       # NOTE: We might want to add the accent to the name
       name = "catppuccin-${flavour}";
       font = {
@@ -135,40 +135,40 @@ in
 
         #input {
             box-shadow: none;
-            color: ${config.theme.color.yellow};
+            color: ${color.yellow};
             border-radius: 3px;
             border: none;
-            background-color: ${config.theme.color.extras.mantle};
+            background-color: ${color.extras.mantle};
             opacity: 0.95;
             margin-bottom: 15px;
         }
 
         #input * {
-            color: ${config.theme.color.foreground};
+            color: ${color.foreground};
         }
 
         #scroll {
             margin-top: 0px;
             border-radius: 3px;
-            background-color: ${config.theme.color.extras.mantle};
+            background-color: ${color.extras.mantle};
             opacity: 0.92;
         }
 
         #text {
             margin-left: 3px;
-            color: ${config.theme.color.foreground};
+            color: ${color.foreground};
             background-color: transparent;
         }
 
         #entry:selected {
             background-color: transparent;
-            border: 2px solid ${config.theme.color.red};
+            border: 2px solid ${color.red};
             border-radius: 5px;
         }
 
         #text:selected {
             background-color: unset;
-            color: ${config.theme.color.yellow};
+            color: ${color.yellow};
         }
 
         #img {
@@ -178,14 +178,14 @@ in
 
       yazi = {
         filetype = {
-          image = "yellow";
-          video = "white";
-          audio = "white";
-          archive = "red";
-          doc = "cyan";
-          orphan = "red";
-          exec = "green";
-          dir = "blue";
+          image = color.yellow;
+          video = color.white;
+          audio = color.white;
+          archive = color.red;
+          doc = color.cyan;
+          orphan = color.red;
+          exec = color.green;
+          dir = color.blue;
         };
       };
 
@@ -193,28 +193,28 @@ in
         cover_img_scale = 2;
         component_style = {
           border = {
-            fg = config.theme.color.magenta;
+            fg = color.magenta;
           };
           selection = {
-            fg = "Yellow";
+            fg = color.yellow;
           };
           playback_metadata = {
-            fg = "Blue";
+            fg = color.blue;
           };
           playback_track = {
-            fg = "White";
+            fg = color.white;
           };
           playback_album = {
-            fg = "White";
+            fg = color.white;
           };
           playback_artists = {
-            fg = "White";
+            fg = color.white;
           };
           playback_progress_bar = {
-            fg = "Green";
+            fg = color.green;
           };
           playback_progress_bar_unfilled = {
-            fg = "Red";
+            fg = color.red;
           };
         };
       };
@@ -335,7 +335,7 @@ in
             font_color = "rgb(${config.theme.hashlessColor.foreground})";
             fade_on_empty = false;
             fade_timeout = 1000;
-            placeholder_text = ''<span foreground="#${config.theme.color.foreground}"> ... </span>'';
+            placeholder_text = ''<span foreground="#${color.foreground}"> ... </span>'';
             hide_input = false;
             rounding = -1;
             check_color = "rgb(${config.theme.hashlessColor.yellow})";
@@ -394,31 +394,38 @@ in
 
       nvim.theme = "catppuccin-${flavour}";
 
-      discord.theme =
+      discord.theme = builtins.readFile (
         pkgs.fetchFromGitHub {
           owner = "catppuccin";
           repo = "discord";
           rev = "16b1e5156583ee376ded4fa602842fa540826bbc";
           hash = "sha256-ECVHRuHbe3dvwrOsi6JAllJ37xb18HaUPxXoysyPP70=";
         }
-        + "/themes/${flavour}.theme.css";
+        + "/themes/${flavour}.theme.css"
+      );
 
       zen-browser = {
-        userChrome = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css";
-        userContent = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css";
-        zen-logo = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
+        userChrome = builtins.readFile (
+          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
+        );
+        userContent = builtins.readFile (
+          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
+        );
+        zen-logo = builtins.readFile (
+          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg"
+        );
       };
 
       vis.colorScheme = ''
         gradient=true
-        ${config.theme.color.black}
-        ${config.theme.color.red}
-        ${config.theme.color.green}
-        ${config.theme.color.yellow}
-        ${config.theme.color.blue}
-        ${config.theme.color.magenta}
-        ${config.theme.color.cyan}
-        ${config.theme.color.white}
+        ${color.black}
+        ${color.red}
+        ${color.green}
+        ${color.yellow}
+        ${color.blue}
+        ${color.magenta}
+        ${color.cyan}
+        ${color.white}
       '';
 
       fastfetch.config =
