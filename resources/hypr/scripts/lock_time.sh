@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-time="(date +%T)"
+time="$(date +%T)"
 battery="$(eww get EWW_BATTERY | jq .BAT0.capacity)"
 
 if [ -z "$battery" ]; then

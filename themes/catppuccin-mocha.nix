@@ -20,6 +20,25 @@ let
 
   flavour = "mocha";
   accent = "maroon";
+
+  hyprlock-imgs =
+    pkgs.runCommand "hyprlock-catppuccin-line-${flavour}-${accent}"
+      {
+        buildInputs = with pkgs; [ inkscape ];
+      }
+      ''
+        mkdir -p $out
+
+        # change the accent color of the line
+        sed 's/#eba0ac/${
+          config.theme.color.extras."${accent}"
+        }/g' ${../resources/hypr/catppuccin-line.svg} > $out/line.svg
+
+        inkscape $out/line.svg -w 1000 -b \${config.theme.color.background} -o $out/line.png;
+
+        inkscape ${../resources/hypr/profile.svg} -w 600 -b \${config.theme.color.background} -o $out/profile.png;
+      '';
+
 in
 {
   options.theme."catppuccin-${flavour}".enable =
@@ -269,27 +288,35 @@ in
 
         background = [
           {
-            path = "~/.config/hypr/catppuccin-line-bg.png";
-            # blur_passes = 1;
-            # blur_size = 7;
-            # noise = 1.17e-2;
-            # contrast = 0.8916;
-            # brightness = 0.8172;
-            # vibrancy = 0.1696;
-            # vibrancy_darkness = 0.0;
-            # color = "rgba(${config.theme.hashlessColor.background}fe)";
+            blur_passes = 1;
+            blur_size = 7;
+            noise = 1.17e-2;
+            contrast = 0.8916;
+            brightness = 0.8172;
+            vibrancy = 0.1696;
+            vibrancy_darkness = 0.0;
+            color = "rgba(${config.theme.hashlessColor.background}fe)";
           }
         ];
 
         image = [
           {
-            path = builtins.toString ../resources/hypr/hyprlock.png;
+            path = hyprlock-imgs + "/profile.png";
             size = "150";
             rounding = -1;
             border_size = 0;
             position = "0, 200";
             halign = "center";
             valign = "center";
+          }
+          {
+            path = hyprlock-imgs + "/line.png";
+            size = "250";
+            rounding = 0;
+            border_size = 0;
+            position = "0, 75";
+            halign = "center";
+            valign = "bottom";
           }
         ];
 
@@ -454,16 +481,5 @@ in
 
       };
     };
-
-    home.activation.createHyprlockBg = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      width=$(cut -d',' -f1 /sys/class/graphics/fb0/virtual_size)
-      height=$(cut -d',' -f2 /sys/class/graphics/fb0/virtual_size)
-
-      ${pkgs.inkscape}/bin/inkscape ${../resources/hypr/catppuccin-line-bg.svg} -w "$width" \
-                                                                                -b \${config.theme.color.background} \
-                                                                                -y 255 \
-                                                                                -o $HOME/.config/hypr/catppuccin-line-bg.png
-    '';
-
   };
 }
