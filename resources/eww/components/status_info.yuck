@@ -79,6 +79,7 @@
         }
         :text ""
       )
+
       (label
         :class {
           caps_lock == 1

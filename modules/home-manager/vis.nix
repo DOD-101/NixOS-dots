@@ -16,7 +16,7 @@
 
     home.file.".config/vis/config".text = ''
       visualizer.fps=60
-      colors.scheme=${config.theme.vis.defaultColorScheme}
+      colors.scheme=${config.theme.name}
       #Available smoothing options are monstercat, sgs, none.
       visualizer.spectrum.smoothing.mode=sgs
       visualizer.spectrum.smoothing.factor=2
@@ -32,15 +32,6 @@
       audio.sampling.frequency=88200
       audio.low.cutoff.frequency=60
       audio.high.cutoff.frequency=22050
-    '';
-
-    # color themes
-    home.file.".config/vis/colors/ocean".text = ''
-      gradient=true
-      #df5a4e
-      #d135de
-      #feb301
-      #13dd7e
     '';
 
   };

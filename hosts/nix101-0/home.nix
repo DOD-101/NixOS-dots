@@ -15,7 +15,7 @@
   home.username = "david";
   home.homeDirectory = "/home/david";
 
-  theme.ocean-breeze.enable = true;
+  theme.catppuccin-mocha.enable = true;
 
   zsh-config.enable = true;
   foot-config.enable = true;
@@ -27,6 +27,9 @@
   swww-config.enable = true;
   zathura-config.enable = true;
   btop-config.enable = true;
+
+  zen-config.enable = true;
+  zen-config.profile = "1kiwrwon.default";
 
   eww-config.enable = true;
 
@@ -105,7 +108,6 @@
       drawio
     ]
     ++ [
-      inputs.zen-browser.packages."${system}".default
       inputs.igneous-md.packages."${system}".igneous-md-release
     ];
 

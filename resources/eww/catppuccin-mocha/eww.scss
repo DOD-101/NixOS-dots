@@ -1,0 +1,129 @@
+@import "colors";
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+//Global Styles
+.BarWin0,
+.BarWin1,
+.BarWin2,
+.BarWin3,
+.SingleBarWin0,
+.playing_window {
+  font-family: FiraCode Nerd Font Mono;
+  font-size: medium;
+  font-weight: bold;
+  background-color: transparent;
+  color: $foreground;
+}
+
+.left,
+.center,
+.right {
+  background-color: $background;
+  border-radius: 12px;
+  padding: 7px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.WS-Widget {
+  padding-right: 5px;
+}
+
+.WS {
+  background-color: $red;
+  border-radius: 100px;
+  color: transparent;
+  padding: 0 0.2rem;
+  margin: 0 5px;
+  transition: all 0.35s ease-in-out;
+  transition-delay: 0.35s;
+
+  &:hover {
+    background-color: mix($red, #000000, 80%);
+    transition: background-color 0.1s ease-in-out;
+  }
+}
+
+.activeWS {
+  background-color: $green;
+  padding: 0 1rem;
+  transition: all 0.35s ease-in-out;
+
+  &:hover {
+    background-color: mix($green, #000000, 80%);
+    transition: background-color 0.1s ease-in-out;
+  }
+}
+
+.hwinfo {
+  padding-left: 5px;
+  padding-right: 2px;
+}
+
+.icon-module__icon,
+.off {
+  color: $blue;
+}
+
+.icon-module__icon {
+  padding-left: 3px;
+  padding-right: 8px;
+}
+
+.muted * {
+  color: $extras-maroon;
+}
+
+revealer {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: $yellow;
+}
+
+.on {
+  color: #fef2d0;
+}
+
+.status {
+  padding-right: 3px;
+}
+
+.status * {
+  padding-right: 5px;
+}
+
+.status:first-child {
+  padding-left: 5px;
+}
+
+.internet_units {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.ram_icon {
+  font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.ram_value {
+  font-size: medium;
+}
+
+.keyboard-btn {
+  font-size: x-large;
+  margin-bottom: -15px;
+  margin-top: -15px;
+}
+
+.internet_revealer {
+  padding-right: 0px;
+}
+
+.bat_low {
+  color: red;
+}

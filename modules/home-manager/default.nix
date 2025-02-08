@@ -18,5 +18,6 @@
     ./zathura.nix
     ./btop.nix
     ./office.nix
+    ./zen.nix
   ];
 }

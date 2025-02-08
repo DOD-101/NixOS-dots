@@ -68,6 +68,9 @@
             white = config.theme.color.white;
           };
           component_style = {
+            border = {
+              fg = config.theme.spotify-player.component_style.border.fg;
+            };
             selection = {
               fg = config.theme.spotify-player.component_style.selection.fg;
             };

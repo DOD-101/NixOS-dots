@@ -9,6 +9,7 @@
 (defvar show_ddisk false)
 (defvar wifi_device "wlp12s0")
 (defvar ethernet_device "enp59s0")
+(defvar cpu_temp "K10TEMP_TCCD2")
 
 ;  vars for controlling revealers
 (defvar show_status false)
