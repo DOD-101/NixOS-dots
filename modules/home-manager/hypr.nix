@@ -69,7 +69,7 @@
           pkgs.hyprlandPlugins.hyprgrass
         ];
 
-      # Some additional style related config is done through the selected theme
+      # Additional style related config is done through the selected theme
       settings = {
         source = [
           "${../../resources/hypr/hyprenv.conf}"
@@ -85,7 +85,6 @@
         # TODO: This asumes that wofi is installed and is the preferred "launch menu"
         "$menu" = "wofi --show drun -O alphabetical -a -i -I";
         "$mainMod" = "Super";
-        # TODO: This doesn't work, nor does the rest of the disabling of the Touchpad
         "$touchpadEnabled" = "true";
 
         windowrulev2 = [
@@ -93,7 +92,9 @@
         ];
 
         exec-once =
-          [ ]
+          [
+            "wl-paste --watch cliphist store"
+          ]
           ++ lib.optionals osConfig.sound-config.enable [
             "pipewire"
             "pipewire-pulse"
@@ -101,6 +102,10 @@
           ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
           ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
           ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ];
+
+        bind =
+          [ ]
+          ++ lib.optionals config.hypr-config.hyprlock.enable [ "$mainMod, Delete, exec, hyprlock" ];
 
         plugin = {
           touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {

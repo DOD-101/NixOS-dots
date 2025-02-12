@@ -221,7 +221,6 @@ in
 
       hyprland = {
         themeSettings = {
-
           general = {
             gaps_in = 10;
             gaps_out = "10,15,15,15";
@@ -241,8 +240,9 @@ in
 
             blur = {
               enabled = true;
-              size = 3;
+              size = 2;
               passes = 2;
+              noise = 0;
             };
 
             shadow = {
