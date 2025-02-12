@@ -377,7 +377,7 @@ in
       };
 
       swww = {
-        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/evening-sky.png";
+        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/1.png";
       };
 
       btop.theme = builtins.readFile (
