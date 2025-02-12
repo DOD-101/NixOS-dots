@@ -1,23 +1,23 @@
 { ... }:
 {
   imports = [
-    ./term
-    ./shell
-    ./dev.nix
+    ./btop.nix
     ./cursor.nix
-    ./fastfetch.nix
     ./dev.nix
+    ./dev.nix
+    ./eww.nix
+    ./fastfetch.nix
+    ./hypr.nix
+    ./mpv.nix
+    ./office.nix
+    ./shell
+    ./spotify-player.nix
+    ./swww.nix
+    ./term
+    ./vis.nix
     ./wofi.nix
     ./yazi.nix
-    ./spotify-player.nix
-    ./vis.nix
-    ./mpv.nix
-    ./eww.nix
-    ./hypr.nix
-    ./swww.nix
     ./zathura.nix
-    ./btop.nix
-    ./office.nix
     ./zen.nix
   ];
 }

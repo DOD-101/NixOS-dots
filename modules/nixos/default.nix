@@ -1,13 +1,13 @@
 { ... }:
 {
   imports = [
+    ./bluetooth.nix
+    ./borg.nix
     ./fonts.nix
+    ./mime.nix
+    ./nvidia.nix
     ./razer.nix
     ./sound.nix
-    ./nvidia.nix
-    ./bluetooth.nix
     ./syncthing.nix
-    ./mime.nix
-    ./borg.nix
   ];
 }

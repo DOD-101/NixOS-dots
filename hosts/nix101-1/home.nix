@@ -17,30 +17,31 @@
 
   theme.catppuccin-mocha.enable = true;
 
-  zsh-config.enable = true;
-  foot-config.enable = true;
-  fastfetch-config.enable = true;
-  wofi-config.enable = true;
-  spotify-player-config.enable = true;
-  vis-config.enable = true;
   btop-config.enable = true;
+  eww-config.enable = true;
+  fastfetch-config.enable = true;
+  foot-config.enable = true;
+
+  kitty-config.default = true;
+  kitty-config.enable = true;
+  kitty-config.enableZshIntegration = true;
+
   mpv-config.enable = true;
+  office-config.enable = true;
+  spotify-player-config.enable = true;
   swww-config.enable = true;
+  vis-config.enable = true;
+  wofi-config.enable = true;
+
+  yazi-config.enable = true;
+  yazi-config.enableZshIntegration = true;
+
   zathura-config.enable = true;
 
   zen-config.enable = true;
   zen-config.profile = "o88syg2w.default";
 
-  eww-config.enable = true;
-
-  kitty-config.enable = true;
-  kitty-config.default = true;
-  kitty-config.enableZshIntegration = true;
-
-  yazi-config.enable = true;
-  yazi-config.enableZshIntegration = true;
-
-  office-config.enable = true;
+  zsh-config.enable = true;
 
   hypr-config = {
     enable = true;
