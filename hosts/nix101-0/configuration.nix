@@ -93,17 +93,16 @@
       };
     };
 
-    # INFO: Don't forget to create the .stfolder
     folders = {
       "Main" = {
-        path = "~/Sync";
+        path = "/home/david/Sync";
         devices = [
           "nix101-1"
           "android101-0"
         ];
       };
       "School" = {
-        path = "~/Data/School-Schule";
+        path = "/home/david/Data/School-Schule";
         devices = [
           "nix101-1"
         ];

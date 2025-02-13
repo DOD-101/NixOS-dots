@@ -13,6 +13,7 @@
     ./shell
     ./spotify-player.nix
     ./swww.nix
+    ./syncthing.nix
     ./term
     ./vis.nix
     ./wofi.nix

@@ -88,14 +88,14 @@
 
     folders = {
       "Main" = {
-        path = "~/Sync";
+        path = "/home/david/Sync";
         devices = [
           "nix101-0"
           "android101-0"
         ];
       };
       "School" = {
-        path = "~/Data/School-Schule";
+        path = "/home/david/Data/School-Schule";
         devices = [
           "nix101-0"
         ];
