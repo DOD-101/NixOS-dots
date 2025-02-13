@@ -18,7 +18,6 @@
   theme.catppuccin-mocha.enable = true;
 
   btop-config.enable = true;
-  eww-config.enable = true;
   fastfetch-config.enable = true;
   foot-config.enable = true;
 
@@ -76,6 +75,18 @@
         bind = , XF86Launch9, exec, keepassxc
         bind = , XF86Launch5, exec, vesktop
       '';
+    };
+  };
+
+  eww-config = {
+    enable = true;
+    toggles = {
+      show_caps_lock = true;
+      show_num_lock = true;
+      show_disk = true;
+      wifi_device = "wlp12s0";
+      ethernet_device = "enp59s0";
+      cpu_temp = "K10TEMP_TCCD2";
     };
   };
 

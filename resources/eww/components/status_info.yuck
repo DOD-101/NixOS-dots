@@ -1,5 +1,7 @@
 (include "components/keyboard.yuck")
 
+(defvar show_status false)
+
 (defpoll caps_lock
   :interval "1s"
   "bash scripts/keystate.sh -c"

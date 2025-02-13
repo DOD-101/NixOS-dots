@@ -18,7 +18,6 @@
   theme.catppuccin-mocha.enable = true;
 
   btop-config.enable = true;
-  eww-config.enable = true;
   fastfetch-config.enable = true;
   foot-config.enable = true;
 
@@ -72,6 +71,19 @@
 
       # WARN: Hyprgrass is broken, change this back once it is fixed
       # plugins.hyprgrass.enable = true;
+    };
+  };
+
+  eww-config = {
+    enable = true;
+    toggles = {
+      touchscreen = true;
+      show_battery = true;
+      show_caps_lock = true;
+      show_disk = true;
+      wifi_device = "wlp2s0";
+      ethernet_device = "NONE";
+      cpu_temp = "ACPITZ_TEMP1";
     };
   };
 

@@ -1,7 +1,7 @@
 ; contains all of the windows
 
 ; TODO: This is tmp
-(include "vars.yuck")
+(include "toggles.yuck")
 (include "poll.yuck")
 
 (include "components/bar0.yuck")

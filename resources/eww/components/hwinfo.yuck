@@ -3,6 +3,8 @@
 (include "components/disk.yuck")
 (include "components/ddisk.yuck")
 
+(defvar show_hwinfo false)
+
 (defwidget hwinfo [ ]
   (eventbox
     :onhover "eww update show_hwinfo=true"
