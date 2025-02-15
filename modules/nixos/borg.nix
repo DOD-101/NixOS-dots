@@ -39,6 +39,8 @@
         compression = "auto,lzma";
         doInit = false;
         startAt = [ ];
+        removableDevice = true;
+        inhibitsSleep = true;
       };
     };
 
