@@ -131,12 +131,6 @@
       inputs.igneous-md.packages."${system}".igneous-md-release
     ];
 
-  home.activation.createSyncDir = {
-    before = [ "writeBoundary" ]; # Optional, but recommended
-    after = [ "writeGlobalProfile" ]; # Optional, but recommended
-    data = "mkdir -p ~/Sync/.stfolder";
-  };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
