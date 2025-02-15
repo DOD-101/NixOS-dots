@@ -1,49 +1,61 @@
-(defwidget key [ letter ]
-  (box :class "key" :orientation "h" :space-evenly false
-    (label :class "key-label" :text "${letter}")
+(defvar osk_shift false)
+(defvar osk_layer 0)
+
+(defpoll osk_data
+  :interval "3600s"
+  :initial "[[]]"
+  "cat osk.json"
+)
+
+(defwidget key [ letter ?width ?shift_letter ]
+  (eventbox
+    :class "key"
+    :height "100"
+    :width { width ?: "100" }
+    :onclick "./scripts/osk_key.sh '${letter}' '${shift_letter ?: letter}'"
+    (label
+      :class "key-label"
+      :text "${letter}"
+    )
+  )
+)
+
+(defwidget special_key [ letter width onclick ?class ?shift_letter ]
+  (eventbox
+    :class "special-key key ${class}"
+    :height "100"
+    :width width
+    :onclick onclick
+    (label
+      :class "key-label"
+      :text "${letter}"
+    )
   )
 )
 
 (defwidget osk [ ]
-  (box :class "osk-row"
-    (key :letter "q")
-    (key :letter "w")
-    (key :letter "e")
-    (key :letter "r")
-    (key :letter "t")
-    (key :letter "z")
-    (key :letter "u")
-    (key :letter "i")
-    (key :letter "o")
-    (key :letter "p")
-    (key :letter "ü")
-    (key :letter "+")
+  (box
+    :class "osk osk-layout"
+    :orientation "v"
+    :space-evenly false
+    :halign "center"
+    (for row in "${jq(osk_data,".[${osk_layer}]")}"
+      (box
+        :class "osk-row"
+        :space-evenly false
+        :halign "center"
+        (for l in row
+          (literal
+            :content {
+              l.type == "normal"
+              ? `(key :letter "${l.key}")`
+              : l.type == "special"
+              ? '(special_key :letter `${l.key}` :width `${l.width}` :onclick `${l.onclick}` :class `${l.class ?: ""}`)'
+              : `(key :letter "error")`
+            }
+          )
+        )
+      )
+    )
   )
-  (box :class "osk-row"
-    (key :letter "a")
-    (key :letter "s")
-    (key :letter "d")
-    (key :letter "f")
-    (key :letter "g")
-    (key :letter "h")
-    (key :letter "j")
-    (key :letter "k")
-    (key :letter "l")
-    (key :letter "ö")
-    (key :letter "ä")
-  )
-  (box :class "osk-row"
-    (key :letter "y")
-    (key :letter "x")
-    (key :letter "c")
-    (key :letter "v")
-    (key :letter "b")
-    (key :letter "n")
-    (key :letter "m")
-    (key :letter "ß")
-    (key :letter "←")
-    (key :letter "→")
-    (key :letter "↓")
-  )
-  (box :class "osk-row")
 )

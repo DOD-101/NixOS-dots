@@ -127,3 +127,23 @@ revealer {
 .bat_low {
   color: red;
 }
+
+
+.osk {
+  background-color: $extras-crust;
+  opacity: 0.94;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.key {
+  background-color: $background;
+  padding: 5px;
+  border: 2px solid $extras-crust;
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.osk-on {
+  color: $extras-maroon;
+}

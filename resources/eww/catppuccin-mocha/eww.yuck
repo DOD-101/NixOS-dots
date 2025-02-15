@@ -5,6 +5,7 @@
 (include "poll.yuck")
 
 (include "components/bar0.yuck")
+(include "components/osk.yuck")
 
 (defwindow BarWin0
   :monitor 0
@@ -20,7 +21,6 @@
   )
   (bar0
     :workspaces "[1, 2, 3]"
-    :playing_monitor 0
   )
 )
 
@@ -38,7 +38,6 @@
   )
   (bar0
     :workspaces "[4, 5, 6]"
-    :playing_monitor 1
   )
 )
 
@@ -56,6 +55,20 @@
   )
   (bar0
     :workspaces "[1, 2, 3]"
-    :playing_monitor 0
   )
+)
+
+(defwindow OskWin [ monitor ]
+  :monitor monitor
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  :geometry (geometry
+    :x "0px"
+    :y "10px"
+    :width "90%"
+    :height "10%"
+    :anchor "bottom center"
+  )
+  (osk)
 )

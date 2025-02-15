@@ -1,0 +1,450 @@
+[
+	[
+		[
+			{
+				"type": "special",
+				"key": "Esc",
+				"width": "100",
+				"onclick": "wtype -P Escape"
+			},
+			{
+				"type": "normal",
+				"key": "1",
+				"shift_key": "!"
+			},
+			{
+				"type": "normal",
+				"key": "2",
+				"shift_key": "\""
+			},
+			{
+				"type": "normal",
+				"key": "3",
+				"shift_key": "§"
+			},
+			{
+				"type": "normal",
+				"key": "4",
+				"shift_key": "£"
+			},
+			{
+				"type": "normal",
+				"key": "5",
+				"shift_key": "%"
+			},
+			{
+				"type": "normal",
+				"key": "6",
+				"shift_key": "&"
+			},
+			{
+				"type": "normal",
+				"key": "7",
+				"shift_key": "/"
+			},
+			{
+				"type": "normal",
+				"key": "8",
+				"shift_key": "("
+			},
+			{
+				"type": "normal",
+				"key": "9",
+				"shift_key": ")"
+			},
+			{
+				"type": "normal",
+				"key": "0",
+				"shift_key": "="
+			}
+		],
+		[
+			{
+				"type": "normal",
+				"key": "q"
+			},
+			{
+				"type": "normal",
+				"key": "w"
+			},
+			{
+				"type": "normal",
+				"key": "e"
+			},
+			{
+				"type": "normal",
+				"key": "r"
+			},
+			{
+				"type": "normal",
+				"key": "t"
+			},
+			{
+				"type": "normal",
+				"key": "z"
+			},
+			{
+				"type": "normal",
+				"key": "u"
+			},
+			{
+				"type": "normal",
+				"key": "i"
+			},
+			{
+				"type": "normal",
+				"key": "o"
+			},
+			{
+				"type": "normal",
+				"key": "p"
+			},
+			{
+				"type": "normal",
+				"key": "ü"
+			}
+		],
+		[
+			{
+				"type": "normal",
+				"key": "a"
+			},
+			{
+				"type": "normal",
+				"key": "s"
+			},
+			{
+				"type": "normal",
+				"key": "d"
+			},
+			{
+				"type": "normal",
+				"key": "f"
+			},
+			{
+				"type": "normal",
+				"key": "g"
+			},
+			{
+				"type": "normal",
+				"key": "h"
+			},
+			{
+				"type": "normal",
+				"key": "j"
+			},
+			{
+				"type": "normal",
+				"key": "k"
+			},
+			{
+				"type": "normal",
+				"key": "l"
+			},
+			{
+				"type": "normal",
+				"key": "ö"
+			},
+			{
+				"type": "normal",
+				"key": "ä"
+			}
+		],
+		[
+			{
+				"type": "special",
+				"key": "󰘲",
+				"width": "100",
+				"class": "${ osk_shift == true ? \"osk-on\" : \"osk-off\" }",
+				"onclick": "eww update osk_shift=true"
+			},
+			{
+				"type": "normal",
+				"key": "y"
+			},
+			{
+				"type": "normal",
+				"key": "x"
+			},
+			{
+				"type": "normal",
+				"key": "c"
+			},
+			{
+				"type": "normal",
+				"key": "v"
+			},
+			{
+				"type": "normal",
+				"key": "b"
+			},
+			{
+				"type": "normal",
+				"key": "n"
+			},
+			{
+				"type": "normal",
+				"key": "m"
+			},
+			{
+				"type": "special",
+				"key": "󰭜",
+				"width": "100",
+				"onclick": "wtype -P Backspace"
+			}
+		],
+		[
+			{
+				"type": "special",
+				"key": "!#1",
+				"width": "100",
+				"onclick": "eww update osk_layer=$(( ( \"$(eww get osk_layer)\" + 1 ) % \"$(jq length osk.json)\" )); echo $(eww get osk_layer)"
+			},
+			{
+				"type": "normal",
+				"key": ","
+			},
+			{
+				"type": "special",
+				"key": " ",
+				"width": "400",
+				"onclick": "wtype -P Space"
+			},
+			{
+				"type": "normal",
+				"key": "."
+			},
+			{
+				"type": "special",
+				"key": "󰌑",
+				"width": "100",
+				"onclick": "wtype -P Return"
+			}
+		]
+	],
+	[
+		[
+			{
+				"type": "special",
+				"key": "Esc",
+				"width": "100",
+				"onclick": "wtype -P Escape"
+			},
+			{
+				"type": "normal",
+				"key": "1",
+				"shift_key": "!"
+			},
+			{
+				"type": "normal",
+				"key": "2",
+				"shift_key": "\""
+			},
+			{
+				"type": "normal",
+				"key": "3",
+				"shift_key": "§"
+			},
+			{
+				"type": "normal",
+				"key": "4",
+				"shift_key": "£"
+			},
+			{
+				"type": "normal",
+				"key": "5",
+				"shift_key": "%"
+			},
+			{
+				"type": "normal",
+				"key": "6",
+				"shift_key": "&"
+			},
+			{
+				"type": "normal",
+				"key": "7",
+				"shift_key": "/"
+			},
+			{
+				"type": "normal",
+				"key": "8",
+				"shift_key": "("
+			},
+			{
+				"type": "normal",
+				"key": "9",
+				"shift_key": ")"
+			},
+			{
+				"type": "normal",
+				"key": "0",
+				"shift_key": "="
+			}
+		],
+		[
+			{
+				"type": "normal",
+				"key": "+"
+			},
+			{
+				"type": "normal",
+				"key": "×"
+			},
+			{
+				"type": "normal",
+				"key": "~"
+			},
+			{
+				"type": "normal",
+				"key": "÷"
+			},
+			{
+				"type": "normal",
+				"key": "="
+			},
+			{
+				"type": "normal",
+				"key": "/"
+			},
+			{
+				"type": "normal",
+				"key": "_"
+			},
+			{
+				"type": "normal",
+				"key": "<"
+			},
+			{
+				"type": "normal",
+				"key": ">"
+			},
+			{
+				"type": "normal",
+				"key": "["
+			},
+			{
+				"type": "normal",
+				"key": "]"
+			}
+		],
+		[
+			{
+				"type": "normal",
+				"key": "!"
+			},
+			{
+				"type": "normal",
+				"key": "@"
+			},
+			{
+				"type": "normal",
+				"key": "#"
+			},
+			{
+				"type": "normal",
+				"key": "$"
+			},
+			{
+				"type": "normal",
+				"key": "€"
+			},
+			{
+				"type": "normal",
+				"key": "%"
+			},
+			{
+				"type": "normal",
+				"key": "^"
+			},
+			{
+				"type": "normal",
+				"key": "&"
+			},
+			{
+				"type": "normal",
+				"key": "*"
+			},
+			{
+				"type": "normal",
+				"key": "("
+			},
+			{
+				"type": "normal",
+				"key": ")"
+			}
+		],
+		[
+			{
+				"type": "special",
+				"key": "󰘲",
+				"width": "100",
+				"class": "${ osk_shift == true ? \"osk-on\" : \"osk-off\" }",
+				"onclick": "eww update osk_shift=true"
+			},
+			{
+				"type": "normal",
+				"key": "-"
+			},
+			{
+				"type": "special",
+				"width": "100",
+				"key": "'",
+				"onclick": "wtype -- \\\\'; eww update osk_shift=false"
+			},
+			{
+				"type": "normal",
+				"key": "\\\""
+			},
+			{
+				"type": "normal",
+				"key": ":"
+			},
+			{
+				"type": "normal",
+				"key": ";"
+			},
+			{
+				"type": "normal",
+				"key": "|"
+			},
+			{
+				"type": "normal",
+				"key": "?"
+			},
+			{
+				"type": "special",
+				"key": "󰭜",
+				"width": "100",
+				"onclick": "wtype -P Backspace"
+			}
+		],
+		[
+			{
+				"type": "special",
+				"key": "!#1",
+				"width": "100",
+				"onclick": "eww update osk_layer=$(( ( \"$(eww get osk_layer)\" + 1 ) % \"$(jq length osk.json)\" )); echo $(eww get osk_layer)"
+			},
+			{
+				"type": "normal",
+				"key": ","
+			},
+			{
+				"type": "special",
+				"key": " ",
+				"width": "400",
+				"onclick": "wtype -P Space"
+			},
+			{
+				"type": "normal",
+				"key": "."
+			},
+			{
+				"type": "special",
+				"key": "󰌑",
+				"width": "100",
+				"onclick": "wtype -P Return"
+			}
+		]
+	]
+]

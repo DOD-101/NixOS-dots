@@ -69,6 +69,8 @@ in
   config = lib.mkIf config.eww-config.enable {
     home.packages = with pkgs; [
       eww
+      wtype
+      jq
     ];
 
     home.file = {

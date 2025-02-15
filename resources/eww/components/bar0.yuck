@@ -5,7 +5,7 @@
 (include "components/volume.yuck")
 (include "components/battery.yuck")
 
-(defwidget bar0 [ workspaces playing_monitor ]
+(defwidget bar0 [ workspaces ]
   (centerbox
     :orientation "h"
     (box
@@ -24,9 +24,7 @@
       :orientation "h"
       :space-evenly false
       :halign "center"
-      (time_playing
-        :playing_monitor playing_monitor
-      )
+      (time_playing)
     )
     (box
       :class "right"

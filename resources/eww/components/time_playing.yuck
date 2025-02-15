@@ -8,7 +8,7 @@
 
 (defvar playing "Nothing playing rn") ; gets the currently playing media
 
-(defwidget time_playing [ playing_monitor ]
+(defwidget time_playing [ ]
   (eventbox
     :class "time_playing"
     :onhover "eww update show_song=1"
