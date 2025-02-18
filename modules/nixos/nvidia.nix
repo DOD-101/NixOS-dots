@@ -20,6 +20,8 @@
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    hardware.nvidia-container-toolkit.enable = true;
+
     hardware.nvidia.open = false;
     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "565.77";

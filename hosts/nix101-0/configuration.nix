@@ -61,6 +61,8 @@
 
   services.udisks2.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -120,6 +122,7 @@
       "openrazer"
       "plugdev"
       "input"
+      "docker"
     ];
   };
 
