@@ -251,7 +251,7 @@
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/ocean-breeze/1.png";
       };
 
-      btop.theme = ''
+      btop.theme.text = ''
         theme[main_bg]="${color.background}"
         theme[main_fg]="${color.foreground}"
         theme[title]="${color.bright.white}"
@@ -293,7 +293,7 @@
 
       zsh.theme = "agnoster-custom";
 
-      vis.colorScheme = ''
+      vis.colorScheme.text = ''
         gradient=true
         ${color.red}
         ${color.magenta}
@@ -301,11 +301,11 @@
         ${color.cyan}
       '';
 
-      fastfetch.config = builtins.readFile ../resources/fastfetch/ocean-breeze.jsonc;
+      fastfetch.config.source = ../resources/fastfetch/ocean-breeze.jsonc;
 
       nvim.theme = "tokyonight";
 
-      discord.theme =
+      discord.theme.source =
         pkgs.fetchFromGitHub {
           owner = "folke";
           repo = "tokyonight.nvim";
@@ -315,12 +315,10 @@
         + "/extras/discord/tokyonight_night.css";
 
       zen-browser = {
-        userChrome = "";
-        userContent = "";
-        zen-logo = "";
+        userChrome.text = "";
+        userContent.text = "";
+        zen-logo.text = "";
       };
-
     };
-
   };
 }

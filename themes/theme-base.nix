@@ -65,7 +65,7 @@ in
 
     rgbColor = color;
 
-    vis.colorScheme = lib.mkOption { type = lib.types.str; };
+    vis.colorScheme = lib.mkOption { type = lib.types.attrs; };
 
     wofi.style = lib.mkOption { type = lib.types.str; };
 
@@ -126,27 +126,23 @@ in
 
     swww.script = lib.mkOption { type = lib.types.str; };
 
-    btop.theme = lib.mkOption { type = lib.types.str; };
+    btop.theme = lib.mkOption { type = lib.types.attrs; };
 
-    zsh.theme = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-    };
+    zsh.theme = lib.mkOption { type = lib.types.str; };
 
     nvim.theme = lib.mkOption { type = lib.types.str; };
 
-    discord.theme = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-    };
+    discord.theme = lib.mkOption { type = lib.types.attrs; };
 
     zen-browser = {
-      userChrome = lib.mkOption { type = lib.types.str; };
-      userContent = lib.mkOption { type = lib.types.str; };
-      zen-logo = lib.mkOption { type = lib.types.str; };
+      userChrome = lib.mkOption { type = lib.types.attrs; };
+      userContent = lib.mkOption { type = lib.types.attrs; };
+      zen-logo = lib.mkOption { type = lib.types.attrs; };
     };
 
-    fastfetch.config = lib.mkOption { type = lib.types.str; };
+    fastfetch.config = lib.mkOption {
+      type = lib.types.attrs;
+    };
   };
 
   config = {
@@ -165,22 +161,22 @@ in
     };
 
     home.file = {
-      ".config/vesktop/themes/theme.css".text = config.theme.discord.theme;
+      ".config/vesktop/themes/theme.css" = config.theme.discord.theme;
 
-      ".zen/${config.zen-config.profile}/chrome/userChrome.css".text =
+      ".zen/${config.zen-config.profile}/chrome/userChrome.css" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.userChrome;
 
-      ".zen/${config.zen-config.profile}/chrome/userContent.css".text =
+      ".zen/${config.zen-config.profile}/chrome/userContent.css" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.userContent;
 
-      ".zen/${config.zen-config.profile}/chrome/zen-logo.svg".text =
+      ".zen/${config.zen-config.profile}/chrome/zen-logo.svg" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
-      ".config/fastfetch/config.jsonc".text = config.theme.fastfetch.config;
+      ".config/fastfetch/config.jsonc" = config.theme.fastfetch.config;
 
-      ".config/vis/colors/${config.theme.name}".text = config.theme.vis.colorScheme;
+      ".config/vis/colors/${config.theme.name}" = config.theme.vis.colorScheme;
 
-      ".config/btop/themes/${config.theme.name}.theme".text = config.theme.btop.theme;
+      ".config/btop/themes/${config.theme.name}.theme" = config.theme.btop.theme;
     };
   };
 }

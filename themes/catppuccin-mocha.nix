@@ -380,43 +380,37 @@ in
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/1.png";
       };
 
-      btop.theme = builtins.readFile (
+      btop.theme.source =
         pkgs.fetchFromGitHub {
           owner = "catppuccin";
           repo = "btop";
           rev = "1.0.0";
           hash = "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=";
         }
-        + "/themes/catppuccin_${flavour}.theme"
-      );
+        + "/themes/catppuccin_${flavour}.theme";
 
       zsh.theme = "";
 
       nvim.theme = "catppuccin-${flavour}";
 
-      discord.theme = builtins.readFile (
+      discord.theme.source =
         pkgs.fetchFromGitHub {
           owner = "catppuccin";
           repo = "discord";
           rev = "16b1e5156583ee376ded4fa602842fa540826bbc";
           hash = "sha256-ECVHRuHbe3dvwrOsi6JAllJ37xb18HaUPxXoysyPP70=";
         }
-        + "/themes/${flavour}.theme.css"
-      );
+        + "/themes/${flavour}.theme.css";
 
       zen-browser = {
-        userChrome = builtins.readFile (
-          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
-        );
-        userContent = builtins.readFile (
-          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
-        );
-        zen-logo = builtins.readFile (
-          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg"
-        );
+        userChrome.source = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css";
+        userContent.source =
+          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css";
+        zen-logo.source =
+          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
       };
 
-      vis.colorScheme = ''
+      vis.colorScheme.text = ''
         gradient=true
         ${color.black}
         ${color.red}
@@ -428,7 +422,7 @@ in
         ${color.white}
       '';
 
-      fastfetch.config =
+      fastfetch.config.text =
         builtins.replaceStrings
           [
             "@logo@"
