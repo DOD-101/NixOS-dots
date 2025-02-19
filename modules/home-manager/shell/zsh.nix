@@ -80,6 +80,7 @@
             eval "$(atuin init zsh)"
             eval "$(dircolors ~/.dircolors)"
             eval "$(zoxide init zsh)"
+            eval "$(igneous-md completions zsh)"
 
             setopt globdots
             setopt extended_glob

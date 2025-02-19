@@ -29,7 +29,7 @@
     };
 
     igneous-md = {
-      url = "github:DOD-101/igneous-md/cb9b6a080499620e62bceda260d7e53666bdbd47";
+      url = "github:DOD-101/igneous-md/refs/tags/0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -95,17 +95,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1738260342,
-        "narHash": "sha256-PFv8hHCbk2eu+Nl3VXt03kFCPBih3CibiVshenslz20=",
+        "lastModified": 1739720205,
+        "narHash": "sha256-dFpxlIZdRpkBo/InFzBJQ2fJg3ls849BzjcGE2tXzqE=",
         "owner": "DOD-101",
         "repo": "igneous-md",
-        "rev": "cb9b6a080499620e62bceda260d7e53666bdbd47",
+        "rev": "832dd9cedf43209d2dde252a3104ce127df29111",
         "type": "github"
       },
       "original": {
         "owner": "DOD-101",
+        "ref": "refs/tags/0.3.0",
         "repo": "igneous-md",
-        "rev": "cb9b6a080499620e62bceda260d7e53666bdbd47",
         "type": "github"
       }
     },
