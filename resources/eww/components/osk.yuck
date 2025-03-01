@@ -4,8 +4,7 @@
 (defpoll osk_data
   :interval "3600s"
   :initial "[[]]"
-  "cat osk.json"
-)
+  "cat osk.json")
 
 (defwidget key [ letter ?width ?shift_letter ]
   (eventbox
@@ -15,10 +14,7 @@
     :onclick "./scripts/osk_key.sh '${letter}' '${shift_letter ?: letter}'"
     (label
       :class "key-label"
-      :text "${letter}"
-    )
-  )
-)
+      :text "${letter}")))
 
 (defwidget special_key [ letter width onclick ?class ?shift_letter ]
   (eventbox
@@ -28,10 +24,7 @@
     :onclick onclick
     (label
       :class "key-label"
-      :text "${letter}"
-    )
-  )
-)
+      :text "${letter}")))
 
 (defwidget osk [ ]
   (box
@@ -52,10 +45,4 @@
               : l.type == "special"
               ? '(special_key :letter `${l.key}` :width `${l.width}` :onclick `${l.onclick}` :class `${l.class ?: ""}`)'
               : `(key :letter "error")`
-            }
-          )
-        )
-      )
-    )
-  )
-)
+            }))))))

@@ -7,7 +7,4 @@
     (label
       :text "${round(EWW_RAM.used_mem_perc,0)}%"
       :class "ram_value"
-      :yalign 0.5
-    )
-  )
-)
+      :yalign 0.5)))

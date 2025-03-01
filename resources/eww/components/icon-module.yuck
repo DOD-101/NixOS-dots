@@ -8,7 +8,4 @@
     (children)
     (label
       :class "icon-module__icon"
-      :text "${icon}"
-    )
-  )
-)
+      :text "${icon}")))

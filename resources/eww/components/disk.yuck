@@ -7,7 +7,4 @@
     :visible { show_disk }
     (label
       :text "${round((1 - ((EWW_DISK?.["/"]?.free ?: 1) / (EWW_DISK?.["/"]?.total ?: 1))) * 100,0)}%"
-      :class "disk_value"
-    )
-  )
-)
+      :class "disk_value")))

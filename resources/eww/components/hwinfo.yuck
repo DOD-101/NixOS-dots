@@ -18,22 +18,14 @@
         :transition "slideright"
         :reveal { show_hwinfo }
         (label
-          :text "${round(EWW_TEMPS[cpu_temp],0)} °C"
-        )
-      )
+          :text "${round(EWW_TEMPS[cpu_temp],0)} °C"))
       (ram)
       (revealer
         :transition "slideright"
         :reveal { show_hwinfo }
         (label
-          :text "${round(EWW_RAM.used_mem / 1000000000,0)}GB / ${round(EWW_RAM.total_mem / 1000000000,0)}GB"
-        )
-      )
+          :text "${round(EWW_RAM.used_mem / 1000000000,0)}GB / ${round(EWW_RAM.total_mem / 1000000000,0)}GB"))
       (box
         :space-evenly false
         (disk)
-        (ddisk)
-      )
-    )
-  )
-)
+        (ddisk)))))

@@ -16,16 +16,13 @@
 
       (hwinfo)
       (workspaces
-        :workspaces workspaces
-      )
-    )
+        :workspaces workspaces))
     (box
       :class "center"
       :orientation "h"
       :space-evenly false
       :halign "center"
-      (time_playing)
-    )
+      (time_playing))
     (box
       :class "right"
       :orientation "h"
@@ -34,7 +31,4 @@
 
       (status_info)
       (volume)
-      (battery)
-    )
-  )
-)
+      (battery))))

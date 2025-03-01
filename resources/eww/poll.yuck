@@ -3,5 +3,4 @@
 ; shared
 (defpoll bluetooth
   :interval "10s"
-  "bluetoothctl devices Connected"
-) ; checks if you have a bluetooth device connected
+  "bluetoothctl devices Connected") ; checks if you have a bluetooth device connected

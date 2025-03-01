@@ -3,29 +3,24 @@
 
 (defpoll caps_lock
   :interval "1s"
-  "bash scripts/keystate.sh -c"
-) ; gets the state of the caps lock
+  "bash scripts/keystate.sh -c") ; gets the state of the caps lock
 
 (defpoll num_lock
   :interval "1s"
-  "bash scripts/keystate.sh -n"
-) ; gets the state of num lock
+  "bash scripts/keystate.sh -n") ; gets the state of num lock
 
 (defpoll internet
   :interval "10s"
-  "bash scripts/wifiethernet.sh $(eww get wifi_device) $(eww get ethernet_device)"
-) ; checks if you are connected via wifi, ethernet or not at all
+  "bash scripts/wifiethernet.sh $(eww get wifi_device) $(eww get ethernet_device)") ; checks if you are connected via wifi, ethernet or not at all
 
 (defpoll internet_name
   :interval "10s"
-  "iwconfig $(eww get wifi_device) | awk -F'[:\"]' '/ESSID/{print $3}'"
-) ; gets the ESSID (name) of your current internet connection
+  "iwconfig $(eww get wifi_device) | awk -F'[:\"]' '/ESSID/{print $3}'") ; gets the ESSID (name) of your current internet connection
 
 (defpoll internet_strengh
   :interval "10s"
   :initial 70
-  "iwconfig $(eww get wifi_device) | awk -F'[=/]' '/Link Quality/{print $2}'"
-) ; gets the strength of your internet connection
+  "iwconfig $(eww get wifi_device) | awk -F'[=/]' '/Link Quality/{print $2}'") ; gets the strength of your internet connection
 
 (defwidget status_info [ ]
   (eventbox
@@ -44,17 +39,13 @@
           :space-evenly false
           (label
             :text { internet_name }
-            :class "internet_name"
-          )
-        )
-      )
+            :class "internet_name")))
 
       (button
         :onclick { osk_shown ? "eww close OskWin; eww update osk_shown=false" : "eww open OskWin --arg 'monitor=0'; eww update osk_shown=true" }
         :class "keyboard-btn"
         :visible { touchscreen }
-        ""
-      )
+        "")
 
       (label
         :class {
@@ -74,8 +65,7 @@
           : internet_strengh < 52.5
           ? "󰤥"
           : "󰤨"
-        }
-      )
+        })
 
       (label
         :class {
@@ -83,8 +73,7 @@
           ? "bluetooth bluetooth_on on"
           : "bluetooth bluetooth_off off"
         }
-        :text ""
-      )
+        :text "")
 
       (label
         :class {
@@ -93,8 +82,7 @@
           : "caps caps_off off"
         }
         :text "󰘲"
-        :visible { show_caps_lock }
-      )
+        :visible { show_caps_lock })
 
       (label
         :class {
@@ -103,8 +91,4 @@
           : "num num_off off"
         }
         :text "󰎡"
-        :visible { show_num_lock }
-      )
-    )
-  )
-)
+        :visible { show_num_lock }))))

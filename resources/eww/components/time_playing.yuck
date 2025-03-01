@@ -3,8 +3,7 @@
 (defpoll show_song
   :interval "5s"
   :initial 0
-  "sh ./scripts/display_song.sh"
-)
+  "sh ./scripts/display_song.sh")
 
 (defvar playing "Nothing playing rn") ; gets the currently playing media
 
@@ -19,8 +18,4 @@
       :transition "slideup"
       (time)
       (label
-        :text " ${playing} "
-      )
-    )
-  )
-)
+        :text " ${playing} "))))

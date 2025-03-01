@@ -32,6 +32,10 @@
       url = "github:DOD-101/igneous-md/refs/tags/0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    topiary-yuck = {
+      url = "github:DOD-101/topiary-yuck";
+    };
   };
 
   outputs =

@@ -5,7 +5,4 @@
     (label
       :text "${round(EWW_CPU.avg,0)}%"
       :class "cpu_value"
-      :yalign 0.5
-    )
-  )
-)
+      :yalign 0.5)))

@@ -58,8 +58,7 @@
       # rust
       rustfmt
       cargo
-      # WARN: Change this as soon as a fix for the autocomplete is found
-      inputs.cursor_nixpkgs.legacyPackages."${system}".rust-analyzer
+      rust-analyzer
       clippy
       rustc
       pkg-config
@@ -83,6 +82,9 @@
 
       # toml
       taplo
+
+      # yuck
+      inputs.topiary-yuck.packages.${system}.default
     ];
 
     # These might also be needed:

@@ -3,8 +3,7 @@
 (defpoll battery
   :interval "3s"
   :initial ""
-  "eww get EWW_BATTERY | jq .BAT0"
-)
+  "eww get EWW_BATTERY | jq .BAT0")
 
 (defwidget battery [ ]
   (icon-module
@@ -26,7 +25,4 @@
       : ""
     }
     (label
-      :text "${strlength(EWW_BATTERY) == 0 ? "n/a" : EWW_BATTERY?.["BAT0"]?.capacity}%"
-    )
-  )
-)
+      :text "${strlength(EWW_BATTERY) == 0 ? "n/a" : EWW_BATTERY?.["BAT0"]?.capacity}%")))

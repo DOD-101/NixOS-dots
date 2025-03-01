@@ -1,7 +1,6 @@
 (defpoll active_workspace
   :interval "0.5s"
-  "bash scripts/workspace.sh"
-) ; gets the current active workspace
+  "bash scripts/workspace.sh") ; gets the current active workspace
 
 (defwidget workspaces [ workspaces ]
   (box
@@ -19,8 +18,4 @@
           ? "activeWS WS"
           : "WS"
         }
-        w
-      )
-    )
-  )
-)
+        w))))
