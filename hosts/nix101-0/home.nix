@@ -28,6 +28,7 @@
   mpv-config.enable = true;
   office-config.enable = true;
   spotify-player-config.enable = true;
+  swayimg-config.enable = true;
   swww-config.enable = true;
   vis-config.enable = true;
   wofi-config.enable = true;

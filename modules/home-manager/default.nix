@@ -20,5 +20,6 @@
     ./yazi.nix
     ./zathura.nix
     ./zen.nix
+    ./swayimg.nix
   ];
 }
