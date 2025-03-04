@@ -33,8 +33,25 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  networking.hostName = "nix101-1"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "nix101-1";
+    networkmanager.enable = true;
+
+    firewall = {
+      allowedTCPPortRanges = [
+        {
+          from = 8000;
+          to = 8500;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 8000;
+          to = 8500;
+        }
+      ];
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -157,21 +174,6 @@
   #     AllowUsers = [ "david" ];
   #   };
   # };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 8000;
-      to = 8999;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 8000;
-      to = 8999;
-    }
-  ];
-  # Or disable the firewall altogether.
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

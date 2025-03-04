@@ -33,10 +33,26 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  networking.hostName = "nix101-0"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "nix101-0";
+    networkmanager.enable = true;
 
-  # Set your time zone.
+    firewall = {
+      allowedTCPPortRanges = [
+        {
+          from = 8000;
+          to = 8500;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 8000;
+          to = 8500;
+        }
+      ];
+    };
+  };
+
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
@@ -66,9 +82,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   # Enable config modules
   razer-config.enable = true;
   sound-config.enable = true;
@@ -81,6 +94,21 @@
   services.ollama = {
     enable = true;
     acceleration = "cuda";
+  };
+
+  services.open-webui = {
+    enable = true;
+    host = "0.0.0.0";
+    port = 8100;
+    environment = {
+      ANONYMIZED_TELEMETRY = "False";
+      DO_NOT_TRACK = "True";
+      SCARF_NO_ANALYTICS = "True";
+      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+      WEBUI_AUTH = "False";
+      WEBUI_URL = "http://localhost:8100";
+    };
   };
 
   # Syncthing config
@@ -166,21 +194,6 @@
   #     AllowUsers = [ "david" ];
   #   };
   # };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 8000;
-      to = 8999;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 8000;
-      to = 8999;
-    }
-  ];
-  # Or disable the firewall altogether.
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
