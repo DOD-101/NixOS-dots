@@ -25,6 +25,9 @@
           autoSetupRemote = true;
         };
         init.defaultBranch = "master";
+        blame = {
+          date = "short";
+        };
       };
     };
 
