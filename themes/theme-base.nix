@@ -143,6 +143,8 @@ in
     fastfetch.config = lib.mkOption {
       type = lib.types.attrs;
     };
+
+    igneous-md = lib.mkOption { type = lib.types.str; };
   };
 
   config = {

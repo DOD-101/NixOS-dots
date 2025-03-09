@@ -431,6 +431,17 @@ in
             (builtins.toString ../resources/fastfetch/kitty.txt)
           ]
           (builtins.readFile (./. + "/../resources/fastfetch/catppuccin-${flavour}.jsonc"));
+
+      igneous-md = ''
+        @import url("github-markdown-dark.css");
+
+        :root {
+          --color-0: ${color.extras.text};
+          --color-1: ${color.extras.base};
+          --color-2: ${color.extras.mauve};
+          --color-8: ${color.extras.mantle};
+        }
+      '';
     };
 
     programs.starship = {

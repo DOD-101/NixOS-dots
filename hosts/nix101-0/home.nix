@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }:
@@ -20,6 +19,7 @@
   btop-config.enable = true;
   fastfetch-config.enable = true;
   foot-config.enable = true;
+  igneous-config.enable = true;
 
   kitty-config.default = true;
   kitty-config.enable = true;
@@ -103,34 +103,29 @@
     nvim.enable = true;
   };
 
-  home.packages =
-    with pkgs;
-    [
-      firefox
-      keepassxc
-      signal-desktop
+  home.packages = with pkgs; [
+    firefox
+    keepassxc
+    signal-desktop
 
-      # discord
-      vesktop
+    # discord
+    vesktop
 
-      # email
-      thunderbird
+    # email
+    thunderbird
 
-      # minecraft
-      prismlauncher
-      jdk17
+    # minecraft
+    prismlauncher
+    jdk17
 
-      ckan
+    ckan
 
-      # art
-      gimp
-      inkscape
-      # blender
-      drawio
-    ]
-    ++ [
-      inputs.igneous-md.packages."${system}".igneous-md-release
-    ];
+    # art
+    gimp
+    inkscape
+    # blender
+    drawio
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

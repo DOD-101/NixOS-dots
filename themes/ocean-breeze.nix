@@ -319,6 +319,11 @@
         userContent.text = "";
         zen-logo.text = "";
       };
+
+      # INFO: Just use the GitHub theme for now
+      igneous-md = ''
+        @import url("github-markdown-dark.css");
+      '';
     };
   };
 }

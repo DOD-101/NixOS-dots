@@ -8,10 +8,12 @@
     ./eww.nix
     ./fastfetch.nix
     ./hypr.nix
+    ./igneous-md.nix
     ./mpv.nix
     ./office.nix
     ./shell
     ./spotify-player.nix
+    ./swayimg.nix
     ./swww.nix
     ./syncthing.nix
     ./term
@@ -20,6 +22,5 @@
     ./yazi.nix
     ./zathura.nix
     ./zen.nix
-    ./swayimg.nix
   ];
 }
