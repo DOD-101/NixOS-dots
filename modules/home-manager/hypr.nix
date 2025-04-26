@@ -107,7 +107,7 @@
         };
       };
 
-      extraConfig = config.hypr-config.hyprland.extraConfig;
+      extraConfig = config.hypr-config.hyprland.extraConfig + "\n" + osConfig.razer-config.hyprlandConfig;
     };
 
     home.file.".config/hypr/scripts" = lib.mkIf config.hypr-config.hyprland.enable {
