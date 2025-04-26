@@ -79,6 +79,11 @@
 
   virtualisation.docker.enable = true;
 
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "david" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

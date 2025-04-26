@@ -119,6 +119,7 @@
     jdk17
 
     ckan
+    heroic
 
     # art
     gimp
@@ -126,6 +127,13 @@
     # blender
     drawio
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-pipewire-audio-capture
+    ];
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
