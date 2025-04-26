@@ -225,7 +225,7 @@ in
             gaps_in = 10;
             gaps_out = "10,15,15,15";
             border_size = 2;
-            "col.active_border" = "rgb(${config.theme.hashlessColor.magenta})";
+            "col.active_border" = "rgb(${config.theme.hashlessColor.extras.${accent}})";
             "col.inactive_border" = "rgb(${config.theme.hashlessColor.black})";
           };
 
