@@ -132,8 +132,24 @@
           }
           {
             timeout = 330; # 5.5min
-            on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-            on-resume = "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+            on-timeout = lib.strings.concatStringsSep ";" (
+              [
+                "hyprctl dispatch dpms off"
+              ]
+              ++ lib.optionals osConfig.razer-config.enable [
+                "polychromatic-cli -d keyboard -o brightness -p 0"
+                "polychromatic-cli -d mouse -o brightness -p 0"
+              ]
+            );
+            on-resume = lib.strings.concatStringsSep ";" (
+              [
+                "hyprctl dispatch dpms on"
+              ]
+              ++ lib.optionals osConfig.razer-config.enable [
+                "polychromatic-cli -d keyboard -o brightness -p 100"
+                "polychromatic-cli -d mouse -o brightness -p 100"
+              ]
+            );
           }
           {
             timeout = 21600; # 6h
