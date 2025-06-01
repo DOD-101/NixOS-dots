@@ -46,6 +46,7 @@
       # json
 
       # python
+      uv
       python3
       pyright
       black
