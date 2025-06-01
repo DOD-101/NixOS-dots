@@ -16,7 +16,10 @@
 
   theme.catppuccin-mocha.enable = true;
 
-  btop-config.enable = true;
+  btop-config = {
+    enable = true;
+    battery = "BAT0";
+  };
   fastfetch-config.enable = true;
   foot-config.enable = true;
   igneous-config.enable = true;
@@ -53,6 +56,7 @@
       extraConfig = ''
         # Monitors
         monitor=eDP-1,1920x1200,0x0,1
+        monitor=HDMI-A-1,prefered, auto, 1, mirror, eDP-1
 
         # Execs
         exec-once = eww open SingleBarWin0
