@@ -1,3 +1,16 @@
+require("no-status"):setup()
+
+th.git = th.git or {}
+
+th.git.modified_sign = "M"
+th.git.added_sign = "A"
+th.git.untracked_sign = "?"
+th.git.ignored_sign = "I"
+th.git.deleted_sign = "D"
+th.git.updated_sign = "U"
+
+require("git"):setup()
+
 function Status:owner()
 	local h = cx.active.current.hovered
 	if h == nil or ya.target_family() ~= "unix" then
@@ -23,18 +36,6 @@ function Status:name()
 		linked = " -> " .. tostring(h.link_to)
 	end
 	return ui.Span(" " .. h.name .. linked)
-end
-
-function Status:position()
-	local cursor = cx.active.current.cursor
-	local length = #cx.active.current.files
-
-	local style = self.style()
-	return ui.Line({
-		ui.Span(THEME.status.separator_open):fg(style.bg),
-		ui.Span(string.format("%2d/%-2d ", cursor + 1, length)):style(style),
-		ui.Span(THEME.status.separator_close):fg(style.bg),
-	})
 end
 
 function Status:render(area)

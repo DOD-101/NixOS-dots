@@ -11,7 +11,6 @@
     enableFishIntegration = lib.mkEnableOption "enable yazi fish integration, passed to programs.yazi.enableFishIntegration";
     enableNushellIntegration = lib.mkEnableOption "enable yazi nushell integration, passed to programs.yazi.enableNushellIntegration";
     enableZshIntegration = lib.mkEnableOption "enable yazi zsh integration, passed to programs.yazi.enableZshIntegration";
-
   };
 
   config = lib.mkIf config.yazi-config.enable {
@@ -35,11 +34,13 @@
 
       initLua = ../../resources/yazi/init.lua;
       plugins = {
-        smart-enter = ../../resources/yazi/plugins/smart-enter.yazi;
+        smart-enter = pkgs.yaziPlugins.smart-enter;
+        no-status = pkgs.yaziPlugins.no-status;
+        git = pkgs.yaziPlugins.git;
       };
 
       keymap = {
-        manager = {
+        mgr = {
           prepend_keymap = [
             {
               on = "b";
@@ -71,7 +72,7 @@
       };
 
       settings = {
-        manager = {
+        mgr = {
           ratio = [
             1
             4
@@ -83,10 +84,25 @@
           sort_translit = true;
           show_hidden = true;
         };
+
+        plugin = {
+          prepend_fetchers = [
+            {
+              id = "git";
+              name = "*";
+              run = "git";
+            }
+            {
+              id = "git";
+              name = "*/";
+              run = "git";
+            }
+          ];
+        };
       };
 
       theme = {
-        manager = {
+        mgr = {
           hovered = {
             fg = "magenta";
           };
