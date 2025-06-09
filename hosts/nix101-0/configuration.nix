@@ -29,6 +29,7 @@
   boot.tmp.cleanOnBoot = true;
 
   nixpkgs.config.allowUnfree = true;
+  nix.settings.trusted-users = [ "david" ];
   programs.nix-ld.enable = true;
 
   users.defaultUserShell = pkgs.zsh;
