@@ -7,4 +7,7 @@
     gtk.enable = true;
     x11.enable = true;
   };
+
+  gtk.enable = true;
+  qt.enable = true;
 }
