@@ -20,8 +20,13 @@
       [
         libreoffice
         hunspell
+
         hunspellDicts.de_DE
+        hyphenDicts.de_DE
+
         hunspellDicts.en_US
+        hyphenDicts.en_US
+
         hunspellDicts.es_ES
 
         xournalpp
