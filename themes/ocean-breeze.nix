@@ -21,9 +21,7 @@
       };
 
       cursor = {
-        package =
-          with pkgs;
-          inputs.cursor_nixpkgs.legacyPackages."${system}".catppuccin-cursors.macchiatoDark;
+        package = pkgs.catppuccin-cursors.macchiatoDark;
         name = "catppuccin-macchiato-dark-cursors";
       };
 

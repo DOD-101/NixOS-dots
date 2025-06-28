@@ -61,11 +61,7 @@ in
       };
 
       cursor = {
-        package =
-          with pkgs;
-          inputs.cursor_nixpkgs.legacyPackages."${
-            system
-          }".catppuccin-cursors."${flavour}${capitalize accent}";
+        package = pkgs.catppuccin-cursors."${flavour}${capitalize accent}";
         name = "catppuccin-${flavour}-${accent}-cursors";
       };
 

@@ -46,13 +46,17 @@
       # Additional style related config is done through the selected theme
       settings = {
         source = [
-          "${../../resources/hypr/hyprenv.conf}"
           "${../../resources/hypr/hyprgeneral.conf}"
           "${../../resources/hypr/hyprbinds.conf}"
         ];
 
         workspace = [
           "special:minimized"
+        ];
+
+        env = [
+          "EGL_PLATFORM,wayland"
+          "MOZ_ENABLE_WAYLAND,1"
         ];
 
         "$terminal" = config.term;
