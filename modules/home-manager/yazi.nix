@@ -64,7 +64,7 @@
               run = "shell --confirm --block \"gtrash restore\"";
             }
             {
-              on = "n";
+              on = "<C-n>";
               run = "shell --confirm --block \"$EDITOR\"";
             }
           ];
