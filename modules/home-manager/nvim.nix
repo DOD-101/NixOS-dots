@@ -48,7 +48,7 @@
       # python
       uv
       python3
-      pyright
+      basedpyright
       black
       pylint
 
