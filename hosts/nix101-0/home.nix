@@ -30,7 +30,7 @@
   spotify-player-config.enable = true;
   swayimg-config.enable = true;
   swww-config.enable = true;
-  vis-config.enable = true;
+  cava-config.enable = true;
   wofi-config.enable = true;
 
   yazi-config.enable = true;

@@ -34,8 +34,8 @@ let
           config.theme.color.extras."${accent}"
         }/g' ${../resources/hypr/catppuccin-line.svg} > $out/line.svg
 
+        # change width and background color then save files
         inkscape $out/line.svg -w 1000 -b \${config.theme.color.background} -o $out/line.png;
-
         inkscape ${../resources/hypr/profile.svg} -w 600 -b \${config.theme.color.background} -o $out/profile.png;
       '';
 
@@ -410,17 +410,16 @@ in
           zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
       };
 
-      vis.colorScheme.text = ''
-        gradient=true
-        ${color.black}
-        ${color.red}
-        ${color.green}
-        ${color.yellow}
-        ${color.blue}
-        ${color.magenta}
-        ${color.cyan}
-        ${color.white}
-      '';
+      cava.color = {
+        gradient = 1;
+        gradient_color_1 = color.extras.blue;
+        gradient_color_2 = color.extras.sky;
+        gradient_color_3 = color.extras.${accent};
+        gradient_color_4 = color.extras.pink;
+        gradient_color_5 = color.extras.peach;
+        gradient_color_6 = color.extras.yellow;
+        gradient_color_7 = color.extras.red;
+      };
 
       fastfetch.config.text =
         builtins.replaceStrings

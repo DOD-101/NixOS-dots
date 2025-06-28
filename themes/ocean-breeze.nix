@@ -293,13 +293,13 @@
 
       zsh.theme = "agnoster-custom";
 
-      vis.colorScheme.text = ''
-        gradient=true
-        ${color.red}
-        ${color.magenta}
-        ${color.yellow}
-        ${color.cyan}
-      '';
+      cava.color = {
+        gradient = 1;
+        gradient_color_1 = color.red;
+        gradient_color_2 = color.magenta;
+        gradient_color_3 = color.yellow;
+        gradient_color_4 = color.cyan;
+      };
 
       fastfetch.config.source = ../resources/fastfetch/ocean-breeze.jsonc;
 

@@ -2,6 +2,7 @@
 {
   imports = [
     ./btop.nix
+    ./cava.nix
     ./cursor.nix
     ./dev.nix
     ./dev.nix
@@ -17,7 +18,6 @@
     ./swww.nix
     ./syncthing.nix
     ./term
-    ./vis.nix
     ./wofi.nix
     ./yazi.nix
     ./zathura.nix

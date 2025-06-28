@@ -65,7 +65,7 @@ in
 
     rgbColor = color;
 
-    vis.colorScheme = lib.mkOption { type = lib.types.attrs; };
+    cava.color = lib.mkOption { type = lib.types.attrs; };
 
     wofi.style = lib.mkOption { type = lib.types.str; };
 
@@ -175,8 +175,6 @@ in
         lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
       ".config/fastfetch/config.jsonc" = config.theme.fastfetch.config;
-
-      ".config/vis/colors/${config.theme.name}" = config.theme.vis.colorScheme;
 
       ".config/btop/themes/${config.theme.name}.theme" = config.theme.btop.theme;
     };
