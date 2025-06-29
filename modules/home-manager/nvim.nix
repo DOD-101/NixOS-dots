@@ -86,6 +86,11 @@
 
       # yuck
       inputs.topiary-yuck.packages.${system}.default
+
+      # java
+      jdt-language-server
+      google-java-format
+      maven
     ];
 
     # These might also be needed:
