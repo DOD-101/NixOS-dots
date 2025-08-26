@@ -19,7 +19,19 @@
         hyprgrass.enable = lib.mkEnableOption "enable hyprgrass plugin for touch gestures";
       };
     };
-    hypridle.enable = lib.mkEnableOption "enable hypridle config";
+    hypridle = {
+      enable = lib.mkEnableOption "enable hypridle config";
+      screen_off_time = lib.mkOption {
+        type = lib.types.number;
+        default = 330; # 5.5min
+        description = "time before hypridle will turn the screen off (in s)";
+      };
+      lock_time = lib.mkOption {
+        type = lib.types.number;
+        default = 600; # 10min
+        description = "time before hypridle will lock the screen (in s)";
+      };
+    };
     hyprlock = {
       enable = lib.mkEnableOption "enable hyprlock config";
       battery_path = lib.mkOption {
@@ -139,11 +151,7 @@
 
         listener = [
           {
-            timeout = 600; # 10min
-            on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
-          }
-          {
-            timeout = 330; # 5.5min
+            timeout = config.hypr-config.hypridle.screen_off_time;
             on-timeout = lib.strings.concatStringsSep ";" (
               [
                 "hyprctl dispatch dpms off"
@@ -162,6 +170,10 @@
                 "polychromatic-cli -d mouse -o brightness -p 100"
               ]
             );
+          }
+          {
+            timeout = config.hypr-config.hypridle.lock_time;
+            on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
           }
           {
             timeout = 21600; # 6h

@@ -55,7 +55,10 @@
 
   hypr-config = {
     enable = true;
-    hypridle.enable = true;
+    hypridle = {
+      enable = true;
+      lock_time = 3600; # 1h
+    };
     hyprlock.enable = true;
     hyprland = {
       enable = true;
