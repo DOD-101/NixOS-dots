@@ -52,8 +52,6 @@
         extras = { };
       };
 
-      wofi.style = builtins.readFile ../resources/wofi/ocean-breeze.css;
-
       yazi = {
         filetype = {
           image = color.yellow;
@@ -238,11 +236,6 @@
             valign = "bottom";
           }
         ];
-      };
-
-      eww = {
-        eww-file = "../../resources/eww/ocean-breeze/eww.yuck";
-        css-file = "../../resources/eww/ocean-breeze/eww.scss";
       };
 
       swww = {

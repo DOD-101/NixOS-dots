@@ -1,6 +1,0 @@
-; contains all polling variables used by the config
-
-; shared
-(defpoll bluetooth
-  :interval "10s"
-  "bluetoothctl devices Connected") ; checks if you have a bluetooth device connected

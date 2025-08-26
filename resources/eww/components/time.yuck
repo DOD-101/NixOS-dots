@@ -1,8 +1,0 @@
-(defpoll time
-  :interval "0.5s"
-  "date +'%T | %Y-%m-%d'") ; contains the current time and date
-
-(defwidget time [ ]
-  (label
-    :class "time"
-    :text time))

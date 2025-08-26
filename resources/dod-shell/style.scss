@@ -1,0 +1,113 @@
+* {
+  all: unset;
+}
+
+.bar-main-window {
+  font-family: FiraCode Nerd Font Mono;
+  font-size: medium;
+  font-weight: bold;
+  color: $foreground;
+  padding: 5px 15px;
+
+  .main-centerbox > * {
+    background-color: $background;
+    border-radius: 12px;
+    padding: 7px;
+  }
+
+  .workspaces {
+    padding-right: 5px;
+
+    .workspace-btn {
+      background-color: $red;
+      border-radius: 100px;
+      color: transparent;
+      padding: 0 0.2rem;
+      margin: 0 5px;
+      transition: all 0.35s ease-in-out;
+      transition-delay: 0.35s;
+
+      &:hover {
+        background-color: mix($red, #000000, 80%);
+        transition: background-color 0.1s ease-in-out;
+      }
+
+      &.active {
+        background-color: $green;
+        padding: 0 1rem;
+        transition: all 0.35s ease-in-out;
+
+        &:hover {
+          background-color: mix($green, #000000, 80%);
+          transition: background-color 0.1s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .hardware-info {
+    padding-left: 5px;
+    padding-right: 2px;
+  }
+
+  .icon {
+    color: $blue;
+    font-size: 14px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+
+    &.active {
+      color: #fef2d0;
+    }
+  }
+
+  .label-icon-icon {
+    font-size: 18px;
+    margin-top: -12px;
+    margin-bottom: -10px;
+  }
+
+  revealer {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: $yellow;
+  }
+
+  .internet-name-revealer {
+    padding-right: 0px;
+  }
+
+  .left {
+    padding-left: 3px;
+
+    * {
+      padding-left: 3px;
+    }
+  }
+
+  .right {
+    padding-right: 3px;
+
+    * {
+      padding-right: 5px;
+    }
+
+    :first-child {
+      padding-left: 5px;
+    }
+  }
+
+  .bat_low {
+    color: red;
+  }
+
+  .muted * {
+    color: $extras-maroon;
+  }
+}
+
+.results-box {
+  label.active {
+    color: red;
+  }
+}

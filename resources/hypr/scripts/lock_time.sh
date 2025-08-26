@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 time="$(date +%T)"
-battery="$(eww get EWW_BATTERY | jq .BAT0.capacity)"
+battery="$(cat "$HYPRLOCK_BAT_PATH")"
 
 if [ -z "$battery" ]; then
     echo "$time"

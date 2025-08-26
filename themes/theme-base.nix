@@ -67,8 +67,6 @@ in
 
     cava.color = lib.mkOption { type = lib.types.attrs; };
 
-    wofi.style = lib.mkOption { type = lib.types.str; };
-
     yazi = {
       filetype = {
         image = lib.mkOption { type = lib.types.str; };
@@ -119,11 +117,6 @@ in
 
     hyprlock.settings = lib.mkOption { };
 
-    eww = {
-      eww-file = lib.mkOption { type = lib.types.str; };
-      css-file = lib.mkOption { type = lib.types.str; };
-    };
-
     swww.script = lib.mkOption { type = lib.types.str; };
 
     btop.theme = lib.mkOption { type = lib.types.attrs; };
@@ -145,6 +138,8 @@ in
     };
 
     igneous-md = lib.mkOption { type = lib.types.str; };
+
+    dod-shell = lib.mkOption { type = lib.types.path; };
   };
 
   config = {

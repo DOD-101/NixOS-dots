@@ -34,7 +34,6 @@
   swayimg-config.enable = true;
   swww-config.enable = true;
   cava-config.enable = true;
-  wofi-config.enable = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
@@ -49,7 +48,10 @@
   hypr-config = {
     enable = true;
     hypridle.enable = true;
-    hyprlock.enable = true;
+    hyprlock = {
+      enable = true;
+      battery_path = "BAT0";
+    };
     hyprland = {
       enable = true;
       # INFO: Here we could not name zen explicitly
@@ -59,7 +61,6 @@
         monitor=HDMI-A-1,prefered, auto, 1, mirror, eDP-1
 
         # Execs
-        exec-once = eww open SingleBarWin0
         exec-once = [workspace 1 silent] ${config.term}
         exec-once = [workspace 2 silent] zen
 
@@ -76,19 +77,6 @@
 
       # WARN: Hyprgrass is broken, change this back once it is fixed
       plugins.hyprgrass.enable = true;
-    };
-  };
-
-  eww-config = {
-    enable = true;
-    toggles = {
-      touchscreen = true;
-      show_battery = true;
-      show_caps_lock = true;
-      show_disk = true;
-      wifi_device = "wlp2s0";
-      ethernet_device = "NONE";
-      cpu_temp = "ACPITZ_TEMP1";
     };
   };
 

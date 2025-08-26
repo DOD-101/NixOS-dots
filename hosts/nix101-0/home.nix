@@ -31,7 +31,6 @@
   swayimg-config.enable = true;
   swww-config.enable = true;
   cava-config.enable = true;
-  wofi-config.enable = true;
 
   yazi-config.enable = true;
   yazi-config.enableZshIntegration = true;
@@ -42,6 +41,17 @@
   zen-config.profile = "1kiwrwon.default";
 
   zsh-config.enable = true;
+
+  dod-shell-config = {
+    enable = true;
+    settings = {
+      bar = {
+        disk = "/dev/disk/by-uuid/fc74b245-229b-40ad-a01d-09d8f7e6ecd4";
+        show_capslock = true;
+        show_numlock = true;
+      };
+    };
+  };
 
   hypr-config = {
     enable = true;
@@ -55,7 +65,6 @@
         monitor=DP-6,3440x1440,3440x0,1
 
         # Execs
-        exec-once = eww open-many BarWin0 BarWin1
         exec-once = [workspace 1 silent] ${config.term}
         exec-once = [workspace 4 silent] zen
 
@@ -76,18 +85,6 @@
         bind = , XF86Launch9, exec, keepassxc
         bind = , XF86Launch5, exec, vesktop
       '';
-    };
-  };
-
-  eww-config = {
-    enable = true;
-    toggles = {
-      show_caps_lock = true;
-      show_num_lock = true;
-      show_disk = true;
-      wifi_device = "wlp12s0";
-      ethernet_device = "enp59s0";
-      cpu_temp = "K10TEMP_TCCD2";
     };
   };
 

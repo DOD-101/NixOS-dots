@@ -20,7 +20,14 @@
       };
     };
     hypridle.enable = lib.mkEnableOption "enable hypridle config";
-    hyprlock.enable = lib.mkEnableOption "enable hyprlock config";
+    hyprlock = {
+      enable = lib.mkEnableOption "enable hyprlock config";
+      battery_path = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "battery of which to show information of on lock screen";
+      };
+    };
   };
 
   config = lib.mkIf config.hypr-config.enable {
@@ -60,8 +67,8 @@
         ];
 
         "$terminal" = config.term;
-        # TODO: This asumes that wofi is installed and is the preferred "launch menu"
-        "$menu" = "wofi --show drun -O alphabetical -a -i -I";
+        # TODO: This asumes that dod-shell is installed and is the preferred "launch menu"
+        "$menu" = "dod-shell-launcher";
         "$mainMod" = "Super";
         "$touchpadEnabled" = "true";
 
@@ -69,21 +76,22 @@
           "opacity 0.95 override 0.7 override,class:(${config.term})"
         ];
 
-        exec-once =
-          [
-            "wl-paste --watch cliphist store"
-          ]
-          ++ lib.optionals osConfig.sound-config.enable [
-            "pipewire"
-            "pipewire-pulse"
-          ]
-          ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
-          ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
-          ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ];
+        exec-once = [
+          "wl-paste --watch cliphist store"
+        ]
+        ++ lib.optionals osConfig.sound-config.enable [
+          "pipewire"
+          "pipewire-pulse"
+        ]
+        ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
+        ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
+        ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ]
+        ++ lib.optionals config.dod-shell-config.enable [ "dod-shell-bar" ];
 
         bind =
           [ ]
-          ++ lib.optionals config.hypr-config.hyprlock.enable [ "$mainMod, Delete, exec, hyprlock" ];
+          ++ lib.optionals config.hypr-config.hyprlock.enable [ "$mainMod, Delete, exec, hyprlock" ]
+          ++ lib.optionals config.dod-shell-config.enable [ "CTRL ALT, V, exec, dod-shell-launcher '&'" ];
 
         plugin = {
           touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {
@@ -167,6 +175,10 @@
     programs.hyprlock = lib.mkIf config.hypr-config.hyprlock.enable {
       enable = true;
       settings = config.theme.hyprlock.settings;
+    };
+
+    home.sessionVariables = {
+      HYPRLOCK_BAT_PATH = lib.mkIf config.hypr-config.hyprlock.enable config.hypr-config.hyprlock.battery_path;
     };
   };
 }

@@ -9,7 +9,9 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
 
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -32,6 +34,11 @@
 
     topiary-yuck = {
       url = "github:DOD-101/topiary-yuck";
+    };
+
+    dod-shell = {
+      url = "github:DOD-101/dod-shell/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

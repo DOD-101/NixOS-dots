@@ -119,59 +119,6 @@ in
         };
       };
 
-      wofi.style = ''
-        * {
-            font-family: JetBrainsMono NFM,  san-serif;
-        }
-
-        window {
-            background-color: transparent;
-            border-radius: 5px;
-        }
-
-        #input {
-            box-shadow: none;
-            color: ${color.yellow};
-            border-radius: 3px;
-            border: none;
-            background-color: ${color.extras.mantle};
-            opacity: 0.95;
-            margin-bottom: 15px;
-        }
-
-        #input * {
-            color: ${color.foreground};
-        }
-
-        #scroll {
-            margin-top: 0px;
-            border-radius: 3px;
-            background-color: ${color.extras.mantle};
-            opacity: 0.92;
-        }
-
-        #text {
-            margin-left: 3px;
-            color: ${color.foreground};
-            background-color: transparent;
-        }
-
-        #entry:selected {
-            background-color: transparent;
-            border: 2px solid ${color.red};
-            border-radius: 5px;
-        }
-
-        #text:selected {
-            background-color: unset;
-            color: ${color.yellow};
-        }
-
-        #img {
-            background-color: transparent;
-        }
-      '';
-
       yazi = {
         filetype = {
           image = color.yellow;
@@ -367,11 +314,6 @@ in
         ];
       };
 
-      eww = {
-        eww-file = "../../resources/eww/catppuccin-${flavour}/eww.yuck";
-        css-file = "../../resources/eww/catppuccin-${flavour}/eww.scss";
-      };
-
       swww = {
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/1.png";
       };
@@ -437,6 +379,8 @@ in
           --color-8: ${color.extras.mantle};
         }
       '';
+
+      dod-shell = ../resources/dod-shell/style.scss;
     };
 
     programs.starship = {

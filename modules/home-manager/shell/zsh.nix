@@ -118,7 +118,6 @@
             }
           ''
         ]
-        ++ lib.optionals config.eww-config.enable [ ''eval "$(eww shell-completions --shell zsh)"'' ]
         ++ lib.optionals config.spotify-player-config.enable [ ''eval "$(spotify_player generate zsh)"'' ]
         ++ lib.optionals config.hypr-config.enable [
           ''eval "$(config-store completions zsh)"''
