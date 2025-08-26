@@ -22,5 +22,7 @@
     ./zathura.nix
     ./zen.nix
     ./dod-shell.nix
+
+    ../../patches/overlays.nix
   ];
 }
