@@ -21,13 +21,20 @@
     systemd.user.services.swww = {
       Unit = {
         Description = "Swww wallpaper service.";
+
+        After = [ "hyprland-session.target" ];
+        BindsTo = [ "hyprland-session.target" ];
+      };
+      Install = {
+        WantedBy = [ "hyprland-session.target" ];
       };
       Service = {
         Type = "exec";
+        Restart = "on-failure";
+        RestartSec = 3;
         RemainAfterExit = true;
         ExecStart = "${pkgs.writeShellScript "swww-script" ''
-          #!/run/current-system/sw/bin/bash
-          ${pkgs.swww}/bin/swww-daemon & disown
+          ${pkgs.swww}/bin/swww-daemon & 
 
           ${config.swww-config.script}
         ''}";

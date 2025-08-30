@@ -88,6 +88,10 @@
           "opacity 0.95 override 0.7 override,class:(${config.term})"
         ];
 
+        misc = {
+          force_default_wallpaper = 0;
+        };
+
         exec-once = [
           "wl-paste --watch cliphist store"
         ]
@@ -96,8 +100,7 @@
           "pipewire-pulse"
         ]
         ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
-        ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
-        ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ];
+        ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ];
 
         bind =
           [ ]
