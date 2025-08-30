@@ -6,12 +6,9 @@
   ...
 }:
 let
-  zen-repo = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "zen-browser";
-    rev = "b048e8bd54f784d004812036fb83e725a7454ab4";
-    hash = "sha256-SoaJV83rOgsQpLKO6PtpTyKFGj75FssdWfTITU7psXM=";
-  };
+  zen = inputs.catppuccin-zen;
+  btop_ = inputs.catppuccin-btop;
+  discord_ = inputs.catppuccin-discord;
 
   capitalize =
     str:
@@ -38,6 +35,17 @@ let
         inkscape $out/line.svg -w 1000 -b \${config.theme.color.background} -o $out/line.png;
         inkscape ${../resources/hypr/profile.svg} -w 600 -b \${config.theme.color.background} -o $out/profile.png;
       '';
+
+  ignoreCssPrfrence =
+    path:
+    lib.strings.concatLines [
+      (builtins.readFile path)
+      (builtins.replaceStrings
+        [ "@media (prefers-color-scheme: dark) {" ]
+        [ "@media (prefers-color-scheme: light) {" ]
+        (builtins.readFile path)
+      )
+    ];
 
 in
 {
@@ -318,34 +326,23 @@ in
         script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/1.png";
       };
 
-      btop.theme.source =
-        pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "btop";
-          rev = "1.0.0";
-          hash = "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=";
-        }
-        + "/themes/catppuccin_${flavour}.theme";
+      btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";
 
       zsh.theme = "";
 
       nvim.theme = "catppuccin-${flavour}";
 
-      discord.theme.source =
-        pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "discord";
-          rev = "16b1e5156583ee376ded4fa602842fa540826bbc";
-          hash = "sha256-ECVHRuHbe3dvwrOsi6JAllJ37xb18HaUPxXoysyPP70=";
-        }
-        + "/themes/${flavour}.theme.css";
+      discord.theme.source = discord_ + "/themes/${flavour}.theme.css";
 
       zen-browser = {
-        userChrome.source = zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css";
-        userContent.source =
-          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css";
+        userChrome.text = ignoreCssPrfrence (
+          zen + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
+        );
+        userContent.text = ignoreCssPrfrence (
+          zen + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
+        );
         zen-logo.source =
-          zen-repo + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
+          zen + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
       };
 
       cava.color = {

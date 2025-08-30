@@ -34,11 +34,27 @@
 
     topiary-yuck = {
       url = "github:DOD-101/topiary-yuck";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     dod-shell = {
       url = "github:DOD-101/dod-shell/dev";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    catppuccin-zen = {
+      url = "github:catppuccin/zen-browser";
+      flake = false;
+    };
+
+    catppuccin-btop = {
+      url = "github:catppuccin/btop";
+      flake = false;
+    };
+
+    catppuccin-discord = {
+      url = "github:catppuccin/discord";
+      flake = false;
     };
   };
 
