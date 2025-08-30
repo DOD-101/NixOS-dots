@@ -31,8 +31,8 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  networking.hostName = "nix101-2"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.hostName = "nix101-2";
+  networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Halifax";
@@ -80,7 +80,7 @@
     stow
     gccgo14
     gnumake42
-    wirelesstools
+    iw
   ];
 
   # Enable the OpenSSH daemon.

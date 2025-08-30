@@ -188,7 +188,7 @@
     gnumake42
     go
     btop
-    wirelesstools
+    iw
     wl-clipboard
   ];
 
