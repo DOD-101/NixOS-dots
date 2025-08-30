@@ -97,8 +97,7 @@
         ]
         ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
         ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ]
-        ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ]
-        ++ lib.optionals config.dod-shell-config.enable [ "dod-shell-bar" ];
+        ++ lib.optionals config.swww-config.enable [ "systemctl --user restart swww.service" ];
 
         bind =
           [ ]
