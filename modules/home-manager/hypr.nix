@@ -92,6 +92,10 @@
           force_default_wallpaper = 0;
         };
 
+        input = {
+          kb_options = "caps:escape";
+        };
+
         exec-once = [
           "wl-paste --watch cliphist store"
         ]
