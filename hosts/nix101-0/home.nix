@@ -25,6 +25,7 @@
   kitty-config.enable = true;
   kitty-config.enableZshIntegration = true;
 
+  mime-config.enable = true;
   mpv-config.enable = true;
   office-config.enable = true;
   spotify-player-config.enable = true;

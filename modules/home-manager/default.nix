@@ -7,9 +7,11 @@
     ./cursor.nix
     ./dev.nix
     ./dev.nix
+    ./dod-shell.nix
     ./fastfetch.nix
     ./hypr.nix
     ./igneous-md.nix
+    ./mime.nix
     ./mpv.nix
     ./office.nix
     ./shell
@@ -21,7 +23,6 @@
     ./yazi.nix
     ./zathura.nix
     ./zen.nix
-    ./dod-shell.nix
 
     ../../patches/overlays.nix
   ];

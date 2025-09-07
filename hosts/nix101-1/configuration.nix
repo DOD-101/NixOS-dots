@@ -90,7 +90,6 @@
   sound-config.enable = true;
   font-config.enable = true;
   bluetooth-config.enable = true;
-  mime-config.enable = true;
   borg-config.enable = true;
 
   # Syncthing config

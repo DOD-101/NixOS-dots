@@ -85,6 +85,34 @@
           show_hidden = true;
         };
 
+        opener = {
+          xournalpp = [
+            {
+              run = ''xournalpp "$@"'';
+              desc = "Open xournalpp files";
+            }
+          ];
+          drawio = [
+            {
+              run = ''drawio "$@"'';
+              desc = "Open draw.io files";
+            }
+          ];
+        };
+
+        open = {
+          prepend_rules = [
+            {
+              name = "*.xopp";
+              use = "xournalpp";
+            }
+            {
+              name = "*.drawio";
+              use = "drawio";
+            }
+          ];
+        };
+
         plugin = {
           prepend_fetchers = [
             {
@@ -123,16 +151,20 @@
               fg = config.theme.yazi.filetype.audio;
             }
             {
+              name = "*.{xopp,drawio}";
+              fg = config.theme.yazi.filetype.doc;
+            }
+            {
+              mime = "application/{pdf,doc,rtf,vnd.*}";
+              fg = config.theme.yazi.filetype.doc;
+            }
+            {
               mime = "application/{,g}zip";
               fg = config.theme.yazi.filetype.archive;
             }
             {
               mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}";
               fg = config.theme.yazi.filetype.archive;
-            }
-            {
-              mime = "application/{pdf,doc,rtf,vnd.*}";
-              fg = config.theme.yazi.filetype.doc;
             }
             {
               name = "*";
@@ -156,6 +188,18 @@
             {
               name = "yuck";
               text = "󱍕";
+              fg_dark = config.theme.color.foreground;
+              fg_light = config.theme.color.foreground;
+            }
+            {
+              name = "drawio";
+              text = "󰇞";
+              fg_dark = config.theme.color.foreground;
+              fg_light = config.theme.color.foreground;
+            }
+            {
+              name = "xopp";
+              text = "󰂺";
               fg_dark = config.theme.color.foreground;
               fg_light = config.theme.color.foreground;
             }
