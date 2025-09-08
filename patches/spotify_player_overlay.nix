@@ -2,16 +2,16 @@
 final: prev: {
   spotify-player = prev.spotify-player.overrideAttrs (_: rec {
     pname = "spotify-player";
-    version = "bd38dd05a3c52107f76665dc88002e5a0815d095";
+    version = "77af13b48b2a03e61fef1cffea899929057551dc";
     src = prev.fetchFromGitHub {
       owner = "aome510";
       repo = "spotify-player";
       rev = version;
-      hash = "sha256-DCIZHAfI3x9I6j2f44cDcXbMpZbNXJ62S+W19IY6Qus=";
+      hash = "sha256-hU1VVM4PfjUx6ckjwpdcrIIiInfB/B4+Dhb4dc9juaE=";
     };
     cargoDeps = final.rustPlatform.fetchCargoVendor {
       inherit src;
-      hash = "sha256-fNDztl0Vxq2fUzc6uLNu5iggNRnRB2VxzWm+AlSaoU0=";
+      hash = "sha256-YarKRApcQHom3AQIirqGdmUOuy5B+BRehLijvF/GRPc=";
     };
   });
 }
