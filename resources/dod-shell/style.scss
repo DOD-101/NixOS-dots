@@ -106,8 +106,23 @@
   }
 }
 
-.results-box {
-  label.active {
-    color: red;
+.launcher-main-window {
+  .main-entry {
+    background-color: $background;
+    color: $yellow;
+    border-radius: 5px;
+  }
+  .results-box {
+    label {
+      background-color: rgba($background, 0.9);
+      border-radius: 5px;
+      padding: 2px;
+    }
+    label.active {
+      background-color: rgba($background, 1);
+      color: $green;
+      border: 3px $green solid;
+      font-weight: bold;
+    }
   }
 }
