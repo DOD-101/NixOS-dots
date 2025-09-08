@@ -1,4 +1,7 @@
 { config, lib, ... }:
+let
+  reversAssoc = app: mimes: lib.genAttrs mimes (_: app);
+in
 {
   options = {
     mime-config.enable = lib.mkEnableOption "enable mime config";
@@ -13,12 +16,6 @@
         enable = true;
 
         defaultApplications = {
-          "text/*" = [
-            "nvim.desktop"
-          ];
-          "application/*" = [
-            "nvim.desktop"
-          ];
           "application/pdf" = [
             "org.pwmt.zathura.desktop"
             "xournalpp.desktop"
@@ -40,7 +37,22 @@
           "application/x-xopp" = [
             "xournalpp.desktop"
           ];
-        };
+
+        }
+        // lib.optionalAttrs config.zen-config.enable (
+          reversAssoc "zen.desktop" [
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+            "x-scheme-handler/chrome"
+            "text/html"
+            "application/x-extension-htm"
+            "application/x-extension-html"
+            "application/x-extension-shtml"
+            "application/xhtml+xml"
+            "application/x-extension-xhtml"
+            "application/x-extension-xht"
+          ]
+        );
       };
     };
   };

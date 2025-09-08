@@ -94,7 +94,6 @@
   };
 
   home.packages = with pkgs; [
-    firefox
     keepassxc
     signal-desktop
 
