@@ -99,10 +99,6 @@
         exec-once = [
           "wl-paste --watch cliphist store"
         ]
-        ++ lib.optionals osConfig.sound-config.enable [
-          "pipewire"
-          "pipewire-pulse"
-        ]
         ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
         ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ];
 
