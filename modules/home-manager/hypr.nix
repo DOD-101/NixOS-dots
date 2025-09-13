@@ -34,9 +34,13 @@
     };
     hyprlock = {
       enable = lib.mkEnableOption "enable hyprlock config";
-      battery_path = lib.mkOption {
+      battery = lib.mkOption {
         type = lib.types.str;
-        default = "";
+        default =
+          if !config.dod-shell-config.enable then
+            ""
+          else
+            lib.attrsets.attrByPath [ "bar" "battery" ] "" config.dod-shell-config.settings;
         description = "battery of which to show information of on lock screen";
       };
     };
@@ -192,7 +196,9 @@
     };
 
     home.sessionVariables = {
-      HYPRLOCK_BAT_PATH = lib.mkIf config.hypr-config.hyprlock.enable config.hypr-config.hyprlock.battery_path;
+      HYPRLOCK_BATTERY = lib.mkIf (
+        config.hypr-config.hyprlock.battery != ""
+      ) config.hypr-config.hyprlock.battery;
     };
   };
 }

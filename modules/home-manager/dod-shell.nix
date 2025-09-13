@@ -37,6 +37,7 @@ in
     dod-shell = {
       enable = true;
       scss = colors + "\n" + builtins.readFile config.theme.dod-shell;
+      # TODO: Rework this
       settings =
         if
           lib.attrsets.hasAttrByPath [
@@ -95,6 +96,14 @@ in
                 {
                   cmd = "thunderbird";
                   name = "Thunderbird";
+                }
+                {
+                  cmd = "xournalpp";
+                  name = "Xournal++";
+                }
+                {
+                  cmd = "teams-for-linux";
+                  name = "Teams for Linux";
                 }
               ];
             };

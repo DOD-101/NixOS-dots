@@ -46,12 +46,23 @@
 
   zsh-config.enable = true;
 
+  dod-shell-config = {
+    enable = true;
+    settings = {
+      bar = {
+        disk = "/dev/disk/by-uuid/acb9bcbc-2cf1-45d2-9f1e-b058ed6b66fe";
+        battery = "BAT0";
+        show_capslock = false;
+        show_numlock = false;
+      };
+    };
+  };
+
   hypr-config = {
     enable = true;
     hypridle.enable = true;
     hyprlock = {
       enable = true;
-      battery_path = "BAT0";
     };
     hyprland = {
       enable = true;
