@@ -7,10 +7,6 @@
 {
   options.yazi-config = {
     enable = lib.mkEnableOption "enable yazi config";
-    enableBashIntegration = lib.mkEnableOption "enable yazi bash integration, passed to programs.yazi.enableBashIntegration";
-    enableFishIntegration = lib.mkEnableOption "enable yazi fish integration, passed to programs.yazi.enableFishIntegration";
-    enableNushellIntegration = lib.mkEnableOption "enable yazi nushell integration, passed to programs.yazi.enableNushellIntegration";
-    enableZshIntegration = lib.mkEnableOption "enable yazi zsh integration, passed to programs.yazi.enableZshIntegration";
   };
 
   config = lib.mkIf config.yazi-config.enable {
@@ -27,10 +23,6 @@
 
     programs.yazi = {
       enable = true;
-      enableBashIntegration = config.yazi-config.enableBashIntegration;
-      enableFishIntegration = config.yazi-config.enableFishIntegration;
-      enableNushellIntegration = config.yazi-config.enableNushellIntegration;
-      enableZshIntegration = config.yazi-config.enableZshIntegration;
 
       initLua = ../../resources/yazi/init.lua;
       plugins = {

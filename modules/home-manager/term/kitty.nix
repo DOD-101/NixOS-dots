@@ -3,9 +3,6 @@
   options.kitty-config = {
     enable = lib.mkEnableOption "enable kitty config";
     default = lib.mkEnableOption "If true will set config.term to kitty";
-    enableBashIntegration = lib.mkEnableOption "enable kitty bash integration, passed to programs.kitty.shellIntegration.BashIntegration";
-    enableFishIntegration = lib.mkEnableOption "enable kitty fish integration, passed to programs.kitty.shellIntegration.FishIntegration";
-    enableZshIntegration = lib.mkEnableOption "enable kitty zsh integration, passed to programs.kitty.shellIntegration.ZshIntegration";
   };
 
   config = lib.mkIf config.kitty-config.enable {
@@ -17,12 +14,6 @@
 
     programs.kitty = {
       enable = true;
-
-      shellIntegration = {
-        enableBashIntegration = config.kitty-config.enableBashIntegration;
-        enableFishIntegration = config.kitty-config.enableFishIntegration;
-        enableZshIntegration = config.kitty-config.enableZshIntegration;
-      };
 
       font = {
         name = config.theme.font.mono.main;

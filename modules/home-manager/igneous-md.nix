@@ -16,5 +16,7 @@
     ];
 
     xdg.configFile."igneous-md/css/_${config.theme.name}.css".text = config.theme.igneous-md;
+
+    shell.completions = [ "igneous-md completions @shell@" ];
   };
 }

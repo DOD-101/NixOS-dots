@@ -194,5 +194,7 @@
       enable = true;
       settings = config.theme.hyprlock.settings;
     };
+
+    shell.completions = [ "config-store completions @shell@" ];
   };
 }

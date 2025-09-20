@@ -15,6 +15,7 @@
   home.homeDirectory = "/home/david";
 
   theme.catppuccin-mocha.enable = true;
+  shell.shell = "zsh";
 
   btop-config = {
     enable = true;
@@ -26,7 +27,6 @@
 
   kitty-config.default = true;
   kitty-config.enable = true;
-  kitty-config.enableZshIntegration = true;
 
   mime-config.enable = true;
   mpv-config.enable = true;
@@ -37,7 +37,6 @@
   cava-config.enable = true;
 
   yazi-config.enable = true;
-  yazi-config.enableZshIntegration = true;
 
   zathura-config.enable = true;
 

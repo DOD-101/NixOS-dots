@@ -392,7 +392,6 @@ in
 
     programs.starship = {
       enable = true;
-      enableZshIntegration = true;
       settings =
         let
           inherit (config.theme) color;

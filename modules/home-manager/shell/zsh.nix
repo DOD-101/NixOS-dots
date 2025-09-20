@@ -1,33 +1,11 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
 {
-  options = {
-    zsh-config.enable = lib.mkEnableOption "enable zsh config";
-  };
-
-  config = lib.mkIf config.zsh-config.enable {
-    home.packages = with pkgs; [
-      zoxide
-      gtrash
-      direnv
-      nix-direnv
-    ];
-
-    programs.atuin = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        style = "full";
-        inline_height = 0;
-        enter_accept = true;
-      };
-    };
-
-    home.file.".dircolors".source = ../../../resources/.dircolors;
+  config = lib.mkIf (config.shell.shell == "zsh") {
+    home.shell.enableZshIntegration = true;
 
     home.file.".oh-my-zsh/custom" = {
       recursive = true;
@@ -40,14 +18,6 @@
       autocd = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
-      shellAliases = {
-        rt = "gtrash put";
-        l = "ls -vAlh --group-directories-first";
-
-        ls = "ls --color=auto";
-        grep = "grep --color=auto";
-      };
 
       oh-my-zsh = {
         enable = true;
@@ -66,21 +36,10 @@
         CASE_SENSITIVE = "true";
       };
 
-      sessionVariables = {
-        VIRTUAL_ENV_DISABLE_PROMPT = "true";
-        SDL_VIDEODRIVER = "wayland";
-        # XDG_DATA_DIRS=/home/david/.local/share/applications/:$XDG_DATA_DIRS
-        GTRASH_HOME_TRASH_DIR = "$HOME/.local/share/Trash";
-        GTRASH_ONLY_HOME_TRASH = "true";
-      };
-
       initContent = lib.strings.concatLines (
         [
           ''
-            eval "$(atuin init zsh)"
             eval "$(dircolors ~/.dircolors)"
-            eval "$(zoxide init zsh)"
-            eval "$(igneous-md completions zsh)"
 
             setopt globdots
             setopt extended_glob
@@ -92,8 +51,6 @@
                 echo "Current time: $(date)"
               fi
             fi
-
-            # mkcd
 
             mkcd () {
                 mkdir -p "$1" && cd "$1"
@@ -118,13 +75,7 @@
             }
           ''
         ]
-        ++ lib.optionals config.spotify-player-config.enable [ ''eval "$(spotify_player generate zsh)"'' ]
-        ++ lib.optionals config.hypr-config.enable [
-          ''eval "$(config-store completions zsh)"''
-        ]
-        ++ lib.optionals config.dev-config.enable [
-          ''eval "$(${pkgs.uv}/bin/uv generate-shell-completion zsh)"''
-        ]
+        ++ map (c: ''eval "$(${c})"'') config.shell.completions
       );
     };
   };
