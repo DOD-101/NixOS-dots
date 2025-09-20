@@ -124,6 +124,8 @@ in
           base = "#1e1e2e";
           mantle = "#181825";
           crust = "#11111b";
+
+          accent = extras."${accent}";
         };
       };
 
@@ -391,51 +393,86 @@ in
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
-      settings = {
-        format = "$directory$character";
-        right_format = "$nix_shell$git_status$git_branch$cmd_duration";
-        line_break = {
-          disabled = true;
-        };
+      settings =
+        let
+          inherit (config.theme) color;
 
-        character = {
-          success_symbol = "[󰘧](${config.theme.color.magenta} bold)";
-          error_symbol = "[󰘧](${config.theme.color.red})";
-        };
+          /**
+            Add a starship prompt bubble around the passed element.
 
-        directory = {
-          format = "(fg:${config.theme.color.background} bg:${config.theme.color.background})[](fg:${config.theme.color.bright.magenta} bg:${config.theme.color.background})[ $path](fg:${config.theme.color.background} bg:${config.theme.color.bright.magenta})[](fg:${config.theme.color.bright.magenta} bg:none) ";
-          style = "fg:${config.theme.color.extras.crust} bg:${config.theme.color.background}";
-          truncation_length = 3;
-          truncate_to_repo = true;
-        };
+            # Type
+            ```
+            bubble :: attrs -> string -> string
 
-        nix_shell = {
-          format = "(fg:${config.theme.color.background} bg:${config.theme.color.background})[](fg:${config.theme.color.extras.teal} bg:${config.theme.color.background})[](fg:${config.theme.color.background} bg:${config.theme.color.extras.teal})[](fg:${config.theme.color.extras.teal} bg:none) ";
-          style = "fg:${config.theme.color.extras.teal} bg:${config.theme.color.background}";
-        };
+            ```
+          */
+          bubble =
+            {
+              fg,
+              bg ? color.background,
+            }:
+            icon: "(fg:${bg} bg:${bg})[](fg:${fg} bg:${bg})${icon}(fg:${bg} bg:${fg})[](fg:${fg} bg:none) ";
 
-        git_status = {
-          format = "(fg:${config.theme.color.background} bg:${config.theme.color.background})[](fg:${config.theme.color.extras.flamingo} bg:${config.theme.color.background})[$all_status](fg:${config.theme.color.background} bg:${config.theme.color.extras.flamingo})[](fg:${config.theme.color.extras.flamingo} bg:none) ";
-          style = "fg:${config.theme.color.extras.flamingo} bg:${config.theme.color.background}";
-          conflicted = "=";
-          ahead = "\${count}";
-          behind = "\${count}";
-          diverged = "\${ahead_count}\${behind_count}";
-          up_to_date = "󰄬";
-          untracked = "?\${count}";
-          stashed = "󰏖";
-          modified = "!\${count}";
-          staged = "+\${count}";
-          renamed = "»\${count}";
-          deleted = "󰆴\${count}";
-        };
+        in
+        {
+          format = "$all";
+          right_format = "$nix_shell$git_metrics$git_branch$cmd_duration";
+          line_break = {
+            disabled = true;
+          };
 
-        package = {
-          disabled = true;
-        };
+          character = with color; {
+            success_symbol = "[󰄾](${green} bold)";
+            error_symbol = "[󰄾](${red} bold)";
+          };
 
-      };
+          directory = with color; {
+            format = bubble { fg = extras.accent; } "[ $path]";
+            # style = "fg:${extras.crust} bg:${background}";
+            truncation_length = 3;
+            truncate_to_repo = true;
+          };
+
+          nix_shell = with color; {
+            format = bubble { fg = extras.teal; } "[]";
+          };
+
+          git_status = {
+            disabled = true;
+          };
+
+          git_metrics = {
+            format = "([+$added]($added_style)/)([-$deleted]($deleted_style) )";
+            disabled = false;
+          };
+
+          package = with color; {
+            disabled = false;
+            format = bubble {
+              fg = extras.peach;
+            } "[ $version]";
+          };
+
+          sudo = {
+            disabled = false;
+          };
+
+          rust = {
+            format = bubble { fg = color.extras.red; } "[󱘗 $version]";
+          };
+          lua = {
+            format = bubble { fg = color.extras.blue; } "[󰢱 $version]";
+          };
+          python = {
+            format = bubble { fg = color.extras.green; } "[󰌠 $version]";
+          };
+          nodejs = {
+            format = bubble { fg = color.extras.green; } "[󰎙 $version]";
+          };
+          bun = {
+            format = bubble { fg = color.extras.yellow; } "[ $version]";
+          };
+        };
     };
   };
 }
