@@ -10,13 +10,13 @@ let
   btop_ = inputs.catppuccin-btop;
   discord_ = inputs.catppuccin-discord;
 
+  flavour = "mocha";
+  accent = "maroon";
+
   capitalize =
     str:
     lib.strings.toUpper (builtins.substring 0 1 str)
     + builtins.substring 1 (builtins.stringLength str) str;
-
-  flavour = "mocha";
-  accent = "maroon";
 
   hyprlock-imgs =
     pkgs.runCommand "hyprlock-catppuccin-${flavour}-${accent}-imgs"
@@ -36,7 +36,7 @@ let
         inkscape ${../resources/hypr/profile.svg} -w 600 -b \${config.theme.color.background} -o $out/profile.png;
       '';
 
-  ignoreCssPrfrence =
+  ignoreCssPrefrence =
     path:
     lib.strings.concatLines [
       (builtins.readFile path)
@@ -311,7 +311,17 @@ in
             valign = "center";
           }
           {
-            text = ''cmd[update:1000] sh ${../resources/hypr/scripts/lock_time.sh}'';
+            text =
+              let
+                contents = builtins.readFile ../resources/hypr/scripts/lock_time.sh;
+
+                replaced-contents =
+                  builtins.replaceStrings [ "@HYPRLOCK_BATTERY@" ] [ config.hypr-config.hyprlock.battery ]
+                    contents;
+
+                file = builtins.toFile "lock_time.sh" replaced-contents;
+              in
+              ''cmd[update:1000] sh ${file}'';
             color = "rgba(${config.theme.hashlessColor.white}ff)";
             font_size = 20;
             font_family = "FiraCode Nerd Font Mono";
@@ -328,17 +338,15 @@ in
 
       btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";
 
-      zsh.theme = "";
-
       nvim.theme = "catppuccin-${flavour}";
 
       discord.theme.source = discord_ + "/themes/${flavour}.theme.css";
 
       zen-browser = {
-        userChrome.text = ignoreCssPrfrence (
+        userChrome.text = ignoreCssPrefrence (
           zen + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
         );
-        userContent.text = ignoreCssPrfrence (
+        userContent.text = ignoreCssPrefrence (
           zen + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
         );
         zen-logo.source =

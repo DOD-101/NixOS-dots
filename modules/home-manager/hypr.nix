@@ -194,11 +194,5 @@
       enable = true;
       settings = config.theme.hyprlock.settings;
     };
-
-    home.sessionVariables = {
-      HYPRLOCK_BATTERY = lib.mkIf (
-        config.hypr-config.hyprlock.battery != ""
-      ) config.hypr-config.hyprlock.battery;
-    };
   };
 }

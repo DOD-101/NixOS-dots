@@ -121,7 +121,11 @@ in
 
     btop.theme = lib.mkOption { type = lib.types.attrs; };
 
-    zsh.theme = lib.mkOption { type = lib.types.str; };
+    zsh.theme = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "oh my zsh prompt theme";
+    };
 
     nvim.theme = lib.mkOption { type = lib.types.str; };
 
