@@ -15,7 +15,6 @@
   home.homeDirectory = "/home/david";
 
   theme.catppuccin-mocha.enable = true;
-  shell.shell = "zsh";
 
   btop-config.enable = true;
   fastfetch-config.enable = true;

@@ -64,6 +64,22 @@
         "type": "github"
       }
     },
+    "catppuccin-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740843741,
+        "narHash": "sha256-Oc0emnIUI4LV7QJLs4B2/FQtCFewRFVp7EDv8GawFsA=",
+        "owner": "catppuccin",
+        "repo": "fish",
+        "rev": "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "fish",
+        "type": "github"
+      }
+    },
     "catppuccin-zen": {
       "flake": false,
       "locked": {
@@ -302,6 +318,7 @@
       "inputs": {
         "catppuccin-btop": "catppuccin-btop",
         "catppuccin-discord": "catppuccin-discord",
+        "catppuccin-fish": "catppuccin-fish",
         "catppuccin-zen": "catppuccin-zen",
         "dod-shell": "dod-shell",
         "home-manager": "home-manager",

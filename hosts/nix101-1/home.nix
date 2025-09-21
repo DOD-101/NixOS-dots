@@ -15,7 +15,6 @@
   home.homeDirectory = "/home/david";
 
   theme.catppuccin-mocha.enable = true;
-  shell.shell = "zsh";
 
   btop-config = {
     enable = true;
@@ -42,8 +41,6 @@
 
   zen-config.enable = true;
   zen-config.profile = "o88syg2w.default";
-
-  zsh-config.enable = true;
 
   dod-shell-config = {
     enable = true;

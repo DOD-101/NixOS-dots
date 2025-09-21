@@ -127,6 +127,17 @@ in
       description = "oh my zsh prompt theme";
     };
 
+    fish = {
+      theme = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = { };
+        description = ''
+          fish theme variables
+
+          used to set the fish theme via universal variables in config.fish'';
+      };
+    };
+
     nvim.theme = lib.mkOption { type = lib.types.str; };
 
     discord.theme = lib.mkOption { type = lib.types.attrs; };

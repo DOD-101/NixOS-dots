@@ -2,12 +2,23 @@
   lib,
   pkgs,
   config,
+  osConfig,
   ...
 }:
 {
   options.shell = {
     shell = lib.mkOption {
-      type = lib.types.enum [ "zsh" ];
+      type = lib.types.enum [
+        "zsh"
+        "fish"
+      ];
+      default =
+        if osConfig.users.defaultUserShell == pkgs.zsh then
+          "zsh"
+        else if osConfig.users.defaultUserShell == pkgs.fish then
+          "fish"
+        else
+          "";
       description = "which shell to use";
     };
     completions = lib.mkOption {
@@ -20,6 +31,7 @@
 
   imports = [
     ./zsh.nix
+    ./fish.nix
   ];
 
   config = {

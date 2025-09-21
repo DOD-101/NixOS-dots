@@ -32,8 +32,8 @@
   nix.settings.trusted-users = [ "david" ];
   programs.nix-ld.enable = true;
 
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.fish;
+  programs.fish.enable = true;
 
   networking = {
     hostName = "nix101-0";

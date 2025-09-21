@@ -9,6 +9,7 @@ let
   zen = inputs.catppuccin-zen;
   btop_ = inputs.catppuccin-btop;
   discord_ = inputs.catppuccin-discord;
+  fish_ = inputs.catppuccin-fish;
 
   flavour = "mocha";
   accent = "maroon";
@@ -47,6 +48,11 @@ let
       )
     ];
 
+  fishThemeToVars =
+    contents:
+    builtins.filter (line: !(lib.hasPrefix "#" line || line == "")) (
+      map (line: lib.strings.trim line) (lib.splitString "\n" contents)
+    );
 in
 {
   options.theme."catppuccin-${flavour}".enable =
@@ -339,6 +345,10 @@ in
       };
 
       btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";
+
+      fish.theme = fishThemeToVars (
+        builtins.readFile (fish_ + "/themes/Catppuccin ${capitalize flavour}.theme")
+      );
 
       nvim.theme = "catppuccin-${flavour}";
 

@@ -11,9 +11,7 @@
   home.homeDirectory = "/home/server";
 
   theme.ocean-breeze.enable = true;
-  shell.shell = "zsh";
 
-  zsh-config.enable = true;
   fastfetch-config.enable = true;
   btop-config.enable = true;
 

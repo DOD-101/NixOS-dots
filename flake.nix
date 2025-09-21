@@ -42,6 +42,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # catppuccin inputs
+
     catppuccin-zen = {
       url = "github:catppuccin/zen-browser";
       flake = false;
@@ -54,6 +56,11 @@
 
     catppuccin-discord = {
       url = "github:catppuccin/discord";
+      flake = false;
+    };
+
+    catppuccin-fish = {
+      url = "github:catppuccin/fish";
       flake = false;
     };
   };
