@@ -66,43 +66,46 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
-    {
-      nixosConfigurations.nix101-0 = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./hosts/nix101-0/configuration.nix
-          ./modules/nixos
-          inputs.home-manager.nixosModules.default
-        ];
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      palettes = {
+        catppuccin = import ./resources/palettes/catppuccin.nix;
       };
+      mkSystem =
+        {
+          host,
+          mainUser ? "david",
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs palettes;
+          };
 
-      nixosConfigurations.nix101-1 = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
+          modules = [
+            ./hosts/${host}/configuration.nix
+            ./modules/nixos
+            home-manager.nixosModules.default
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs palettes;
+                };
+                users.${mainUser} = import ./hosts/${host}/home.nix;
+                backupFileExtension = "bck";
+              };
+            }
+          ];
         };
-        modules = [
-          ./hosts/nix101-1/configuration.nix
-          ./modules/nixos
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-
-      nixosConfigurations.nix101-2 = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
+    in
+    {
+      nixosConfigurations = {
+        nix101-0 = mkSystem { host = "nix101-0"; };
+        nix101-1 = mkSystem { host = "nix101-1"; };
+        nix101-2 = mkSystem {
+          host = "nix101-2";
+          mainUser = "server";
         };
-        modules = [
-          ./hosts/nix101-2/configuration.nix
-          ./modules/nixos
-          inputs.home-manager.nixosModules.default
-        ];
       };
     };
+
 }

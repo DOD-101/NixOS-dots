@@ -14,7 +14,7 @@
   home.username = "david";
   home.homeDirectory = "/home/david";
 
-  theme.catppuccin-mocha.enable = true;
+  theme.theme = "catppuccin-frappe-peach";
 
   btop-config = {
     enable = true;

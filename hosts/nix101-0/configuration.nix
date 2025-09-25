@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -158,16 +157,6 @@
       "input"
       "docker"
     ];
-  };
-
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-    };
-    users = {
-      "david" = import ./home.nix;
-    };
-    backupFileExtension = "bck";
   };
 
   programs.steam = {
