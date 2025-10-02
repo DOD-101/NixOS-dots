@@ -54,6 +54,9 @@
       cliphist
       brightnessctl
       config-store
+      (pkgs.writeShellScriptBin "dpms-toggle" (
+        builtins.readFile ../../resources/hypr/scripts/dpms_toggle.sh
+      ))
     ];
 
     # hyprland
@@ -103,8 +106,7 @@
         exec-once = [
           "wl-paste --watch cliphist store"
         ]
-        ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ]
-        ++ lib.optionals config.hypr-config.hypridle.enable [ "systemctl --user start hypridle.service" ];
+        ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ];
 
         bind =
           [ ]
@@ -158,24 +160,8 @@
         listener = [
           {
             timeout = config.hypr-config.hypridle.screen_off_time;
-            on-timeout = lib.strings.concatStringsSep ";" (
-              [
-                "hyprctl dispatch dpms off"
-              ]
-              ++ lib.optionals osConfig.razer-config.enable [
-                "polychromatic-cli -d keyboard -o brightness -p 0"
-                "polychromatic-cli -d mouse -o brightness -p 0"
-              ]
-            );
-            on-resume = lib.strings.concatStringsSep ";" (
-              [
-                "hyprctl dispatch dpms on"
-              ]
-              ++ lib.optionals osConfig.razer-config.enable [
-                "polychromatic-cli -d keyboard -o brightness -p 100"
-                "polychromatic-cli -d mouse -o brightness -p 100"
-              ]
-            );
+            on-timeout = "dpms-toggle off";
+            on-resume = "dpms-toggle on";
           }
           {
             timeout = config.hypr-config.hypridle.lock_time;
