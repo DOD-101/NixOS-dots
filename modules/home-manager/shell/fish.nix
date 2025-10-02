@@ -21,6 +21,7 @@ in
         "..." = "cd ../..";
         "...." = "cd ../../..";
         "....." = "cd ../../../..";
+        "cg" = "cd $(git rev-parse --show-toplevel 2> /dev/null)";
       };
       binds = {
         "ctrl-y".command = "fish_clipboard_copy";
@@ -46,12 +47,6 @@ in
             end
         end
       '';
-      plugins = [
-        {
-          name = "pisces";
-          src = pkgs.fishPlugins.pisces;
-        }
-      ];
     };
   };
 }
