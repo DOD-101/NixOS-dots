@@ -1,15 +1,15 @@
 * {
   all: unset;
+  font-family: FiraCode Nerd Font Mono;
 }
 
 .bar-main-window {
-  font-family: FiraCode Nerd Font Mono;
   font-size: medium;
   font-weight: bold;
   color: $foreground;
   padding: 5px 15px;
 
-  .main-centerbox > * {
+  .bar-centerbox > * {
     background-color: $background;
     border-radius: 12px;
     padding: 7px;
@@ -18,7 +18,7 @@
   .workspaces {
     padding-right: 5px;
 
-    .workspace-btn {
+    .workspace-button {
       background-color: $red;
       border-radius: 100px;
       color: transparent;
@@ -73,10 +73,6 @@
     color: $yellow;
   }
 
-  .internet-name-revealer {
-    padding-right: 0px;
-  }
-
   .left {
     padding-left: 3px;
 
@@ -93,11 +89,16 @@
     }
 
     :first-child {
-      padding-left: 5px;
+      padding-left: 3px;
+    }
+
+    .internet-name-revealer {
+      padding-right: 0px;
+      margin-right: -4px;
     }
   }
 
-  .bat_low {
+  .battery-low {
     color: red;
   }
 
@@ -113,16 +114,86 @@
     border-radius: 5px;
   }
   .results-box {
-    label {
-      background-color: rgba($background, 0.9);
-      border-radius: 5px;
-      padding: 2px;
-    }
+    background-color: rgba($background, 0.95);
+    border-radius: 5px;
+
     label.active {
-      background-color: rgba($background, 1);
+      border-radius: 5px;
+      background-color: $background;
       color: $green;
       border: 3px $green solid;
       font-weight: bold;
+    }
+  }
+}
+
+$osk-key-width: 3rem;
+
+.osk-main-window {
+  background-color: $extras-mantle;
+  margin-bottom: 10px;
+  padding: 7px;
+  border-radius: 14px;
+
+  .osk-key {
+    border-radius: 5px;
+    font-size: 3rem;
+    min-width: $osk-key-width;
+    padding: 3px;
+    margin: 3px;
+
+    background-color: $background;
+
+    &:active {
+      background-color: $bright-blue;
+    }
+  }
+
+  .osk-backspace {
+    min-width: $osk-key-width * 2.5;
+  }
+
+  .osk-space {
+    min-width: $osk-key-width * 7;
+  }
+
+  .osk-altgr {
+    color: green;
+  }
+
+  .osk-key-active {
+    background-color: red;
+  }
+
+  .osk-shift-lock {
+    font-weight: bold;
+  }
+
+  .osk-layout-switcher {
+    min-width: $osk-key-width * 1.2;
+  }
+
+  .osk-close-button {
+    background-color: $red;
+    border-radius: 50px;
+    padding: 4px;
+    margin: 0 3px;
+    font-weight: bolder;
+
+    &.disabled {
+      background-color: darken(grey, 25);
+      color: lighten(grey, 25);
+    }
+  }
+
+  .osk-lock-button {
+    background-color: lightslategrey;
+    border-radius: 50px;
+    padding: 4px;
+    margin: 0 3px;
+
+    &.active {
+      background-color: $blue;
     }
   }
 }

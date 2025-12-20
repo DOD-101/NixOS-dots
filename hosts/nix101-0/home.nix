@@ -41,10 +41,13 @@
 
   dod-shell-config = {
     enable = true;
+    removed-components = [
+      inputs.dod-shell.packages.${pkgs.system}.osk-release
+    ];
     settings = {
       bar = {
         disk = "/dev/disk/by-uuid/fc74b245-229b-40ad-a01d-09d8f7e6ecd4";
-        show_capslock = true;
+        show_capslock = false;
         show_numlock = true;
       };
     };

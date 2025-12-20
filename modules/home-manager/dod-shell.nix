@@ -26,6 +26,11 @@ in
 {
   options.dod-shell-config = {
     enable = lib.mkEnableOption "enable dod-shell config";
+    removed-components = lib.mkOption {
+      type = with lib.types; listOf package;
+      default = [ ];
+      description = "Passed to dod-shell.removed-components";
+    };
     settings = lib.mkOption {
       type = lib.types.attrs;
       default = { };
@@ -36,9 +41,10 @@ in
   config = lib.mkIf cfg.enable {
     dod-shell = {
       enable = true;
-      scss = colors + "\n" + builtins.readFile config.theme.dod-shell;
+      removed-components = cfg.removed-components;
+      scss.text = colors + "\n" + builtins.readFile config.theme.dod-shell;
       # TODO: Rework this
-      settings =
+      config.config =
         if
           lib.attrsets.hasAttrByPath [
             "launcher"
