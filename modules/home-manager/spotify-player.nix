@@ -3,6 +3,7 @@
   config,
   osConfig,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -15,7 +16,7 @@
     programs.spotify-player = {
       enable = true;
       package = (
-        pkgs.spotify-player.override {
+        inputs.spotify-player.defaultPackage.${pkgs.system}.override {
           withNotify = false;
         }
       );
@@ -124,6 +125,7 @@
     systemd.user.services.spotify-player-daemon = {
       Unit = {
         Description = "Spotify Player Daemon";
+        Restart = "always";
       };
       Install = {
         WantedBy = [ "default.target" ];

@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spotify-player = {
+      url = "github:DOD-101/spotify-player/add-flake";
+    };
+
     # catppuccin inputs
 
     catppuccin-zen = {
