@@ -16,7 +16,7 @@
     programs.spotify-player = {
       enable = true;
       package = (
-        inputs.spotify-player.defaultPackage.${pkgs.system}.override {
+        inputs.spotify-player.defaultPackage.${pkgs.stdenv.hostPlatform.system}.override {
           withNotify = false;
         }
       );

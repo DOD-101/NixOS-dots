@@ -92,9 +92,8 @@
       padding-left: 3px;
     }
 
-    .internet-name-revealer {
-      padding-right: 0px;
-      margin-right: -4px;
+    .osk-button {
+      margin-right: -8px;
     }
   }
 
@@ -149,6 +148,10 @@ $osk-key-width: 3rem;
     }
   }
 
+  .osk-key-active {
+    background-color: $green;
+  }
+
   .osk-backspace {
     min-width: $osk-key-width * 2.5;
   }
@@ -157,16 +160,18 @@ $osk-key-width: 3rem;
     min-width: $osk-key-width * 7;
   }
 
-  .osk-altgr {
-    color: green;
+  .osk-shift,
+  .osk-enter {
+    font-size: 2rem;
   }
 
-  .osk-key-active {
-    background-color: red;
+  .osk-super {
+    min-width: $osk-key-width * 1.4;
   }
 
   .osk-shift-lock {
     font-weight: bold;
+    background-color: darken($green, 12);
   }
 
   .osk-layout-switcher {
@@ -194,6 +199,14 @@ $osk-key-width: 3rem;
 
     &.active {
       background-color: $blue;
+    }
+  }
+
+  .osk-main-box {
+    > box:nth-child(2) > .osk-row {
+      > .osk-key:nth-child(1) {
+        margin-left: $osk-key-width * 1.8;
+      }
     }
   }
 }

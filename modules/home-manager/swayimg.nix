@@ -18,7 +18,6 @@
           "j" = "step_down 10";
           "k" = "step_up 10";
           "l" = "step_right 10";
-          "Escape" = "mode";
           "Shift+h" = "rotate_left";
           "Shift+k" = "next_file";
           "Shift+j" = "prev_file";
@@ -27,7 +26,6 @@
         };
         "keys.gallery" = {
           "Shift+question" = "help";
-          "Escape" = "mode";
           "h" = "step_left";
           "j" = "step_down";
           "k" = "step_up";

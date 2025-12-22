@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
@@ -14,7 +15,7 @@
   home.username = "david";
   home.homeDirectory = "/home/david";
 
-  theme.theme = "catppuccin-mocha-maroon";
+  theme.theme = "catppuccin-macchiato-mauve";
 
   btop-config.enable = true;
   fastfetch-config.enable = true;
@@ -42,11 +43,11 @@
   dod-shell-config = {
     enable = true;
     removed-components = [
-      inputs.dod-shell.packages.${pkgs.system}.osk-release
+      inputs.dod-shell.packages.${pkgs.stdenv.hostPlatform.system}.osk-release
     ];
     settings = {
       bar = {
-        disk = "/dev/disk/by-uuid/fc74b245-229b-40ad-a01d-09d8f7e6ecd4";
+        disk = "/dev/nvme0n1p1";
         show_capslock = false;
         show_numlock = true;
       };
@@ -87,6 +88,10 @@
         bind = , XF86Launch8, exec, gimp
         bind = , XF86Launch9, exec, keepassxc
         bind = , XF86Launch5, exec, vesktop
+
+        experimental {
+          xx_color_management_v4 = true
+        }
       '';
     };
   };

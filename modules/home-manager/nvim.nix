@@ -21,7 +21,7 @@
       ripgrep
       fzf
       gh
-      nodePackages.live-server
+      live-server
 
       # Lua
       lua
@@ -85,7 +85,7 @@
       taplo
 
       # yuck
-      inputs.topiary-yuck.packages.${system}.default
+      inputs.topiary-yuck.packages.${stdenv.hostPlatform.system}.default
 
       # java
       jdt-language-server

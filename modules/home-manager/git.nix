@@ -7,20 +7,21 @@
   config = lib.mkIf config.git-config.enable {
     programs.git = {
       enable = true;
-      userName = "David Thievon";
-      userEmail = "pdkfan@gmail.com";
-      lfs.enable = true;
-      aliases = {
-        cc = "commit";
-        ce = "commit --amend --no-edit";
-        ca = "commit --amend";
-        dd = "diff";
-        ds = "diff --staged";
-        st = "status";
-        rr = "restore";
-        rs = "restore --staged";
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "David Thievon";
+          email = "pdkfan@gmail.com";
+        };
+        alias = {
+          cc = "commit";
+          ce = "commit --amend --no-edit";
+          ca = "commit --amend";
+          dd = "diff";
+          ds = "diff --staged";
+          st = "status";
+          rr = "restore";
+          rs = "restore --staged";
+        };
         push = {
           autoSetupRemote = true;
         };

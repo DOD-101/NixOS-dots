@@ -65,7 +65,6 @@ in
           );
       in
       rec {
-        # NOTE: We might want to add the accent to the name
         name = "catppuccin-${flavour}-${accent}";
         font = {
           mono = {

@@ -26,6 +26,7 @@
   ];
 
   boot.tmp.cleanOnBoot = true;
+  programs.fuse.userAllowOther = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.trusted-users = [ "david" ];
@@ -98,7 +99,7 @@
 
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    package = pkgs.ollama-cuda;
   };
 
   services.open-webui = {
@@ -113,6 +114,9 @@
       OLLAMA_BASE_URL = "http://127.0.0.1:11434";
       WEBUI_AUTH = "False";
       WEBUI_URL = "http://localhost:8100";
+      WEBUI_SESSION_COOKIE_SAME_SITE = "none";
+      WEBUI_SESSION_COOKIE_SECURE = "True";
+      ENABLE_VERSION_UPDATE_CHECK = "False";
     };
   };
 
@@ -171,11 +175,9 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    stow
     gccgo14
     gnumake42
     go
-    btop
     iw
     wl-clipboard
   ];

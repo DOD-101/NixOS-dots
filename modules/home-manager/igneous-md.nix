@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.igneous-config.enable {
     home.packages = [
-      inputs.igneous-md.packages."${pkgs.system}".igneous-md-release
+      inputs.igneous-md.packages."${pkgs.stdenv.hostPlatform.system}".igneous-md-release
     ];
 
     xdg.configFile."igneous-md/css/_${config.theme.name}.css".text = config.theme.igneous-md;
