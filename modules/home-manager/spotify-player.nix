@@ -125,7 +125,6 @@
     systemd.user.services.spotify-player-daemon = {
       Unit = {
         Description = "Spotify Player Daemon";
-        Restart = "always";
       };
       Install = {
         WantedBy = [ "default.target" ];
@@ -133,6 +132,7 @@
       Service = {
         Type = "exec";
         RemainAfterExit = true;
+        Restart = "always";
         ExecStart = "${config.programs.spotify-player.package}/bin/spotify_player -d -c ${config.home.homeDirectory}/.config/spotify-player/daemon/";
       };
     };
