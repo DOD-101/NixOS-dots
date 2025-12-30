@@ -111,7 +111,10 @@
         bind =
           [ ]
           ++ lib.optionals config.hypr-config.hyprlock.enable [ "$mainMod, Delete, exec, hyprlock" ]
-          ++ lib.optionals config.dod-shell-config.enable [ "CTRL ALT, V, exec, dod-shell-launcher '&'" ];
+          ++ lib.optionals config.dod-shell-config.enable [
+            "CTRL ALT, V, exec, dod-shell-launcher '&'"
+            "$mainMod, O, exec, ${../../resources/hypr/scripts/toggle_osk.sh}"
+          ];
 
         plugin = {
           touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {

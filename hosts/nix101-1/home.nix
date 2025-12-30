@@ -45,10 +45,11 @@
     enable = true;
     settings = {
       bar = {
-        disk = "/dev/disk/by-uuid/acb9bcbc-2cf1-45d2-9f1e-b058ed6b66fe";
+        disk = "/dev/nvme0n1p1";
         battery = "BAT0";
         show_capslock = false;
         show_numlock = false;
+        show_osk_button = true;
       };
     };
   };
