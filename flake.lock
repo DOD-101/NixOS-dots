@@ -80,6 +80,22 @@
         "type": "github"
       }
     },
+    "catppuccin-vimium": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751777249,
+        "narHash": "sha256-WDBH90+asu5aiQcMVIm3SOoWQLCB30h2LY+umWH62hs=",
+        "owner": "catppuccin",
+        "repo": "vimium",
+        "rev": "3e81c66636668fabd740927c437ad87b14593528",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "vimium",
+        "type": "github"
+      }
+    },
     "catppuccin-zen": {
       "flake": false,
       "locked": {
@@ -148,6 +164,28 @@
         "ref": "dev",
         "repo": "dod-shell",
         "type": "github"
+      }
+    },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1766981011,
+        "narHash": "sha256-nnTf0Ztep/lLyDaMHgQ6yhrQbU25AURkYe+7Q3xUoEs=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "823f00dcc519f13a44cca5b07b7162b0e25ec879",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
       }
     },
     "flake-utils": {
@@ -353,8 +391,10 @@
         "catppuccin-btop": "catppuccin-btop",
         "catppuccin-discord": "catppuccin-discord",
         "catppuccin-fish": "catppuccin-fish",
+        "catppuccin-vimium": "catppuccin-vimium",
         "catppuccin-zen": "catppuccin-zen",
         "dod-shell": "dod-shell",
+        "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "igneous-md": "igneous-md",
         "nix-colors": "nix-colors",
@@ -485,20 +525,23 @@
     },
     "zen-browser": {
       "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1765772419,
-        "narHash": "sha256-1mQ1K4fqebT54nz13rcRNjd6a+IbNLwLvYyR62EcyE8=",
-        "owner": "youwen5",
+        "lastModified": 1766897152,
+        "narHash": "sha256-mD1GDg1eIHYUwk536j4uJX1IfQArsLQm2SL7rTQwAPI=",
+        "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "227e836e43fe7985b4c4f8b0076446a6d66f3343",
+        "rev": "fe8d1a61a904b336f453d7ab5ae7d691a21c5cbf",
         "type": "github"
       },
       "original": {
-        "owner": "youwen5",
+        "owner": "0xc000022070",
         "repo": "zen-browser-flake",
         "type": "github"
       }

@@ -143,9 +143,11 @@ in
     discord.theme = lib.mkOption { type = lib.types.attrs; };
 
     zen-browser = {
-      userChrome = lib.mkOption { type = lib.types.attrs; };
-      userContent = lib.mkOption { type = lib.types.attrs; };
+      userChrome = lib.mkOption { type = lib.types.str; };
+      userContent = lib.mkOption { type = lib.types.str; };
       zen-logo = lib.mkOption { type = lib.types.attrs; };
+      darkreader-theme = lib.mkOption { type = lib.types.attrs; };
+      vimium-css = lib.mkOption { type = lib.types.str; };
     };
 
     fastfetch.config = lib.mkOption {
@@ -172,16 +174,18 @@ in
       JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;
     };
 
+    zen-config = with config.theme.zen-browser; {
+      userChrome = userChrome;
+      userContent = userChrome;
+      darkreader-theme = darkreader-theme;
+      vimium-css = vimium-css;
+    };
+
     home.file = {
       ".config/vesktop/themes/theme.css" = config.theme.discord.theme;
 
-      ".zen/${config.zen-config.profile}/chrome/userChrome.css" =
-        lib.mkIf config.zen-config.enable config.theme.zen-browser.userChrome;
-
-      ".zen/${config.zen-config.profile}/chrome/userContent.css" =
-        lib.mkIf config.zen-config.enable config.theme.zen-browser.userContent;
-
-      ".zen/${config.zen-config.profile}/chrome/zen-logo.svg" =
+      # NOTE: hard-coded profile from `../modules/home-manager/zen.nix`
+      ".zen/default/chrome/zen-logo.svg" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
       ".config/fastfetch/config.jsonc" = config.theme.fastfetch.config;

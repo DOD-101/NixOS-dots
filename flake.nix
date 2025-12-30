@@ -14,7 +14,16 @@
     };
 
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      # url = "github:youwen5/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,10 +76,20 @@
       url = "github:catppuccin/fish";
       flake = false;
     };
+
+    catppuccin-vimium = {
+      url = "github:catppuccin/vimium";
+      flake = false;
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixpkgs,
+      home-manager,
+      firefox-addons,
+      ...
+    }@inputs:
     let
       palettes = {
         catppuccin = import ./resources/palettes/catppuccin.nix;
@@ -93,6 +112,14 @@
               home-manager = {
                 extraSpecialArgs = {
                   inherit inputs palettes;
+
+                  firefox-addons =
+                    (import nixpkgs {
+                      system = "x86_64-linux";
+                      config.allowUnfree = true;
+                    }).callPackage
+                      firefox-addons
+                      { };
                 };
                 users.${mainUser} = import ./hosts/${host}/home.nix;
                 backupFileExtension = "bck";

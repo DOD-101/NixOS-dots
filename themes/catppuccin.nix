@@ -13,13 +13,13 @@ in
   config = lib.mkIf ((builtins.typeOf match == "list") && (builtins.length match == 2)) {
     # Things styled non-declaratively:
     #   - vimium (https://github.com/catppuccin/vimium)
-    #   - dark-reader (https://github.com/catppuccin/dark-reader)
     theme =
       let
         zen = inputs.catppuccin-zen;
         btop_ = inputs.catppuccin-btop;
         discord_ = inputs.catppuccin-discord;
         fish_ = inputs.catppuccin-fish;
+        vimium = inputs.catppuccin-vimium;
 
         flavour = builtins.elemAt match 0;
         accent = builtins.elemAt match 1;
@@ -331,14 +331,20 @@ in
         discord.theme.source = discord_ + "/themes/${flavour}.theme.css";
 
         zen-browser = {
-          userChrome.text = ignoreCssPrefrence (
+          userChrome = ignoreCssPrefrence (
             zen + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
           );
-          userContent.text = ignoreCssPrefrence (
+          userContent = ignoreCssPrefrence (
             zen + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
           );
           zen-logo.source =
             zen + "/themes/${capitalize flavour}/${capitalize accent}/zen-logo-${flavour}.svg";
+          darkreader-theme = {
+            "darkSchemeBackgroundColor" = color.extras.base;
+            "darkSchemeTextColor" = color.extras.text;
+            "selectionColor" = color.extras.surface2;
+          };
+          vimium-css = builtins.readFile (vimium + "/themes/catppuccin-vimium-${flavour}.css");
         };
 
         cava.color = {

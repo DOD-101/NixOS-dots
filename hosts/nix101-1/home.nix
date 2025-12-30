@@ -40,7 +40,6 @@
   zathura-config.enable = true;
 
   zen-config.enable = true;
-  zen-config.profile = "o88syg2w.default";
 
   dod-shell-config = {
     enable = true;
