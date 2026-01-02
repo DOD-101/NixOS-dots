@@ -54,6 +54,20 @@
         SDL_VIDEODRIVER = "wayland";
         # XDG_DATA_DIRS=/home/david/.local/share/applications/:$XDG_DATA_DIRS
         GTRASH_HOME_TRASH_DIR = "$HOME/.local/share/Trash";
+        _ZO_FZF_OPTS = lib.strings.join " " [
+          "--no-sort"
+          "--bind=ctrl-z:ignore,btab:up,tab:down --cycle"
+          "--keep-right"
+          "--border=rounded"
+          "--height=45%"
+          "--info=inline"
+          "--layout=reverse"
+          "--tabstop=1"
+          "--ansi"
+          "--bind one:accept"
+          "--preview='\command ls -Cp --color=always --group-directories-first {2..}'"
+          "--preview-window=down,20%,rounded"
+        ];
       };
 
       file.".dircolors".source = ../../../resources/.dircolors;
