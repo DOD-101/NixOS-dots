@@ -52,7 +52,7 @@
     };
 
     spotify-player = {
-      url = "github:DOD-101/spotify-player/add-flake";
+      url = "github:aome510/spotify-player";
     };
 
     # catppuccin inputs

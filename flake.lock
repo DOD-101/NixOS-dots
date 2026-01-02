@@ -428,16 +428,15 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1763318106,
-        "narHash": "sha256-ukPcJGDmGh3eUO/6opXvK3ejw8VQdLyYFIB6+gl176g=",
-        "owner": "DOD-101",
+        "lastModified": 1767296354,
+        "narHash": "sha256-YEFNy3GIozWLxMZSqHH65tshPiMecLukTYbtCrDAivs=",
+        "owner": "aome510",
         "repo": "spotify-player",
-        "rev": "6908b0abed9d87bd67f0b0aad89f4150ea5ff088",
+        "rev": "6264c2ff3619f7dfeee2b8b80efa86aeba7d3055",
         "type": "github"
       },
       "original": {
-        "owner": "DOD-101",
-        "ref": "add-flake",
+        "owner": "aome510",
         "repo": "spotify-player",
         "type": "github"
       }
