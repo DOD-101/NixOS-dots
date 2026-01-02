@@ -38,7 +38,6 @@
   zathura-config.enable = true;
 
   zen-config.enable = true;
-  zen-config.profile = "1kiwrwon.default";
 
   dod-shell-config = {
     enable = true;

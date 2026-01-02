@@ -80,7 +80,6 @@
           DisablePocket = true;
           DisableTelemetry = true;
           DontCheckDefaultBrowser = true;
-          NoDefaultBookmarks = true;
           OfferToSaveLogins = false;
           EnableTrackingProtection = {
             Value = true;
@@ -226,6 +225,20 @@
             force = true;
             default = "ddg";
             privateDefault = "ddg";
+          };
+
+          bookmarks = {
+            force = true;
+            settings = [
+              {
+                name = "Noogle";
+                tags = [
+                  "wiki"
+                  "nix"
+                ];
+                url = "https://noogle.dev";
+              }
+            ];
           };
 
           settings = {
