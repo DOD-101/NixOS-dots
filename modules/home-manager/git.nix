@@ -10,7 +10,7 @@
       settings = {
         user = {
           name = "David Thievon";
-          email = "pdkfan@gmail.com";
+          email = "david.thievon@proton.me";
         };
         alias = {
           cc = "commit";
