@@ -24,7 +24,11 @@
       color: transparent;
       padding: 0 0.2rem;
       margin: 0 5px;
-      transition: all 0.35s ease-in-out;
+
+      transition:
+        padding-left 0.35s ease-in-out,
+        padding-right 0.35s ease-in-out,
+        background-color 0.35s ease-in-out;
       transition-delay: 0.35s;
 
       &:hover {
@@ -35,7 +39,10 @@
       &.active {
         background-color: $green;
         padding: 0 1rem;
-        transition: all 0.35s ease-in-out;
+        transition:
+          padding-left 0.35s ease-in-out,
+          padding-right 0.35s ease-in-out,
+          background-color 0.35s ease-in-out;
 
         &:hover {
           background-color: mix($green, #000000, 80%);
@@ -63,8 +70,8 @@
 
   .label-icon-icon {
     font-size: 18px;
-    margin-top: -12px;
-    margin-bottom: -10px;
+    margin-top: -9px;
+    margin-bottom: -7px;
   }
 
   revealer {
