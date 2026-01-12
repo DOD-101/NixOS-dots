@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   inputs,
   pkgs,
@@ -100,7 +101,6 @@
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium";
             "keepassxc-browser@keepassxc.org" = "keepassxc-browser";
             "languagetool-webextension@languagetool.org" = "languagetool";
-
           };
         };
 
@@ -237,6 +237,25 @@
                   "nix"
                 ];
                 url = "https://noogle.dev";
+              }
+              {
+                name = "Color conversions";
+                tags = [
+                  "wiki"
+                  "colors"
+                  "lookup"
+                ];
+                url = "http://brucelindbloom.com/index.html";
+              }
+            ]
+            ++ lib.optionals osConfig.syncthing-config.enable [
+              {
+                name = "Syncthing web-ui";
+                tags = [
+                  "syncthing"
+                  "web-ui"
+                ];
+                url = "http://localhost:8384/";
               }
             ];
           };
