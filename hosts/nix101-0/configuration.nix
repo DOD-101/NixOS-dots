@@ -35,9 +35,17 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
+  # TODO: Create a module for networking
   networking = {
     hostName = "nix101-0";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
 
     firewall = {
       allowedTCPPortRanges = [

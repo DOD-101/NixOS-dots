@@ -38,7 +38,14 @@
 
   networking = {
     hostName = "nix101-1";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
 
     firewall = {
       allowedTCPPortRanges = [
