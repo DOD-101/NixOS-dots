@@ -35,34 +35,6 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
-  # TODO: Create a module for networking
-  networking = {
-    hostName = "nix101-0";
-    networkmanager = {
-      enable = true;
-      dns = "none";
-    };
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
-
-    firewall = {
-      allowedTCPPortRanges = [
-        {
-          from = 8000;
-          to = 8500;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 8000;
-          to = 8500;
-        }
-      ];
-    };
-  };
-
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
@@ -104,6 +76,12 @@
   bluetooth-config.enable = true;
   nvidia-config.enable = true;
   borg-config.enable = true;
+
+  network-config = {
+    enable = true;
+    hostName = "nix101-0";
+    protonVpn = true;
+  };
 
   services.ollama = {
     enable = true;

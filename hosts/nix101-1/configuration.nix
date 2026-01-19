@@ -36,33 +36,6 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
-  networking = {
-    hostName = "nix101-1";
-    networkmanager = {
-      enable = true;
-      dns = "none";
-    };
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
-
-    firewall = {
-      allowedTCPPortRanges = [
-        {
-          from = 8000;
-          to = 8500;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 8000;
-          to = 8500;
-        }
-      ];
-    };
-  };
-
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -99,6 +72,12 @@
   font-config.enable = true;
   bluetooth-config.enable = true;
   borg-config.enable = true;
+
+  network-config = {
+    enable = true;
+    hostName = "nix101-1";
+    protonVpn = true;
+  };
 
   # Syncthing config
   syncthing-config.enable = true;
@@ -156,7 +135,6 @@
     git
     gccgo14
     gnumake42
-    btop
     iw
     wl-clipboard
   ];
