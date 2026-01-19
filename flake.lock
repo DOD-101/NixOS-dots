@@ -51,11 +51,11 @@
     "catppuccin-discord": {
       "flake": false,
       "locked": {
-        "lastModified": 1765035141,
-        "narHash": "sha256-LdUPnnbbSwgaw37FJD2s1vPiTaISaYbtOWRxQIekQkQ=",
+        "lastModified": 1768037813,
+        "narHash": "sha256-ExRNnxvG2PSGmpuaPxzCKL6GK6ETs7Gq4Roa74HXp+s=",
         "owner": "catppuccin",
         "repo": "discord",
-        "rev": "1b2dffbabf75a294a0fb9245f9f7244a853e7ada",
+        "rev": "0fcfe2e15ed91f8c5f1f3c6855f3b2024f78d86c",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
     "catppuccin-fish": {
       "flake": false,
       "locked": {
-        "lastModified": 1764362944,
-        "narHash": "sha256-KD/sWXSXYVlV+n7ft4vKFYpIMBB3PSn6a6jz+ZIMZvQ=",
+        "lastModified": 1767710868,
+        "narHash": "sha256-5CXdzym6Vp+FbKTVBtVdWoh3dODudADIzOLXIyIIxgQ=",
         "owner": "catppuccin",
         "repo": "fish",
-        "rev": "af622a6e247806f6260c00c6d261aa22680e5201",
+        "rev": "521560ce2075ca757473816aa31914215332bac9",
         "type": "github"
       },
       "original": {
@@ -174,11 +174,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1766981011,
-        "narHash": "sha256-nnTf0Ztep/lLyDaMHgQ6yhrQbU25AURkYe+7Q3xUoEs=",
+        "lastModified": 1768795419,
+        "narHash": "sha256-HDIESjaPCNSAECzHXAlTh4KclcuhHbr/x9fD60ts8Fk=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "823f00dcc519f13a44cca5b07b7162b0e25ec879",
+        "rev": "ba9bd1bd450b3a0ab9e447f9c4c80b5c5ea3822b",
         "type": "gitlab"
       },
       "original": {
@@ -267,11 +267,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766282146,
-        "narHash": "sha256-0V/nKU93KdYGi+5LB/MVo355obBJw/2z9b2xS3bPJxY=",
+        "lastModified": 1768836546,
+        "narHash": "sha256-nJZkTamcXXMW+SMYiGFB6lB8l0aJw0xjssfN8xYd/Fs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "61fcc9de76b88e55578eb5d79fc80f2b236df707",
+        "rev": "b56c5ad14fcf8b5bc887463552483bf000ca562a",
         "type": "github"
       },
       "original": {
@@ -356,11 +356,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1766070988,
-        "narHash": "sha256-G/WVghka6c4bAzMhTwT2vjLccg/awmHkdKSd2JrycLc=",
+        "lastModified": 1768564909,
+        "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c6245e83d836d0433170a16eb185cefe0572f8b8",
+        "rev": "e4bae1bd10c9c57b2cf517953ab70060a828ee6f",
         "type": "github"
       },
       "original": {
@@ -428,11 +428,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1767296354,
-        "narHash": "sha256-YEFNy3GIozWLxMZSqHH65tshPiMecLukTYbtCrDAivs=",
+        "lastModified": 1768319070,
+        "narHash": "sha256-rT7laJoWkDSu8cuaNsiyrq16WL0CXmpCGviXhNhecAA=",
         "owner": "aome510",
         "repo": "spotify-player",
-        "rev": "6264c2ff3619f7dfeee2b8b80efa86aeba7d3055",
+        "rev": "9ccb5bf852420129adb3c57a05d202ab2bb2081d",
         "type": "github"
       },
       "original": {
@@ -532,11 +532,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766897152,
-        "narHash": "sha256-mD1GDg1eIHYUwk536j4uJX1IfQArsLQm2SL7rTQwAPI=",
+        "lastModified": 1768847523,
+        "narHash": "sha256-Rpe8L91vImYuAH5Ct5S0Ua/AVYWEx2iwbSw5/zo0DlE=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "fe8d1a61a904b336f453d7ab5ae7d691a21c5cbf",
+        "rev": "c46511888bcce28b5b54a82cb41d0ef75cd93965",
         "type": "github"
       },
       "original": {

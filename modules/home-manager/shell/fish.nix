@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -10,7 +9,15 @@ let
       [ string ] -> string
     ```
   */
-  setFishVars = vars: lib.strings.concatLines (map (var: "set -U ${var}") vars);
+  setFishVars =
+    let
+      inherit (lib.strings) concatLines;
+      inherit (lib.lists) findFirstIndex drop;
+    in
+    vars:
+    concatLines (
+      map (var: "set -U ${var}") ((drop ((findFirstIndex (v: v == "[dark]") "-1" vars) + 1)) vars)
+    );
 in
 {
   config = lib.mkIf (config.shell.shell == "fish") {
@@ -27,7 +34,7 @@ in
         "ctrl-y".command = "fish_clipboard_copy";
       };
       functions = {
-        mkcd = ''mkdir -p $argv[1] && cd $argv[1]'';
+        mkcd = "mkdir -p $argv[1] && cd $argv[1]";
       };
       interactiveShellInit = ''
         fish_vi_key_bindings
@@ -39,7 +46,7 @@ in
 
         if test "$(tty)" = "/dev/tty1"
             if command -v Hyprland &> /dev/null
-                Hyprland
+                start-hyprland
             else if command -v fastfetch &> /dev/null
                 fastfetch
             else

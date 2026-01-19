@@ -154,11 +154,8 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    stow
-    # openrazer-daemon
     gccgo14
     gnumake42
-    go
     btop
     iw
     wl-clipboard

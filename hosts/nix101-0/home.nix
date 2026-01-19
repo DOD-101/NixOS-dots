@@ -64,8 +64,20 @@
       enable = true;
       extraConfig = ''
         # Monitors
-        monitor=DP-4,3440x1440,0x0,1
-        monitor=DP-6,3440x1440,3440x0,1
+
+        monitorv2 {
+          output = DP-4
+          mode = 3440x1440@180
+          position = 0x0
+          scale = 1
+        }
+
+        monitorv2 {
+          output = DP-6
+          mode = 3440x1440@180
+          position = 3440x0
+          scale = 1
+        }
 
         # Execs
         exec-once = [workspace 1 silent] ${config.term}
@@ -87,10 +99,6 @@
         bind = , XF86Launch8, exec, gimp
         bind = , XF86Launch9, exec, keepassxc
         bind = , XF86Launch5, exec, vesktop
-
-        experimental {
-          xx_color_management_v4 = true
-        }
       '';
     };
   };

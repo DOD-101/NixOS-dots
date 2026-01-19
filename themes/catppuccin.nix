@@ -305,7 +305,7 @@ in
 
                   file = builtins.toFile "lock_time.sh" replaced-contents;
                 in
-                ''cmd[update:1000] sh ${file}'';
+                "cmd[update:1000] sh ${file}";
               color = "rgba(${config.theme.hashlessColor.white}ff)";
               font_size = 20;
               font_family = "FiraCode Nerd Font Mono";
@@ -364,7 +364,7 @@ in
               "@logo@"
             ]
             [
-              (builtins.toString ../resources/fastfetch/kitty.txt)
+              (toString ../resources/fastfetch/kitty.txt)
             ]
             (builtins.readFile ../resources/fastfetch/catppuccin.jsonc);
 

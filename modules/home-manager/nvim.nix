@@ -66,7 +66,7 @@
       openssl
 
       # Nix
-      nixfmt-rfc-style
+      nixfmt
       nixd
       nil
 
