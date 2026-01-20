@@ -92,6 +92,12 @@
             FormData = true;
             Cache = true;
           };
+          DNSOverHTTPS = {
+            Enabled = true;
+            ProviderURL = "https://cloudflare-dns.com/dns-query";
+            Fallback = true;
+            Locked = true;
+          };
           ExtensionSettings = mkExtensionSettings {
             "uBlock0@raymondhill.net" = mkExtensionEntry {
               id = "ublock-origin";
