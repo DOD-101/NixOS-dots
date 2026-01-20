@@ -222,6 +222,14 @@
               isEssential = true;
               position = 101;
             };
+            "open-webui" = lib.mkIf osConfig.services.open-webui.enable {
+
+              id = "9cd553a6-ef77-4ad6-80f0-61e9ccc5aba4";
+              url = "http://localhost:${toString osConfig.services.open-webui.port}/";
+              container = containers.General.id;
+              isEssential = true;
+              position = 201;
+            };
           };
 
           userChrome = cfg.userChrome;
