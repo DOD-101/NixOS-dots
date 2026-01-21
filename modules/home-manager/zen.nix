@@ -107,6 +107,8 @@
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium";
             "keepassxc-browser@keepassxc.org" = "keepassxc-browser";
             "languagetool-webextension@languagetool.org" = "languagetool";
+            "{74145f27-f039-47ce-a470-a662b129930a}" = "ClearURLs";
+            "jid1-MnnxcxisBPnSXQ@jetpack" = "privacy-badger";
           };
         };
 
@@ -121,6 +123,8 @@
               vimium
               languagetool
               keepassxc-browser
+              privacy-badger
+              clearurls
             ];
             force = true;
             settings = {
@@ -260,6 +264,22 @@
                   "lookup"
                 ];
                 url = "http://brucelindbloom.com/index.html";
+              }
+              {
+                name = "Color tools";
+                tags = [
+                  "tools"
+                  "colors"
+                ];
+                url = "https://colordesigner.io/";
+              }
+              {
+                name = "Color scheme creator";
+                tags = [
+                  "tools"
+                  "colors"
+                ];
+                url = "https://www.realtimecolors.com/";
               }
             ]
             ++ lib.optionals osConfig.syncthing-config.enable [
