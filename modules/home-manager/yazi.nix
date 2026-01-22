@@ -121,68 +121,9 @@
         };
       };
 
-      theme = {
-        mgr = {
-          hovered = {
-            fg = "magenta";
-          };
-        };
-
-        filetype = {
-          rules = [
-            {
-              mime = "image/*";
-              fg = config.theme.yazi.filetype.image;
-            }
-            {
-              mime = "video/*";
-              fg = config.theme.yazi.filetype.video;
-            }
-            {
-              mime = "audio/*";
-              fg = config.theme.yazi.filetype.audio;
-            }
-            {
-              name = "*.{xopp,drawio}";
-              fg = config.theme.yazi.filetype.doc;
-            }
-            {
-              mime = "application/{pdf,doc,rtf,vnd.*}";
-              fg = config.theme.yazi.filetype.doc;
-            }
-            {
-              mime = "application/{,g}zip";
-              fg = config.theme.yazi.filetype.archive;
-            }
-            {
-              mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}";
-              fg = config.theme.yazi.filetype.archive;
-            }
-            {
-              name = "*";
-              is = "orphan";
-              fg = config.theme.yazi.filetype.orphan;
-            }
-            {
-              name = "*";
-              is = "exec";
-              fg = config.theme.yazi.filetype.exec;
-            }
-            {
-              name = "*/";
-              fg = config.theme.yazi.filetype.dir;
-            }
-          ];
-        };
-
+      theme = lib.recursiveUpdate config.theme.yazi.theme {
         icon = {
           prepend_exts = [
-            {
-              name = "yuck";
-              text = "󱍕";
-              fg_dark = config.theme.color.foreground;
-              fg_light = config.theme.color.foreground;
-            }
             {
               name = "drawio";
               text = "󰇞";
@@ -198,7 +139,6 @@
           ];
         };
       };
-
     };
   };
 }

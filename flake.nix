@@ -80,6 +80,11 @@
       url = "github:catppuccin/vimium";
       flake = false;
     };
+
+    catppuccin-yazi = {
+      url = "github:catppuccin/yazi";
+      flake = false;
+    };
   };
 
   outputs =

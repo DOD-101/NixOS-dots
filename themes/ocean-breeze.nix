@@ -53,15 +53,53 @@
       };
 
       yazi = {
-        filetype = {
-          image = color.yellow;
-          video = color.white;
-          audio = color.white;
-          archive = color.red;
-          doc = color.cyan;
-          orphan = color.red;
-          exec = color.green;
-          dir = color.blue;
+        theme = {
+          filetype = {
+            rules = [
+              {
+                mime = "image/*";
+                fg = color.yellow;
+              }
+              {
+                mime = "video/*";
+                fg = color.white;
+              }
+              {
+                mime = "audio/*";
+                fg = color.white;
+              }
+              {
+                name = "*.{xopp,drawio}";
+                fg = color.cyan;
+              }
+              {
+                mime = "application/{pdf,doc,rtf,vnd.*}";
+                fg = color.cyan;
+              }
+              {
+                mime = "application/{,g}zip";
+                fg = color.red;
+              }
+              {
+                mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}";
+                fg = color.red;
+              }
+              {
+                name = "*";
+                is = "orphan";
+                fg = color.red;
+              }
+              {
+                name = "*";
+                is = "exec";
+                fg = color.green;
+              }
+              {
+                name = "*/";
+                fg = color.blue;
+              }
+            ];
+          };
         };
       };
 

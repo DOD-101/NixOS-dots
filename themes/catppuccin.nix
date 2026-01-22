@@ -20,6 +20,7 @@ in
         discord_ = inputs.catppuccin-discord;
         fish_ = inputs.catppuccin-fish;
         vimium = inputs.catppuccin-vimium;
+        yazi_ = inputs.catppuccin-yazi;
 
         flavour = builtins.elemAt match 0;
         accent = builtins.elemAt match 1;
@@ -110,18 +111,25 @@ in
           };
         };
 
-        yazi = {
-          filetype = {
-            image = color.yellow;
-            video = color.white;
-            audio = color.white;
-            archive = color.red;
-            doc = color.cyan;
-            orphan = color.red;
-            exec = color.green;
-            dir = color.blue;
-          };
-        };
+        yazi.theme =
+          let
+            upstream = fromTOML (
+              builtins.readFile (yazi_ + "/themes/${flavour}/catppuccin-${flavour}-${accent}.toml")
+            );
+
+            # override default styling
+            final = lib.recursiveUpdate upstream {
+              filetype.rules = [
+                {
+                  url = "*";
+                  is = "orphan";
+                  fg = color.red;
+                }
+              ]
+              ++ builtins.filter (rule: ((lib.attrByPath [ "is" ] "") rule != "orphan")) upstream.filetype.rules;
+            };
+          in
+          final;
 
         spotify-player = {
           cover_img_scale = 2;

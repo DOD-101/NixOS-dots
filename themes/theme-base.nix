@@ -67,17 +67,10 @@ in
 
     cava.color = lib.mkOption { type = lib.types.attrs; };
 
-    yazi = {
-      filetype = {
-        image = lib.mkOption { type = lib.types.str; };
-        video = lib.mkOption { type = lib.types.str; };
-        audio = lib.mkOption { type = lib.types.str; };
-        archive = lib.mkOption { type = lib.types.str; };
-        doc = lib.mkOption { type = lib.types.str; };
-        orphan = lib.mkOption { type = lib.types.str; };
-        exec = lib.mkOption { type = lib.types.str; };
-        dir = lib.mkOption { type = lib.types.str; };
-      };
+    yazi.theme = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+      description = "yazi theme passed to programs.yazi.theme";
     };
 
     spotify-player = {
