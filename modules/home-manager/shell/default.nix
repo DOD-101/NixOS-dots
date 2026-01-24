@@ -23,7 +23,7 @@
     };
     completions = lib.mkOption {
       type = lib.types.listOf (lib.types.strMatching ".*@shell@.*");
-      description = ''List of commands to run to get completions, with the concrete shell replaced by @shell@.'';
+      description = "List of commands to run to get completions, with the concrete shell replaced by @shell@.";
       default = [ ];
       apply = value: map (c: lib.strings.replaceString "@shell@" config.shell.shell c) value;
     };
@@ -38,11 +38,13 @@
     home = {
       packages = with pkgs; [
         gtrash
+        eza
       ];
 
       shellAliases = {
         rt = "gtrash put";
-        l = "ls -vAlh --group-directories-first";
+        l = "eza -la  --no-time -b --git --group-directories-first --no-filesize --git-repos-no-status";
+        cdtmp = "cd $(mktemp --dir)";
 
         ls = "ls --color=auto";
         grep = "grep --color=auto";
