@@ -471,6 +471,9 @@ in
           bun = {
             format = bubble { fg = color.extras.yellow; } "[ $version]";
           };
+          deno = {
+            format = bubble { fg = color.extras.green; } "[ $version]";
+          };
         };
     };
   };
