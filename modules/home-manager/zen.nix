@@ -137,7 +137,10 @@
                 syncSitesFixes = false;
                 fetchNews = false;
                 enabledFor = [ ];
-                disabledFor = [ ];
+                disabledFor = [
+                  "localhost"
+                  "127.0.0.1"
+                ];
 
                 previewNewDesign = true;
                 theme = {
