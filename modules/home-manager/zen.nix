@@ -40,28 +40,44 @@
     let
       cfg = config.zen-config;
 
-      mkPluginUrl = id: "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
-
       mkExtensionEntry =
         {
-          id,
-          pinned ? false,
+          url,
         }:
-        let
-          base = {
-            install_url = mkPluginUrl id;
-            installation_mode = "force_installed";
-          };
-        in
-        if pinned then base // { default_area = "navbar"; } else base;
+        {
+          install_url = url;
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
 
-      mkExtensionSettings = builtins.mapAttrs (
-        _: entry: if builtins.isAttrs entry then entry else mkExtensionEntry { id = entry; }
-      );
+      mkExtensionSettings =
+        urls:
+        builtins.listToAttrs (
+          map (entry: {
+            name = entry.name;
+            value = mkExtensionEntry {
+              url = entry.url;
+            };
+          }) urls
+        );
+
+      extensions' = with firefox-addons; [
+        ublock-origin
+        darkreader
+        vimium
+        languagetool
+        keepassxc-browser
+        privacy-badger
+        clearurls
+      ];
+
+      extensionsData = map (ext: {
+        name = ext.addonId;
+        url = ext.src.url;
+      }) extensions';
     in
     lib.mkIf cfg.enable {
       programs.zen-browser = {
-        # TODO: Add keyboard mappings once https://github.com/0xc000022070/zen-browser-flake/issues/138 is resolved
         enable = true;
         languagePacks = [
           "en-US"
@@ -98,34 +114,16 @@
             Fallback = true;
             Locked = true;
           };
-          ExtensionSettings = mkExtensionSettings {
-            "uBlock0@raymondhill.net" = mkExtensionEntry {
-              id = "ublock-origin";
-              pinned = true;
-            };
-            "addon@darkreader.org" = "darkreader";
-            "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium";
-            "keepassxc-browser@keepassxc.org" = "keepassxc-browser";
-            "languagetool-webextension@languagetool.org" = "languagetool";
-            "{74145f27-f039-47ce-a470-a662b129930a}" = "ClearURLs";
-            "jid1-MnnxcxisBPnSXQ@jetpack" = "privacy-badger";
-          };
+          ExtensionSettings = (mkExtensionSettings extensionsData);
         };
 
         profiles.default = rec {
           id = 0;
           name = "default";
           isDefault = true;
+
           extensions = {
-            packages = with firefox-addons; [
-              ublock-origin
-              darkreader
-              vimium
-              languagetool
-              keepassxc-browser
-              privacy-badger
-              clearurls
-            ];
+            packages = extensions';
             force = true;
             settings = {
               "addon@darkreader.org".settings = {
