@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   reversAssoc = app: mimes: lib.genAttrs mimes (_: app);
 in
@@ -40,7 +46,7 @@ in
 
         }
         // lib.optionalAttrs config.zen-config.enable (
-          reversAssoc "zen.desktop" [
+          reversAssoc inputs.zen-browser.packages.${pkgs.system}.beta.meta.desktopFileName [
             "x-scheme-handler/http"
             "x-scheme-handler/https"
             "x-scheme-handler/chrome"
