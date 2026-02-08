@@ -138,6 +138,7 @@
                 disabledFor = [
                   "localhost"
                   "127.0.0.1"
+                  "dod-101.github.io"
                 ];
 
                 previewNewDesign = true;

@@ -172,8 +172,8 @@ in
               "col.inactive_border" = "rgb(${config.theme.hashlessColor.black})";
             };
 
-            windowrulev2 = [
-              "opacity 0.95 override 0.90, class:.*"
+            windowrule = [
+              "match:class .*, opacity 0.95 override 0.90"
             ];
 
             decoration = {

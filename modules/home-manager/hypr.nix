@@ -12,7 +12,7 @@
       enable = lib.mkEnableOption "enable hyprland config";
       extraConfig = lib.mkOption {
         type = lib.types.str;
-        default = '''';
+        default = "";
         description = "additional config for hyprland, passed to wayland.windowManager.hyprland.extraConfig";
       };
       plugins = {
@@ -91,8 +91,8 @@
         "$mainMod" = "Super";
         "$touchpadEnabled" = "true";
 
-        windowrulev2 = [
-          "opacity 0.95 override 0.7 override,class:(${config.term})"
+        windowrule = [
+          "match:class ${config.term}, opacity 0.95 override 0.7 override,"
         ];
 
         misc = {

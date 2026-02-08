@@ -144,8 +144,8 @@
             "col.inactive_border" = "rgba(2e0a1500)";
           };
 
-          windowrulev2 = [
-            "opacity 0.95 override 0.90, class:.*"
+          windowrule = [
+            "match:class .*, opacity 0.95 override 0.90"
           ];
 
           decoration = {

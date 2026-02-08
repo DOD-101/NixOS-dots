@@ -92,10 +92,10 @@
         workspace = 5, monitor:DP-6, persistent:true
         workspace = 6, monitor:DP-6, persistent:true
 
-        # Bindings 
+        # Bindings
         bind = , XF86Tools, exec, $terminal
         bind = , XF86Launch6, exec, zen
-        bind = , XF86Launch7, exec, thunderbird 
+        bind = , XF86Launch7, exec, thunderbird
         bind = , XF86Launch8, exec, gimp
         bind = , XF86Launch9, exec, keepassxc
         bind = , XF86Launch5, exec, vesktop
