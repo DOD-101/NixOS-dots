@@ -91,6 +91,9 @@
       jdt-language-server
       google-java-format
       maven
+
+      # treesitter
+      tree-sitter
     ];
 
     # These might also be needed:
