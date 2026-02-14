@@ -10,7 +10,7 @@
   home.username = "server";
   home.homeDirectory = "/home/server";
 
-  theme.ocean-breeze.enable = true;
+  theme.theme = "catppuccin-macchiato-red";
 
   fastfetch-config.enable = true;
   btop-config.enable = true;
