@@ -45,6 +45,8 @@
   # Enable config modules
   sound-config.enable = true;
 
+  programs.dconf.enable = true;
+
   users.users.server = {
     isNormalUser = true;
     home = "/home/server";
@@ -81,7 +83,7 @@
   };
 
   # duck dns update entry
-  # NOTE: You MUST first copy over the template file and make it executable
+  # NOTE: You MUST create the script see duckdns.org for this
   systemd = {
     timers."duck-dns" = {
       wantedBy = [ "timers.target" ];
@@ -93,13 +95,17 @@
     };
 
     services."duck-dns" = {
-      script = ''
-        /home/server/duckdns.sh
-      '';
       serviceConfig = {
         Type = "oneshot";
-        User = "root";
+	User = "server";
+        ExecStart = "${pkgs.bash}/bin/bash /home/server/duckdns.sh";
       };
+
+      path = with pkgs; [
+	curl
+	bash
+	coreutils
+      ];
     };
   };
 
