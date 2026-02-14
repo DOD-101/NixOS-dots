@@ -16,6 +16,7 @@
   btop-config.enable = true;
 
   yazi-config.enable = true;
+  git-config.enable = true;
 
   home.file."duckdns.sh.template".text = ''
     #!/bin/bash
