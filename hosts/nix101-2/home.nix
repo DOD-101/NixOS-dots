@@ -17,6 +17,14 @@
 
   yazi-config.enable = true;
 
+  home.file."duckdns.sh.template".text = ''
+    #!/bin/bash
+
+    DOMAIN="EXAMPLE"
+    TOKEN="TOKEN"
+    echo url="https://www.duckdns.org/update?domains=$DOMAIN&token=$TOKEN&ip=" | curl -o ~/duckdns/duck.log -K -
+  '';
+
   # dconf = {
   #   enable = true;
   #   settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";

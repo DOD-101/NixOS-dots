@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -30,9 +29,6 @@
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-
-  networking.hostName = "nix101-2";
-  networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Halifax";
@@ -84,11 +80,42 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [
-    22
-    25565
-  ];
-  networking.firewall.allowedUDPPorts = [ 25565 ];
+  # duck dns update entry
+  # NOTE: You MUST first copy over the template file and make it executable
+  systemd = {
+    timers."duck-dns" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "1m";
+        OnUnitActiveSec = "1m";
+        Unit = "duck-dns.service";
+      };
+    };
+
+    services."duck-dns" = {
+      script = ''
+        /home/server/duckdns.sh
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
+  };
+
+  network-config = {
+    enable = true;
+    hostName = "nix101-2";
+    protonVpn = false;
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      22
+      25565
+    ];
+    allowedUDPPorts = [ 25565 ];
+  };
 
   # Use default config
   services.fail2ban.enable = true;

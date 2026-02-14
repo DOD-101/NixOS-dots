@@ -18,7 +18,6 @@
         type = lib.types.bool;
         default = false;
         description = "Weather to install proton vpn";
-
       };
     };
   };
@@ -60,7 +59,5 @@
         proton-vpn-cli
         protonvpn-gui
       ];
-
     };
-
 }
