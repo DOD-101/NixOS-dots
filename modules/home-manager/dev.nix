@@ -12,7 +12,6 @@
   };
 
   config = lib.mkIf config.dev-config.enable {
-
     git-config.enable = config.dev-config.git.enable;
     nvim-config.enable = config.dev-config.nvim.enable;
   };

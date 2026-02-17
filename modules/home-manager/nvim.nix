@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }:
 {
@@ -43,8 +42,6 @@
       nodejs_22
       vtsls
 
-      # json
-
       # python
       uv
       python3
@@ -83,9 +80,6 @@
 
       # toml
       taplo
-
-      # yuck
-      inputs.topiary-yuck.packages.${stdenv.hostPlatform.system}.default
 
       # java
       jdt-language-server

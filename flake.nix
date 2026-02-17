@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    topiary-yuck = {
-      url = "github:DOD-101/topiary-yuck";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dod-shell = {
       url = "github:DOD-101/dod-shell/dev";
       # url = "/home/david/Data/Coding-Adventures/Rust-Crabs/dod-shell";
