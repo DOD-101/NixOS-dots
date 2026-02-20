@@ -66,7 +66,7 @@
       extraConfig = ''
         # Monitors
         monitor=eDP-1,1920x1200,0x0,1
-        monitor=HDMI-A-1,prefered, auto, 1, mirror, eDP-1
+        monitor=HDMI-A-1,preferred, auto, 1, mirror, eDP-1
 
         # Execs
         exec-once = [workspace 1 silent] ${config.term}

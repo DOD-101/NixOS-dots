@@ -86,7 +86,7 @@
         ];
 
         "$terminal" = config.term;
-        # TODO: This asumes that dod-shell is installed and is the preferred "launch menu"
+        # TODO: This assumes that dod-shell is installed and is the preferred "launch menu"
         "$menu" = "dod-shell-launcher";
         "$mainMod" = "Super";
         "$touchpadEnabled" = "true";

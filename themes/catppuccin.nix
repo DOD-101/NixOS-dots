@@ -48,7 +48,7 @@ in
               inkscape ${../resources/hypr/profile.svg} -w 600 -b \${config.theme.color.background} -o $out/profile.png;
             '';
 
-        ignoreCssPrefrence =
+        ignoreCssPreference =
           path:
           lib.strings.concatLines [
             (builtins.readFile path)
@@ -339,10 +339,10 @@ in
         discord.theme.source = discord_ + "/themes/${flavour}.theme.css";
 
         zen-browser = {
-          userChrome = ignoreCssPrefrence (
+          userChrome = ignoreCssPreference (
             zen + "/themes/${capitalize flavour}/${capitalize accent}/userChrome.css"
           );
-          userContent = ignoreCssPrefrence (
+          userContent = ignoreCssPreference (
             zen + "/themes/${capitalize flavour}/${capitalize accent}/userContent.css"
           );
           zen-logo.source =
