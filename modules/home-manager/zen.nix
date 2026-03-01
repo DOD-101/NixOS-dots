@@ -283,6 +283,15 @@
                 ];
                 url = "https://www.realtimecolors.com/";
               }
+              {
+                name = "Github Profile DOD-101";
+                tags = [
+                  "github"
+                  "dod-101"
+                  "code"
+                ];
+                url = "https://github.com/DOD-101";
+              }
             ]
             ++ lib.optionals osConfig.syncthing-config.enable [
               {
