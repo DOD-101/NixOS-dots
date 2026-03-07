@@ -35,6 +35,8 @@
 
   yazi-config.enable = true;
 
+  vesktop-config.enable = true;
+
   zathura-config.enable = true;
 
   zen-config.enable = true;
@@ -118,9 +120,6 @@
   home.packages = with pkgs; [
     keepassxc
     signal-desktop
-
-    # discord
-    vesktop
 
     # email
     thunderbird

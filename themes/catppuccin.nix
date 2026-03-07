@@ -336,7 +336,7 @@ in
 
         nvim.theme = "catppuccin-${flavour}";
 
-        discord.theme.source = discord_ + "/themes/${flavour}.theme.css";
+        discord.theme = builtins.readFile (discord_ + "/themes/${flavour}.theme.css");
 
         zen-browser = {
           userChrome = ignoreCssPreference (

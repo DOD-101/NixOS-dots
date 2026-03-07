@@ -20,6 +20,7 @@
     ./swww.nix
     ./syncthing.nix
     ./term
+    ./vesktop.nix
     ./yazi.nix
     ./zathura.nix
     ./zen.nix

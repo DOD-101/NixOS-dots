@@ -133,7 +133,14 @@ in
 
     nvim.theme = lib.mkOption { type = lib.types.str; };
 
-    discord.theme = lib.mkOption { type = lib.types.attrs; };
+    discord.theme = lib.mkOption {
+      type =
+        with lib.types;
+        oneOf [
+          str
+          path
+        ];
+    };
 
     zen-browser = {
       userChrome = lib.mkOption { type = lib.types.str; };
@@ -174,9 +181,9 @@ in
       vimium-css = vimium-css;
     };
 
-    home.file = {
-      ".config/vesktop/themes/theme.css" = config.theme.discord.theme;
+    vesktop-config.theme = config.theme.discord.theme;
 
+    home.file = {
       # NOTE: hard-coded profile from `../modules/home-manager/zen.nix`
       ".zen/default/chrome/zen-logo.svg" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
