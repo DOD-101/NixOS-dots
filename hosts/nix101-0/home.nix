@@ -124,10 +124,6 @@
     # email
     thunderbird
 
-    # minecraft
-    prismlauncher
-    jdk17
-
     ckan
     heroic
 
@@ -143,6 +139,15 @@
     plugins = with pkgs.obs-studio-plugins; [
       obs-pipewire-audio-capture
     ];
+  };
+
+  programs.prismlauncher = {
+    enable = true;
+    package = pkgs.prismlauncher.override {
+      additionalLibs = with pkgs; [
+        jdk17
+      ];
+    };
   };
 
   # Let Home Manager install and manage itself.

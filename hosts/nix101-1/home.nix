@@ -109,10 +109,6 @@
     # email
     thunderbird
 
-    # minecraft
-    prismlauncher
-    jdk17
-
     # art
     gimp
     inkscape
@@ -120,6 +116,15 @@
     # blender
     drawio
   ];
+
+  programs.prismlauncher = {
+    enable = true;
+    package = pkgs.prismlauncher.override {
+      additionalLibs = with pkgs; [
+        jdk17
+      ];
+    };
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
