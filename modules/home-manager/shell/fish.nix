@@ -9,15 +9,7 @@ let
       [ string ] -> string
     ```
   */
-  setFishVars =
-    let
-      inherit (lib.strings) concatLines;
-      inherit (lib.lists) findFirstIndex drop;
-    in
-    vars:
-    concatLines (
-      map (var: "set -U ${var}") ((drop ((findFirstIndex (v: v == "[dark]") "-1" vars) + 1)) vars)
-    );
+  setFishVars = vars: lib.strings.concatLines (map (var: "set -U ${var}") vars);
 in
 {
   config = lib.mkIf (config.shell.shell == "fish") {
@@ -39,7 +31,7 @@ in
       interactiveShellInit = ''
         fish_vi_key_bindings
 
-        set -U fish_greeting 
+        set -U fish_greeting
 
         # fish theme
         ${setFishVars config.theme.fish.theme}

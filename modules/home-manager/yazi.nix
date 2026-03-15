@@ -23,6 +23,7 @@
 
     programs.yazi = {
       enable = true;
+      shellWrapperName = "yy";
 
       initLua = ../../resources/yazi/init.lua;
       plugins = {

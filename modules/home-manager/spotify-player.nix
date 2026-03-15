@@ -141,7 +141,7 @@
       sp = "${pkgs.writeShellScript "spotify-player" ''
         #!/run/current-system/sw/bin/bash
 
-        if ! pgrep spotify_player > /dev/null; then 
+        if ! pgrep spotify_player > /dev/null; then
          systemctl --user restart spotify-player-daemon.service
         fi
 

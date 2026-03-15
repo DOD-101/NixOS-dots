@@ -331,7 +331,7 @@ in
         btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";
 
         fish.theme = fishThemeToVars (
-          builtins.readFile (fish_ + "/themes/Catppuccin ${capitalize flavour}.theme")
+          builtins.readFile (fish_ + "/themes/static/catppuccin-${flavour}.theme")
         );
 
         nvim.theme = "catppuccin-${flavour}";
