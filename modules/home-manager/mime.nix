@@ -46,7 +46,7 @@ in
 
         }
         // lib.optionalAttrs config.zen-config.enable (
-          reversAssoc inputs.zen-browser.packages.${pkgs.system}.beta.desktopItem.name [
+          reversAssoc inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta.desktopItem.name [
             "x-scheme-handler/http"
             "x-scheme-handler/https"
             "x-scheme-handler/chrome"

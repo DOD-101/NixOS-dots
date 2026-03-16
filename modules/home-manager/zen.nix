@@ -7,6 +7,9 @@
   firefox-addons,
   ...
 }:
+let
+  zenBranch = "beta";
+in
 {
   options.zen-config = {
     enable = lib.mkEnableOption "enable zen config";
@@ -33,7 +36,7 @@
   };
 
   imports = [
-    inputs.zen-browser.homeModules.beta
+    inputs.zen-browser.homeModules.${zenBranch}
   ];
 
   config =
@@ -77,6 +80,11 @@
       }) extensions';
     in
     lib.mkIf cfg.enable {
+
+      home.shellAliases = {
+        zen = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.${zenBranch}.meta.mainProgram;
+      };
+
       programs.zen-browser = {
         enable = true;
         languagePacks = [

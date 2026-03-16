@@ -185,7 +185,7 @@ in
 
     home.file = {
       # NOTE: hard-coded profile from `../modules/home-manager/zen.nix`
-      ".zen/default/chrome/zen-logo.svg" =
+      ".config/zen/default/chrome/zen-logo.svg" =
         lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
 
       ".config/fastfetch/config.jsonc" = config.theme.fastfetch.config;

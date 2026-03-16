@@ -53,7 +53,9 @@
     # catppuccin inputs
 
     catppuccin-zen = {
-      url = "github:catppuccin/zen-browser";
+      # HACK: temp until https://github.com/catppuccin/zen-browser/pull/75
+      url = "github:gkze/zen-browser/fix/frappe-zen-twilight-acrylic-gap";
+      # url = "github:catppuccin/zen-browser";
       flake = false;
     };
 

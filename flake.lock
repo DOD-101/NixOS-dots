@@ -115,15 +115,16 @@
     "catppuccin-zen": {
       "flake": false,
       "locked": {
-        "lastModified": 1759018582,
-        "narHash": "sha256-5A57Lyctq497SSph7B+ucuEyF1gGVTsuI3zuBItGfg4=",
-        "owner": "catppuccin",
+        "lastModified": 1773199100,
+        "narHash": "sha256-IUS7+A24u7O5YAvO7DCAi3S/rOBukCOVb6S0NKXxQzc=",
+        "owner": "gkze",
         "repo": "zen-browser",
-        "rev": "c855685442c6040c4dda9c8d3ddc7b708de1cbaa",
+        "rev": "c0c833e5a23b5503717ef3a38487d0ff651e66dd",
         "type": "github"
       },
       "original": {
-        "owner": "catppuccin",
+        "owner": "gkze",
+        "ref": "fix/frappe-zen-twilight-acrylic-gap",
         "repo": "zen-browser",
         "type": "github"
       }
