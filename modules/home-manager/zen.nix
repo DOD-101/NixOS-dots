@@ -9,6 +9,7 @@
 }:
 let
   zenBranch = "beta";
+  cfg = config.zen-config;
 in
 {
   options.zen-config = {
@@ -41,8 +42,6 @@ in
 
   config =
     let
-      cfg = config.zen-config;
-
       mkExtensionEntry =
         {
           url,
@@ -81,12 +80,9 @@ in
     in
     lib.mkIf cfg.enable {
 
-      home.shellAliases = {
-        zen = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.${zenBranch}.meta.mainProgram;
-      };
-
       programs.zen-browser = {
         enable = true;
+        setAsDefaultBrowser = true;
         languagePacks = [
           "en-US"
           "de"
@@ -196,7 +192,7 @@ in
                 };
               };
 
-              # TODO: Implement https://github.com/philc/vimium/issues/4600 Upstream
+              # TODO: Implement https://github.com/philc/vimium/issues/4600 Upstream OR just write my own fork
               # "{d7742d87-e61d-4b78-b8a1-b469842139fa}".settings = {
               #   settingsVersion = "2.3.1";
               #   userDefinedLinkHintCss = cfg.vimium-css;
@@ -300,6 +296,14 @@ in
                 ];
                 url = "https://github.com/DOD-101";
               }
+              {
+                name = "Catppuccin";
+                tags = [
+                  "colors"
+                  "colorscheme"
+                ];
+                url = "https://catppuccin.com/";
+              }
             ]
             ++ lib.optionals osConfig.syncthing-config.enable [
               {
@@ -338,5 +342,11 @@ in
           };
         };
       };
+
+      home.packages = with pkgs; [
+        (writeShellScriptBin "zen" ''
+          setsid zen-${zenBranch}
+        '')
+      ];
     };
 }

@@ -1,13 +1,11 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
-let
-  reversAssoc = app: mimes: lib.genAttrs mimes (_: app);
-in
+# let
+#   reversAssoc = app: mimes: lib.genAttrs mimes (_: app);
+# in
 {
   options = {
     mime-config.enable = lib.mkEnableOption "enable mime config";
@@ -43,22 +41,7 @@ in
           "application/x-xopp" = [
             "xournalpp.desktop"
           ];
-
-        }
-        // lib.optionalAttrs config.zen-config.enable (
-          reversAssoc inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.beta.desktopItem.name [
-            "x-scheme-handler/http"
-            "x-scheme-handler/https"
-            "x-scheme-handler/chrome"
-            "text/html"
-            "application/x-extension-htm"
-            "application/x-extension-html"
-            "application/x-extension-shtml"
-            "application/xhtml+xml"
-            "application/x-extension-xhtml"
-            "application/x-extension-xht"
-          ]
-        );
+        };
       };
     };
   };
