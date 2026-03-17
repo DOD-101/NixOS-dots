@@ -81,14 +81,16 @@
         opener = {
           xournalpp = [
             {
-              run = ''xournalpp "$@"'';
+              run = "xournalpp %s";
               desc = "Open xournalpp files";
+              orphan = true;
             }
           ];
           drawio = [
             {
-              run = ''drawio "$@"'';
+              run = "drawio %s";
               desc = "Open draw.io files";
+              orphan = true;
             }
           ];
         };
@@ -96,11 +98,11 @@
         open = {
           prepend_rules = [
             {
-              name = "*.xopp";
+              url = "*.xopp";
               use = "xournalpp";
             }
             {
-              name = "*.drawio";
+              url = "*.drawio";
               use = "drawio";
             }
           ];
