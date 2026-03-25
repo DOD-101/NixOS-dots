@@ -36,7 +36,7 @@
     };
 
     igneous-md = {
-      url = "github:DOD-101/igneous-md/refs/tags/0.3.0";
+      url = "github:DOD-101/igneous-md/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
