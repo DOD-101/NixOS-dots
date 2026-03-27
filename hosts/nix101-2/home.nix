@@ -22,6 +22,7 @@
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
+  gtk.gtk4.theme = null;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

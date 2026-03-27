@@ -30,6 +30,7 @@
           date = "short";
         };
       };
+      signing.format = "openpgp";
     };
 
     programs.gh = {

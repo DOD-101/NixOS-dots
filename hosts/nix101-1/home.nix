@@ -94,6 +94,7 @@
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
+  gtk.gtk4.theme = null;
 
   # Dev config
   dev-config = {
