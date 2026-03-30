@@ -79,35 +79,6 @@
     protonVpn = true;
   };
 
-  # Syncthing config
-  syncthing-config.enable = true;
-  syncthing-config.settings = {
-    devices = {
-      "nix101-0" = {
-        id = "E7NJQEN-MWDRATB-KKPMDJX-4YH5DCL-Y7S6PJA-F5DZE5O-YF7IWRD-QDMXJAO";
-      };
-      "android101-0" = {
-        id = "XTGPRWO-5OPQ5JX-YC4524J-QKQ2HWH-DU5O5SR-FPKGGVU-4XDNPWT-YGZPHAC";
-      };
-    };
-
-    folders = {
-      "Main" = {
-        path = "/home/david/Sync";
-        devices = [
-          "nix101-0"
-          "android101-0"
-        ];
-      };
-      "School" = {
-        path = "/home/david/Data/School-Schule";
-        devices = [
-          "nix101-0"
-        ];
-      };
-    };
-  };
-
   users.users.david = {
     isNormalUser = true;
     home = "/home/david";

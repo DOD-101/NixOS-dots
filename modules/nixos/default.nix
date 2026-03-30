@@ -7,7 +7,6 @@
     ./nvidia.nix
     ./razer.nix
     ./sound.nix
-    ./syncthing.nix
     ./network.nix
   ];
 }

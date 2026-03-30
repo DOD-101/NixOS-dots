@@ -305,7 +305,7 @@ in
                 url = "https://catppuccin.com/";
               }
             ]
-            ++ lib.optionals osConfig.syncthing-config.enable [
+            ++ lib.optionals config.syncthing-config.enable [
               {
                 name = "Syncthing web-ui";
                 tags = [
