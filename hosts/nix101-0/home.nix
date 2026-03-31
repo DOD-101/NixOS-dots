@@ -128,20 +128,20 @@
         main = {
           enable = true;
           devices = [
-            "nix101-0"
+            "nix101-1"
             "android101-0"
           ];
         };
         school = {
           enable = true;
           devices = [
-            "nix101-0"
+            "nix101-1"
           ];
         };
         backgroundImgs = {
           enable = true;
           devices = [
-            "nix101-0"
+            "nix101-1"
           ];
         };
       };
