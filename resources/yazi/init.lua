@@ -1,3 +1,5 @@
+---@diagnostic disable undefined-global
+-- luacheck: ignore 113 112
 require("no-status"):setup()
 
 th.git = th.git or {}
@@ -9,7 +11,7 @@ th.git.ignored_sign = "I"
 th.git.deleted_sign = "D"
 th.git.updated_sign = "U"
 
-require("git"):setup()
+require("git"):setup({ order = 1500 })
 
 function Status:owner()
 	local h = cx.active.current.hovered
