@@ -123,27 +123,27 @@
           id = "XTGPRWO-5OPQ5JX-YC4524J-QKQ2HWH-DU5O5SR-FPKGGVU-4XDNPWT-YGZPHAC";
         };
       };
+    };
 
-      folders = {
-        main = {
-          enable = true;
-          devices = [
-            "nix101-1"
-            "android101-0"
-          ];
-        };
-        school = {
-          enable = true;
-          devices = [
-            "nix101-1"
-          ];
-        };
-        backgroundImgs = {
-          enable = true;
-          devices = [
-            "nix101-1"
-          ];
-        };
+    folders = {
+      main = {
+        enable = true;
+        devices = [
+          "nix101-1"
+          "android101-0"
+        ];
+      };
+      school = {
+        enable = true;
+        devices = [
+          "nix101-1"
+        ];
+      };
+      backgroundImgs = {
+        enable = true;
+        devices = [
+          "nix101-1"
+        ];
       };
     };
   };
