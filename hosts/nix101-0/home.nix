@@ -55,6 +55,8 @@
     };
   };
 
+  programs.opencode.enable = true;
+
   hypr-config = {
     enable = true;
     hypridle = {
@@ -158,6 +160,9 @@
   home.packages = with pkgs; [
     keepassxc
     signal-desktop
+
+    tor-browser
+    qbittorrent
 
     # email
     thunderbird
