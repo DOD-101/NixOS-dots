@@ -50,6 +50,12 @@
       url = "github:aome510/spotify-player";
     };
 
+    commit-lsp = {
+      # HACK: temp until https://github.com/texel-sensei/commit-lsp/pull/15
+      url = "github:dod-101/commit-lsp/add-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # catppuccin inputs
 
     catppuccin-zen = {

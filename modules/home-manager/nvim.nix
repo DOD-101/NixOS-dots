@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 {
@@ -88,6 +89,9 @@
 
       # treesitter
       tree-sitter
+
+      # git commit msg
+      inputs.commit-lsp.defaultPackage.${stdenv.hostPlatform.system}
     ];
 
     # These might also be needed:
