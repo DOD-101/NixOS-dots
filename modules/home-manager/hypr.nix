@@ -1,10 +1,15 @@
 {
+
   config,
   osConfig,
   pkgs,
   lib,
+  inputs,
   ...
 }:
+let
+  hypr-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   options.hypr-config = {
     enable = lib.mkEnableOption "enable hypr config";
@@ -62,11 +67,13 @@
     # hyprland
     wayland.windowManager.hyprland = lib.mkIf config.hypr-config.hyprland.enable {
       enable = true;
+      package = hypr-pkgs.hyprland;
+      portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
       systemd.enable = true;
       plugins =
         [ ]
         ++ lib.optionals config.hypr-config.hyprland.plugins.hyprgrass.enable [
-          pkgs.hyprlandPlugins.hyprgrass
+          inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
 
       # Additional style related config is done through the selected theme

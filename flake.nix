@@ -2,15 +2,23 @@
   description = "Nixos config flake";
 
   nixConfig = {
-    extra-substituters = [ "https://cuda-maintainers.cachix.org" ];
+    extra-substituters = [
+      "https://cuda-maintainers.cachix.org"
+      "https://hyprland.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
     };
 
     zen-browser = {
