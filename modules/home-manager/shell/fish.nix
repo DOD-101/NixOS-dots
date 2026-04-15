@@ -28,24 +28,29 @@ in
       functions = {
         mkcd = "mkdir -p $argv[1] && cd $argv[1]";
       };
-      interactiveShellInit = ''
-        fish_vi_key_bindings
+      interactiveShellInit = lib.strings.concatLines (
+        [
+          ''
+            fish_vi_key_bindings
 
-        set -U fish_greeting
+            set -U fish_greeting
 
-        # fish theme
-        ${setFishVars config.theme.fish.theme}
+            # fish theme
+            ${setFishVars config.theme.fish.theme}
 
-        if test "$(tty)" = "/dev/tty1"
-            if command -v Hyprland &> /dev/null
-                start-hyprland
-            else if command -v fastfetch &> /dev/null
-                fastfetch
-            else
-                echo "Current time: $(date)"
+            if test "$(tty)" = "/dev/tty1"
+                if command -v Hyprland &> /dev/null
+                    start-hyprland
+                else if command -v fastfetch &> /dev/null
+                    fastfetch
+                else
+                    echo "Current time: $(date)"
+                end
             end
-        end
-      '';
+          ''
+        ]
+        ++ map (c: "${c} | source") config.shell.completions
+      );
     };
   };
 }
