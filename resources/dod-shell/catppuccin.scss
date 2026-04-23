@@ -101,6 +101,10 @@
 
     .osk-button {
       margin-right: -8px;
+
+      &.disabled {
+        filter: brightness(75%) grayscale(75%);
+      }
     }
   }
 

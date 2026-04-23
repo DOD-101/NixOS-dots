@@ -49,7 +49,7 @@
     };
 
     dod-shell = {
-      url = "github:DOD-101/dod-shell/dev";
+      url = "github:DOD-101/dod-shell/";
       # url = "/home/david/Data/Coding-Adventures/Rust-Crabs/dod-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
