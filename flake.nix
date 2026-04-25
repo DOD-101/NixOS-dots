@@ -15,6 +15,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
@@ -104,6 +109,7 @@
       nixpkgs,
       home-manager,
       firefox-addons,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -124,6 +130,7 @@
             ./hosts/${host}/configuration.nix
             ./modules/nixos
             home-manager.nixosModules.default
+            sops-nix.nixosModules.sops
             {
               home-manager = {
                 extraSpecialArgs = {

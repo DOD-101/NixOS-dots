@@ -116,17 +116,6 @@
   # Syncthing config
   syncthing-config = {
     enable = true;
-    settings = {
-      devices = {
-        "nix101-1" = {
-          id = "YWZ23VE-MJZEY2A-3WLNHNX-IP4EJO7-ZYTDVUD-JQBPP3Q-ZKMIQ6R-RP7FFQJ";
-        };
-        "android101-0" = {
-          id = "XTGPRWO-5OPQ5JX-YC4524J-QKQ2HWH-DU5O5SR-FPKGGVU-4XDNPWT-YGZPHAC";
-        };
-      };
-    };
-
     folders = {
       main = {
         enable = true;

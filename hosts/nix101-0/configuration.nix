@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -133,17 +134,33 @@
     go
     iw
     wl-clipboard
+    sops
   ];
 
-  # # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  #   ports = [ 22 ];
-  #   settings = {
-  #     PasswordAuthentication = true;
-  #     AllowUsers = [ "david" ];
-  #   };
-  # };
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = [ "david" ];
+    };
+  };
+
+  # secrets management
+  sops = {
+    defaultSopsFile = ../../secrets + "/${config.networking.hostName}.yaml";
+    secrets = {
+      syncthing_cert = {
+        owner = "david";
+        mode = "0400";
+      };
+      syncthing_key = {
+        owner = "david";
+        mode = "0400";
+      };
+    };
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
