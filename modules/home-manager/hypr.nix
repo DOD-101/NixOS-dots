@@ -10,6 +10,7 @@
 let
   hypr-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in
+# WARN: When we upgrade to Hyprland 0.55 the config will break since lua is now used instead of hyprlang
 {
   options.hypr-config = {
     enable = lib.mkEnableOption "enable hypr config";
