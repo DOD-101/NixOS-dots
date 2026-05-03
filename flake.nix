@@ -15,6 +15,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,11 +37,6 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -107,8 +107,8 @@
   outputs =
     {
       nixpkgs,
+      nur,
       home-manager,
-      firefox-addons,
       sops-nix,
       ...
     }@inputs:
@@ -127,25 +127,22 @@
           };
 
           modules = [
-            ./hosts/${host}/configuration.nix
-            ./modules/nixos
             home-manager.nixosModules.default
             sops-nix.nixosModules.sops
+            {
+              nixpkgs.overlays = [ nur.overlays.default ];
+            }
+            ./hosts/${host}/configuration.nix
+            ./modules/nixos
             {
               home-manager = {
                 extraSpecialArgs = {
                   inherit inputs palettes;
-
-                  firefox-addons =
-                    (import nixpkgs {
-                      system = "x86_64-linux";
-                      config.allowUnfree = true;
-                    }).callPackage
-                      firefox-addons
-                      { };
                 };
-                users.${mainUser} = import ./hosts/${host}/home.nix;
                 backupFileExtension = "bck";
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${mainUser} = import ./hosts/${host}/home.nix;
               };
             }
           ];

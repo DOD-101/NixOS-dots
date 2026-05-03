@@ -5,20 +5,20 @@
   ...
 }:
 {
-  options.swww-config = {
-    enable = lib.mkEnableOption "enable swww config";
+  options.awww-config = {
+    enable = lib.mkEnableOption "enable awww config";
     script = lib.mkOption {
       type = lib.types.str;
       description = "Script to run after initializing the daemon.";
     };
   };
 
-  config = lib.mkIf config.swww-config.enable {
+  config = lib.mkIf config.awww-config.enable {
     home.packages = with pkgs; [
-      swww
+      awww
     ];
 
-    systemd.user.services.swww = {
+    systemd.user.services.awww = {
       Unit = {
         Description = "Swww wallpaper service.";
 
@@ -33,10 +33,10 @@
         Restart = "on-failure";
         RestartSec = 3;
         RemainAfterExit = true;
-        ExecStart = "${pkgs.writeShellScript "swww-script" ''
-          ${pkgs.swww}/bin/swww-daemon & 
+        ExecStart = "${pkgs.writeShellScript "awww-script" ''
+          ${pkgs.awww}/bin/awww-daemon & 
 
-          ${config.swww-config.script}
+          ${config.awww-config.script}
         ''}";
       };
     };

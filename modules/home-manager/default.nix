@@ -17,14 +17,12 @@
     ./shell
     ./spotify-player.nix
     ./swayimg.nix
-    ./swww.nix
+    ./awww.nix
     ./syncthing.nix
     ./term
     ./vesktop.nix
     ./yazi.nix
     ./zathura.nix
     ./zen.nix
-
-    ../../patches/overlays.nix
   ];
 }

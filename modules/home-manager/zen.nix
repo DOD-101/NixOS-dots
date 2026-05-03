@@ -4,7 +4,6 @@
   lib,
   inputs,
   pkgs,
-  firefox-addons,
   ...
 }:
 let
@@ -63,7 +62,7 @@ in
           }) urls
         );
 
-      extensions' = with firefox-addons; [
+      extensions' = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         darkreader
         vimium

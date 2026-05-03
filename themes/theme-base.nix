@@ -110,7 +110,7 @@ in
 
     hyprlock.settings = lib.mkOption { };
 
-    swww.script = lib.mkOption { type = lib.types.str; };
+    awww.script = lib.mkOption { type = lib.types.str; };
 
     btop.theme = lib.mkOption { type = lib.types.attrs; };
 
@@ -168,7 +168,7 @@ in
 
     wayland.windowManager.hyprland.settings = config.theme.hyprland.themeSettings;
 
-    swww-config.script = config.theme.swww.script;
+    awww-config.script = config.theme.awww.script;
 
     home.sessionVariables = {
       JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;

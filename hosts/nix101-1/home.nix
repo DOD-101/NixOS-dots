@@ -9,8 +9,6 @@
     ../../themes
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   home.username = "david";
   home.homeDirectory = "/home/david";
 
@@ -32,7 +30,7 @@
   office-config.enable = true;
   spotify-player-config.enable = true;
   swayimg-config.enable = true;
-  swww-config.enable = true;
+  awww-config.enable = true;
   cava-config.enable = true;
 
   yazi-config.enable = true;

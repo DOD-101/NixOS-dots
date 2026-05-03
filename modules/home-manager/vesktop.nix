@@ -42,7 +42,7 @@
           };
 
           settings = {
-            autoUpdate = false;
+            autoUpdate = true;
             autoUpdateNotification = false;
             notifyAboutUpdates = false;
             enabledThemes = [ "current.css" ];

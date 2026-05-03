@@ -325,8 +325,8 @@ in
           ];
         };
 
-        swww = {
-          script = "${pkgs.swww}/bin/swww img $HOME/.background-images/catppuccin-${flavour}/${osConfig.networking.hostName}";
+        awww = {
+          script = "${pkgs.awww}/bin/awww img $HOME/.background-images/catppuccin-${flavour}/${osConfig.networking.hostName}";
         };
 
         btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";

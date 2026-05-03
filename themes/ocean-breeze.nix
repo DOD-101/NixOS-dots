@@ -276,8 +276,8 @@
         ];
       };
 
-      swww = {
-        script = "${pkgs.swww}/bin/swww img $HOME/.background-images/ocean-breeze/1.png";
+      awww = {
+        script = "${pkgs.awww}/bin/awww img $HOME/.background-images/ocean-breeze/1.png";
       };
 
       btop.theme.text = ''

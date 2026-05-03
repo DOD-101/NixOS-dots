@@ -57,7 +57,7 @@
 
       environment.systemPackages = with pkgs; [
         proton-vpn-cli
-        protonvpn-gui
+        proton-vpn
       ];
     };
 }

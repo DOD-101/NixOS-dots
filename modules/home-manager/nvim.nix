@@ -14,6 +14,8 @@
     programs.neovim = {
       enable = true;
       defaultEditor = true;
+      withPython3 = false;
+      withRuby = false;
     };
 
     home.packages = with pkgs; [
@@ -31,12 +33,12 @@
 
       # html
       emmet-language-server
-      nodePackages.prettier
+      prettier
       biome
       htmlhint
 
       # css
-      nodePackages.vscode-langservers-extracted
+      vscode-langservers-extracted
       stylelint
 
       # js
