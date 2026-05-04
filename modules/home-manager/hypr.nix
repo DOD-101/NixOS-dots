@@ -62,6 +62,7 @@ in
       cliphist
       brightnessctl
       config-store
+      inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
       (pkgs.writeShellScriptBin "dpms-toggle" (
         builtins.readFile ../../resources/hypr/scripts/dpms_toggle.sh
       ))
@@ -154,9 +155,21 @@ in
       extraConfig = config.hypr-config.hyprland.extraConfig + "\n" + osConfig.razer-config.hyprlandConfig;
     };
 
-    home.file.".config/hypr/scripts" = lib.mkIf config.hypr-config.hyprland.enable {
-      source = ../../resources/hypr/scripts;
-      recursive = true;
+    xdg.configFile = lib.mkIf config.hypr-config.hyprland.enable {
+      "hypr/scripts" = {
+        source = ../../resources/hypr/scripts;
+        recursive = true;
+      };
+      "hypr/xdph.conf" = {
+        text = inputs.home-manager.lib.hm.generators.toHyprconf {
+          attrs = {
+            screencopy = {
+              allow_token_by_default = true;
+              custom_picker_binary = "hyprland-preview-share-picker";
+            };
+          };
+        };
+      };
     };
 
     # hypridle

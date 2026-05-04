@@ -37,18 +37,34 @@
         };
 
         vencord = {
+          # useSystem = true;
           themes = {
             current = cfg.theme;
           };
 
           settings = {
             autoUpdate = true;
-            autoUpdateNotification = false;
-            notifyAboutUpdates = false;
+            autoUpdateNotification = true;
+            notifyAboutUpdates = true;
+            hardwareAcceleration = true;
+            hardwareVideoAcceleration = true;
             enabledThemes = [ "current.css" ];
 
             plugins = {
               CallTimer.enabled = true;
+
+              Settings = {
+                enabled = true;
+              };
+
+              BetterSettings = {
+                enabled = true;
+                disableFade = true;
+                eagerLoad = true;
+                organizeMenu = true;
+              };
+
+              FriendsSince.enabled = true;
             };
           };
         };
