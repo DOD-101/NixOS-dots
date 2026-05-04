@@ -83,8 +83,7 @@
         }
       '';
 
-      # WARN: Hyprgrass is broken, change this back once it is fixed
-      plugins.hyprgrass.enable = false;
+      plugins.hyprgrass.enable = true;
     };
   };
 

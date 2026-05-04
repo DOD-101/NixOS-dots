@@ -127,6 +127,8 @@ in
 
         plugin = {
           touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {
+            sensitivity = 4.0;
+            edge_margin = 40;
             hyprgrass-bind = [
               # swipe left from right edge
               ", edge:r:l, workspace, +1"
