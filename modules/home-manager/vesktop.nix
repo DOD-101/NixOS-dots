@@ -65,6 +65,7 @@
               };
 
               FriendsSince.enabled = true;
+              NoDevtoolsWarning.enabled = true;
             };
           };
         };
