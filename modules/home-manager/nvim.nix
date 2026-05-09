@@ -101,6 +101,7 @@
     # stylelint-config-standard
     home.sessionVariables = {
       NVIM_APPNAME = "nvim/janc";
+      JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;
     };
 
     home.shellAliases = {

@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -10,8 +9,14 @@
   };
 
   config = lib.mkIf config.fastfetch-config.enable {
-    home.packages = with pkgs; [
-      fastfetch
-    ];
+    programs.fastfetch = {
+      enable = true;
+      settings = {
+        programs.fastfetch = {
+          enable = true;
+          settings = config.theme.fastfetch.settings;
+        };
+      };
+    };
   };
 }

@@ -6,16 +6,6 @@
 {
   options.vesktop-config = {
     enable = lib.mkEnableOption "enable vesktop config";
-    theme = lib.mkOption {
-      type =
-        with lib.types;
-        oneOf [
-          str
-          path
-        ];
-      default = "";
-      description = "Theme for vesktop";
-    };
   };
 
   config =
@@ -38,7 +28,7 @@
 
         vencord = {
           themes = {
-            current = cfg.theme;
+            current = config.theme.discord.theme;
           };
 
           settings = {

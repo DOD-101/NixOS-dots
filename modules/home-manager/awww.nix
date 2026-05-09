@@ -9,6 +9,7 @@
     enable = lib.mkEnableOption "enable awww config";
     script = lib.mkOption {
       type = lib.types.str;
+      default = config.theme.awww.script;
       description = "Script to run after initializing the daemon.";
     };
   };
@@ -34,7 +35,7 @@
         RestartSec = 3;
         RemainAfterExit = true;
         ExecStart = "${pkgs.writeShellScript "awww-script" ''
-          ${pkgs.awww}/bin/awww-daemon & 
+          ${pkgs.awww}/bin/awww-daemon &
 
           ${config.awww-config.script}
         ''}";

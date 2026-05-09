@@ -329,7 +329,7 @@ in
           script = "${pkgs.awww}/bin/awww img $HOME/.background-images/catppuccin-${flavour}/${osConfig.networking.hostName}";
         };
 
-        btop.theme.source = btop_ + "/themes/catppuccin_${flavour}.theme";
+        btop.theme = btop_ + "/themes/catppuccin_${flavour}.theme";
 
         fish.theme = fishThemeToVars (
           builtins.readFile (fish_ + "/themes/static/catppuccin-${flavour}.theme")
@@ -367,28 +367,93 @@ in
           gradient_color_7 = color.extras.red;
         };
 
-        fastfetch.config.text =
-          builtins.replaceStrings
-            [
-              "@logo@"
-            ]
-            [
-              (toString ../resources/fastfetch/kitty.txt)
-            ]
-            (builtins.readFile ../resources/fastfetch/catppuccin.jsonc);
+        fastfetch.settings = {
+          logo = {
+            source = toString ../resources/fastfetch/kitty.txt;
+            color."1" = "green";
+            position = "left";
+            padding.top = 2;
+            type = "file";
+          };
 
-        igneous-md = ''
-          @import url("github-markdown-dark.css");
+          display = {
+            separator = " ";
+            color = "yellow";
+          };
 
-          :root {
-            --color-0: ${color.extras.text};
-            --color-1: ${color.extras.base};
-            --color-2: ${color.extras.mauve};
-            --color-8: ${color.extras.mantle};
-          }
-        '';
+          modules = [
+            {
+              type = "title";
+              key = "  ";
+              format = "{1}@{2}";
+            }
+            {
+              type = "os";
+              key = "  ";
+            }
+            {
+              type = "kernel";
+              key = "  ";
+              format = "{1} {2}";
+            }
+            {
+              type = "packages";
+              key = "  󰏖";
+            }
+            {
+              type = "wm";
+              key = "  ";
+            }
+            {
+              type = "shell";
+              key = "  ";
+            }
+            {
+              type = "terminal";
+              key = "  ";
+            }
+            {
+              type = "uptime";
+              key = "  󰅐";
+            }
+            {
+              type = "battery";
+              key = "  ";
+            }
+            {
+              type = "custom";
+              format = "";
+            }
+            {
+              type = "custom";
+              format = "  󰊤 \u001b[31m󰊤 \u001b[32m󰊤 \u001b[33m󰊤 \u001b[34m󰊤 \u001b[35m󰊤 \u001b[36m󰊤";
+            }
+          ];
+        };
 
-        dod-shell = ../resources/dod-shell/catppuccin.scss;
+        igneous-md =
+          let
+            vars = ''
+              :root {
+                --color-0: ${color.extras.text};
+                --color-1: ${color.extras.base};
+                --color-2: ${color.extras.mauve};
+                --color-8: ${color.extras.mantle};
+              }
+            '';
+          in
+          [
+            ''
+              @import url("github-markdown-dark.css");
+              ${vars}
+            ''
+            ''
+              @import url("github-markdown-dark-centered.css");
+              ${vars}
+            ''
+          ];
+
+        dod-shell.source = ../resources/dod-shell/catppuccin.scss;
       };
 
     programs.starship = {

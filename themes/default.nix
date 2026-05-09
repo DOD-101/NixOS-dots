@@ -22,7 +22,7 @@ in
   imports = [
     ./theme-base.nix
     ./catppuccin.nix
-    ./ocean-breeze.nix
+    # ./ocean-breeze.nix # WARN: unmaintained, doesn't currently work
   ];
 
   options.theme = {

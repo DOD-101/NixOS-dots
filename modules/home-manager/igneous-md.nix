@@ -15,7 +15,14 @@
       inputs.igneous-md.packages."${pkgs.stdenv.hostPlatform.system}".igneous-md-release
     ];
 
-    xdg.configFile."igneous-md/css/_${config.theme.name}.css".text = config.theme.igneous-md;
+    xdg.configFile = builtins.listToAttrs (
+      lib.imap0 (i: v: {
+        name = "igneous-md/css/_${toString i}${config.theme.name}.css";
+        value = {
+          text = v;
+        };
+      }) config.theme.igneous-md
+    );
 
     shell.completions = [ "igneous-md completions @shell@" ];
   };

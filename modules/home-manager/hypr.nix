@@ -151,7 +151,8 @@ in
             ];
           };
         };
-      };
+      }
+      // config.theme.hyprland.themeSettings;
 
       extraConfig = config.hypr-config.hyprland.extraConfig + "\n" + osConfig.razer-config.hyprlandConfig;
     };
