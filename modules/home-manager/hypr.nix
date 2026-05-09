@@ -150,7 +150,8 @@ in
             ];
           };
         };
-      };
+      }
+      // config.theme.hyprland.themeSettings;
 
       extraConfig = config.hypr-config.hyprland.extraConfig + "\n" + osConfig.razer-config.hyprlandConfig;
     };
@@ -160,6 +161,7 @@ in
         source = ../../resources/hypr/scripts;
         recursive = true;
       };
+      # hyprland-preview-share-picker
       "hypr/xdph.conf" = {
         text = inputs.home-manager.lib.hm.generators.toHyprconf {
           attrs = {
@@ -170,6 +172,13 @@ in
           };
         };
       };
+      "hyprland-preview-share-picker/config.yaml".text = (
+        lib.generators.toYAML { } {
+          stylesheets = [ "./config.scss" ];
+          default_page = "outputs";
+        }
+      );
+      "hyprland-preview-share-picker/config.scss".text = config.theme.hyprland-preview-share-picker;
     };
 
     # hypridle

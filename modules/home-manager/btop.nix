@@ -24,6 +24,8 @@
         vim_keys = true;
         selected_battery = config.btop-config.battery;
       };
+
+      themes.${config.theme.name} = config.theme.btop.theme;
     };
   };
 }

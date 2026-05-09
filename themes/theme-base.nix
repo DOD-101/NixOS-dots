@@ -4,8 +4,72 @@
   inputs,
   ...
 }:
+# TODO: It would be good to ensure the themes actually all set these values properly with tests
+
+# TODO: Write docs for this
 let
-  colorLib = import ./color-lib.nix { inputs = inputs; };
+  removeHash =
+    str:
+    if builtins.typeOf str == "set" then
+      builtins.mapAttrs (name: value: removeHash value) str
+    else if builtins.substring 0 1 str == "#" then
+      builtins.substring 1 (builtins.stringLength str) str
+    else
+      str;
+
+  convertToRgb =
+    str:
+    if builtins.typeOf str == "set" then
+      builtins.mapAttrs (name: value: convertToRgb value) str
+    else
+      builtins.replaceStrings [ " " ] [ ", " ] (
+        toString (inputs.nix-colors.lib.conversions.hexToRGB str)
+      );
+
+  toScssVars =
+    set: prefix:
+    builtins.concatStringsSep "\n" (
+      builtins.concatMap (
+        name:
+        let
+          value = set.${name};
+          varName = if prefix == "" then name else "${prefix}-${name}";
+        in
+        if builtins.isAttrs value then
+          [ (toScssVars value varName) ] # Recursively process nested sets
+        else
+          [ "\$${varName}: ${toString value};" ] # Convert key-value to SCSS variable
+      ) (builtins.attrNames set)
+    );
+
+  mkFileOption =
+    mkOptionInputs:
+    lib.mkOption mkOptionInputs
+    // {
+      type = lib.types.oneOf [
+        (lib.types.submodule {
+          options.source = lib.mkOption { type = lib.types.path; };
+        })
+        (lib.types.submodule {
+          options.text = lib.mkOption { type = lib.types.str; };
+        })
+      ];
+    };
+
+  mkScssOption =
+    mkOptionInputs:
+    (mkFileOption (
+      mkOptionInputs
+      // {
+        apply =
+          pre:
+          let
+            raw = if pre ? source then builtins.readFile pre.source else pre.text;
+            colors = toScssVars config.theme.color "";
+          in
+          colors + "\n" + raw;
+      }
+    ));
 in
 {
   options.theme = rec {
@@ -110,6 +174,8 @@ in
 
     hyprlock.settings = lib.mkOption { };
 
+    hyprland-preview-share-picker = mkScssOption { };
+
     awww.script = lib.mkOption { type = lib.types.str; };
 
     btop.theme = lib.mkOption { type = lib.types.attrs; };
@@ -150,47 +216,20 @@ in
       vimium-css = lib.mkOption { type = lib.types.str; };
     };
 
-    fastfetch.config = lib.mkOption {
+    fastfetch.settings = lib.mkOption {
       type = lib.types.attrs;
     };
 
-    igneous-md = lib.mkOption { type = lib.types.str; };
+    igneous-md = lib.mkOption { type = with lib.types; listOf str; };
 
-    dod-shell = lib.mkOption { type = lib.types.path; };
+    dod-shell = mkScssOption { };
   };
 
   config = {
     theme = {
-      hashlessColor = builtins.mapAttrs (name: value: colorLib.removeHash value) config.theme.color;
+      hashlessColor = builtins.mapAttrs (name: value: removeHash value) config.theme.color;
 
-      rgbColor = builtins.mapAttrs (name: value: colorLib.convertToRgb value) config.theme.hashlessColor;
-    };
-
-    wayland.windowManager.hyprland.settings = config.theme.hyprland.themeSettings;
-
-    awww-config.script = config.theme.awww.script;
-
-    home.sessionVariables = {
-      JANC_NVIM_COLORSCHEME = config.theme.nvim.theme;
-    };
-
-    zen-config = with config.theme.zen-browser; {
-      userChrome = userChrome;
-      userContent = userChrome;
-      darkreader-theme = darkreader-theme;
-      vimium-css = vimium-css;
-    };
-
-    vesktop-config.theme = config.theme.discord.theme;
-
-    home.file = {
-      # NOTE: hard-coded profile from `../modules/home-manager/zen.nix`
-      ".config/zen/default/chrome/zen-logo.svg" =
-        lib.mkIf config.zen-config.enable config.theme.zen-browser.zen-logo;
-
-      ".config/fastfetch/config.jsonc" = config.theme.fastfetch.config;
-
-      ".config/btop/themes/${config.theme.name}.theme" = config.theme.btop.theme;
+      rgbColor = builtins.mapAttrs (name: value: convertToRgb value) config.theme.hashlessColor;
     };
   };
 }

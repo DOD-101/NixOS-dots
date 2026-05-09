@@ -5,23 +5,6 @@
 }:
 let
   cfg = config.dod-shell-config;
-
-  toScssVars =
-    set: prefix:
-    builtins.concatStringsSep "\n" (
-      builtins.concatMap (
-        name:
-        let
-          value = set.${name};
-          varName = if prefix == "" then name else "${prefix}-${name}";
-        in
-        if builtins.isAttrs value then
-          [ (toScssVars value varName) ] # Recursively process nested sets
-        else
-          [ "\$${varName}: ${toString value};" ] # Convert key-value to SCSS variable
-      ) (builtins.attrNames set)
-    );
-  colors = toScssVars config.theme.color "";
 in
 {
   options.dod-shell-config = {
@@ -42,7 +25,7 @@ in
     dod-shell = {
       enable = true;
       removed-components = cfg.removed-components;
-      scss.text = colors + "\n" + builtins.readFile config.theme.dod-shell;
+      scss.text = config.theme.dod-shell;
       config.config = lib.attrsets.recursiveUpdate cfg.settings {
 
         launcher = {

@@ -9,30 +9,11 @@
 let
   zenBranch = "beta";
   cfg = config.zen-config;
+  theme = config.theme.zen-browser;
 in
 {
   options.zen-config = {
     enable = lib.mkEnableOption "enable zen config";
-    userChrome = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "UserChrome css for zen browser.";
-    };
-    userContent = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "UserContent css for zen browser.";
-    };
-    darkreader-theme = lib.mkOption {
-      type = lib.types.attrs;
-      default = { };
-      description = "Theme for darkreader plugin, used to override defaults";
-    };
-    vimium-css = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Css for vimium plugin.";
-    };
   };
 
   imports = [
@@ -167,7 +148,7 @@ in
                   "darkColorScheme" = "Default";
                   "immediateModify" = false;
                 }
-                // cfg.darkreader-theme;
+                // theme.darkreader-theme;
 
                 "automation" = {
                   "enabled" = false;
@@ -194,7 +175,7 @@ in
               # TODO: Implement https://github.com/philc/vimium/issues/4600 Upstream OR just write my own fork
               # "{d7742d87-e61d-4b78-b8a1-b469842139fa}".settings = {
               #   settingsVersion = "2.3.1";
-              #   userDefinedLinkHintCss = cfg.vimium-css;
+              #   userDefinedLinkHintCss = theme.vimium-css;
               # };
             };
           };
@@ -241,8 +222,8 @@ in
             };
           };
 
-          userChrome = cfg.userChrome;
-          userContent = cfg.userContent;
+          userChrome = theme.userChrome;
+          userContent = theme.userContent;
 
           search = {
             force = true;
@@ -347,5 +328,11 @@ in
           setsid zen-${zenBranch}
         '')
       ];
+
+      xdg.configFile."zen/default/chrome/zen-logo.svg" =
+        let
+          logo = config.theme.zen-browser.zen-logo;
+        in
+        lib.mkIf (logo != null) logo;
     };
 }
