@@ -174,6 +174,8 @@ in
 
     hyprlock.settings = lib.mkOption { };
 
+    hyprland-preview-share-picker = mkScssOption { };
+
     awww.script = lib.mkOption { type = lib.types.str; };
 
     btop.theme = lib.mkOption { type = with lib.types; either path str; };

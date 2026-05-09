@@ -325,6 +325,8 @@ in
           ];
         };
 
+        hyprland-preview-share-picker.source = ../resources/hyprland-preview-share-picker/catppuccin.scss;
+
         awww = {
           script = "${pkgs.awww}/bin/awww img $HOME/.background-images/catppuccin-${flavour}/${osConfig.networking.hostName}";
         };

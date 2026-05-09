@@ -3,6 +3,13 @@
   config,
   ...
 }:
+# If vesktop breaks:
+#
+# ```js
+# await Vencord.Updater.checkForUpdates()
+# await Vencord.Updater.update()
+# VesktopNative.app.relaunch()
+# ```
 {
   options.vesktop-config = {
     enable = lib.mkEnableOption "enable vesktop config";
@@ -33,12 +40,33 @@
 
           settings = {
             autoUpdate = true;
-            autoUpdateNotification = false;
-            notifyAboutUpdates = false;
+            autoUpdateNotification = true;
+            notifyAboutUpdates = true;
+            hardwareAcceleration = true;
+            videoHardwareAcceleration = true;
             enabledThemes = [ "current.css" ];
 
             plugins = {
               CallTimer.enabled = true;
+
+              Settings = {
+                enabled = true;
+              };
+
+              BetterSettings = {
+                enabled = true;
+                disableFade = true;
+                eagerLoad = true;
+                organizeMenu = true;
+              };
+
+              FriendsSince.enabled = true;
+              NoDevtoolsWarning.enabled = true;
+              customIdle = {
+                enable = true;
+                idleTimeout = 0;
+                remainInIdle = true;
+              };
             };
           };
         };

@@ -1,0 +1,86 @@
+* {
+  all: unset;
+  font-family: JetBrains Mono NF;
+  color: $foreground;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.window {
+  border-radius: 5px;
+  background-color: $background;
+  border: solid 2px $extras-mantle;
+  margin: 2px;
+}
+
+tabs {
+  padding: 0.5rem 1rem;
+}
+
+tabs > tab {
+  margin-right: 1rem;
+}
+
+.tab-label {
+  color: $extras-subtext0;
+  transition: all 0.2s ease;
+}
+
+tabs > tab:checked > .tab-label,
+tabs > tab:active > .tab-label {
+  text-decoration: underline currentColor;
+  color: $foreground;
+}
+
+tabs > tab:focus > .tab-label {
+  color: $foreground;
+}
+
+.page {
+  padding: 1rem;
+}
+
+.image-label {
+  font-size: 12px;
+  padding: 0.25rem;
+}
+
+flowboxchild > .card,
+button > .card {
+  transition: all 0.2s ease;
+  border: solid 2px transparent;
+  border-color: $extras-mantle;
+  border-radius: 5px;
+  background-color: $extras-crust;
+  padding: 5px;
+}
+
+flowboxchild:active > .card,
+flowboxchild:selected > .card,
+button:active > .card,
+button:selected > .card,
+button:focus > .card {
+  border: solid 2px $extras-accent;
+}
+
+.image {
+  border-radius: 5px;
+}
+
+.region-button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: $extras-accent;
+  color: $foreground;
+  transition: all 0.2s ease;
+}
+
+.region-button:not(:disabled):hover,
+.region-button:not(:disabled):focus {
+  background-color: $green;
+}
+
+.region-button:disabled {
+  background-color: $extras-overlay2;
+  color: $extras-mantle;
+}
