@@ -100,7 +100,7 @@
         enable = true;
         devices = [
           "nix101-0"
-          "android101-0"
+          "android101-1"
         ];
       };
       school = {
