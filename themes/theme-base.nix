@@ -1,3 +1,19 @@
+# Base module providing shared theme options for all theme implementations.
+# Defines common theme options (colors, fonts, cursors).
+#
+# The options defined here should not be used here to set other values as well.
+# The application of the actual theme related values should happen in the
+# respective program modules.
+#
+# ## Adding a new option
+#
+# 1. Add the option in here to allow it to be set by the themes
+#
+# 2. Provide a default if possible
+#
+# 3. Go into the programs module and apply the option there
+#
+# > DO NOT add a `program-config.theme` option.
 {
   lib,
   config,
@@ -6,8 +22,13 @@
 }:
 # TODO: It would be good to ensure the themes actually all set these values properly with tests
 
-# TODO: Write docs for this
+# TODO: Add sensible defaults possibly based off of base16, that can either be
+# entirely or partially overwritten
+
+# NOTE: Look into: https://github.com/InioX/matugen
 let
+  # Removes leading `#` prefix from hex color strings in a nested attrset.
+  # Preserves non-string values and recursively processes nested attrsets.
   removeHash =
     str:
     if builtins.typeOf str == "set" then
@@ -17,6 +38,8 @@ let
     else
       str;
 
+  # Converts hex color strings to space-separated RGB format (e.g., "255, 255, 255")
+  # in a nested attrset using nix-colors library.
   convertToRgb =
     str:
     if builtins.typeOf str == "set" then
@@ -26,6 +49,8 @@ let
         toString (inputs.nix-colors.lib.conversions.hexToRGB str)
       );
 
+  # Recursively converts a nested attrset to SCSS variable declarations.
+  # Nested attrs become prefixed variables (e.g., `$extras-overlay1`),
   toScssVars =
     set: prefix:
     builtins.concatStringsSep "\n" (
@@ -42,6 +67,8 @@ let
       ) (builtins.attrNames set)
     );
 
+  # Creates a Nix option that accepts either a file path via `source`
+  # or inline text via `text`.
   mkFileOption =
     mkOptionInputs:
     lib.mkOption mkOptionInputs
@@ -56,6 +83,10 @@ let
       ];
     };
 
+  # Creates a SCSS option that combines generated color variables
+  # from `config.theme.color` with raw SCSS content.
+  #
+  # See also: `mkFileOption`
   mkScssOption =
     mkOptionInputs:
     (mkFileOption (

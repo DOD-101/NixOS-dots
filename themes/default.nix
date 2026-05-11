@@ -1,3 +1,5 @@
+# Main theme module importing all available theme implementations.
+# Select theme via `theme.theme`.
 { lib, palettes, ... }:
 let
   createThemeVariations = base: variations: map (v: "${base}-${v}") variations;
