@@ -21,6 +21,7 @@
           st = "status";
           rr = "restore";
           rs = "restore --staged";
+          pr = "pull --rebase --autostash";
         };
         push = {
           autoSetupRemote = true;
