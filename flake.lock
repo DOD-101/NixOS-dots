@@ -210,11 +210,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776882651,
-        "narHash": "sha256-Y3SR6e/gm5rU8wuOMvyD4KCJHRF7IKfF1VXJq6JL8RM=",
+        "lastModified": 1778792456,
+        "narHash": "sha256-YUnzRZdeLrAINro8y1gdpB/shWH88j2CeafnGlGzIS4=",
         "owner": "DOD-101",
         "repo": "dod-shell",
-        "rev": "68d7f8d4ffffec0fbe4e687f82c82ff029369146",
+        "rev": "638256fa25d72041449d66ad3f69867cf3f80b0b",
         "type": "github"
       },
       "original": {
