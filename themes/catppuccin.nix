@@ -331,7 +331,7 @@ in
           script = "${pkgs.awww}/bin/awww img $HOME/.background-images/catppuccin-${flavour}/${osConfig.networking.hostName}";
         };
 
-        btop.theme = btop_ + "/themes/catppuccin_${flavour}.theme";
+        btop.theme = builtins.readFile "${btop_}/themes/catppuccin_${flavour}.theme";
 
         fish.theme = fishThemeToVars (
           builtins.readFile (fish_ + "/themes/static/catppuccin-${flavour}.theme")
@@ -386,16 +386,16 @@ in
           modules = [
             {
               type = "title";
-              key = "  ";
+              key = "  ";
               format = "{1}@{2}";
             }
             {
               type = "os";
-              key = "  ";
+              key = "  ";
             }
             {
               type = "kernel";
-              key = "  ";
+              key = "  ";
               format = "{1} {2}";
             }
             {
@@ -404,15 +404,15 @@ in
             }
             {
               type = "wm";
-              key = "  ";
+              key = "  ";
             }
             {
               type = "shell";
-              key = "  ";
+              key = "  ";
             }
             {
               type = "terminal";
-              key = "  ";
+              key = "  ";
             }
             {
               type = "uptime";
@@ -420,15 +420,13 @@ in
             }
             {
               type = "battery";
-              key = "  ";
+              key = "  ";
             }
+            "break"
             {
               type = "custom";
-              format = "";
-            }
-            {
-              type = "custom";
-              format = "  󰊤 \u001b[31m󰊤 \u001b[32m󰊤 \u001b[33m󰊤 \u001b[34m󰊤 \u001b[35m󰊤 \u001b[36m󰊤";
+              # fix for issue with single \ in nix strings https://github.com/NixOS/nix/issues/10082#issuecomment-2059228774
+              format = builtins.fromJSON ''"  󰊤 \u001b[31m󰊤 \u001b[32m󰊤 \u001b[33m󰊤 \u001b[34m󰊤 \u001b[35m󰊤 \u001b[36m󰊤"'';
             }
           ];
         };

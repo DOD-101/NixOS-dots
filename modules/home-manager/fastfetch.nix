@@ -10,13 +10,8 @@
 
   config = lib.mkIf config.fastfetch-config.enable {
     programs.fastfetch = {
+      inherit (config.theme.fastfetch) settings;
       enable = true;
-      settings = {
-        programs.fastfetch = {
-          enable = true;
-          settings = config.theme.fastfetch.settings;
-        };
-      };
     };
   };
 }
