@@ -31,6 +31,27 @@ in
         "mime/packages/drawio.xml".source = ../../resources/xdg-mime/drawio.xml;
       };
 
+      desktopEntries.inkview = {
+        name = "Inkview";
+        genericName = "SVG Viewer";
+        comment = "View SVG files with Inkscape's lightweight viewer";
+        exec = "inkview %F";
+        icon = "inkscape";
+        terminal = false;
+        categories = [
+          "Graphics"
+          "Viewer"
+        ];
+        mimeType = [
+          "image/svg+xml"
+          "image/svg+xml-compressed"
+        ];
+        settings = {
+          Keywords = "svg;vector;viewer;inkscape;";
+          StartupNotify = "false";
+        };
+      };
+
       mimeApps = {
         enable = true;
 
@@ -48,7 +69,7 @@ in
             "gimp.desktop"
           ];
           "image/svg+xml" = [
-            "org.inkscape.Inkscape.desktop"
+            "inkview.desktop"
           ];
           "application/vnd.jgraph.mxfile" = [
             "drawio.desktop"
