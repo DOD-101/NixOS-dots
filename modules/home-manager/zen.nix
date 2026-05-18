@@ -325,7 +325,7 @@ in
 
       home.packages = with pkgs; [
         (writeShellScriptBin "zen" ''
-          setsid zen-${zenBranch}
+          setsid zen-${zenBranch} $@
         '')
       ];
 
