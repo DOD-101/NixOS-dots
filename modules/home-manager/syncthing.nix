@@ -54,7 +54,7 @@ in
         devices = lib.filterAttrs (k: _: k != osConfig.networking.hostName) {
           "nix101-0".id = "LC766C6-2Y2VVNG-AUDHDYN-AVXENF6-7ANCOXZ-QPSJM5H-CB6SLP2-YM7CKAE";
           "nix101-1".id = "I4N7SM3-CJRDFQB-44ETP7M-P3RLANS-DDZJSHJ-JEPEDUR-EEAU3LO-RMOTWAB";
-          "android101-1".id = "ECW3BXQ-O4IIWR5-ECETYAT-QGYEN6O-5BMTFHE-IHVC2MS-743K253-MEBRPA4"; # non-declarative
+          "android101-2".id = "4UAQP4D-Z2VXHW4-6QBVVMH-MSZ72JH-XQ5BEHO-R4NPNSV-F3XNBBZ-HVQSUAY"; # non-declarative
         };
       } cfg.settings;
     };
