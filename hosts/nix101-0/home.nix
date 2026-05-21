@@ -29,6 +29,7 @@
   spotify-player-config.enable = true;
   swayimg-config.enable = true;
   awww-config.enable = true;
+  font-config.enable = true;
   cava-config.enable = true;
 
   yazi-config.enable = true;

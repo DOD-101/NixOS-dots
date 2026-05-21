@@ -69,7 +69,6 @@
   # Enable config modules
   razer-config.enable = true;
   sound-config.enable = true;
-  font-config.enable = true;
   bluetooth-config.enable = true;
   nvidia-config.enable = true;
   borg-config.enable = true;

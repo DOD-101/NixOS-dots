@@ -13,7 +13,7 @@
       enable = true;
       settings = {
         main = {
-          font = "${config.theme.font.mono.main}:size=14";
+          font = "${builtins.elemAt config.theme.fonts.monospace 0}:size=14";
         };
 
         scrollback = {

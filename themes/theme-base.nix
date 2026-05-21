@@ -24,8 +24,6 @@
 
 # TODO: Add sensible defaults possibly based off of base16, that can either be
 # entirely or partially overwritten
-
-# NOTE: Look into: https://github.com/InioX/matugen
 let
   # Removes leading `#` prefix from hex color strings in a nested attrset.
   # Preserves non-string values and recursively processes nested attrsets.
@@ -59,9 +57,24 @@ let
         let
           value = set.${name};
           varName = if prefix == "" then name else "${prefix}-${name}";
+          itemToScss =
+            item:
+            if builtins.isAttrs item then
+              "(${builtins.concatStringsSep ", " (builtins.mapAttrs (k: v: "${k}: ${itemToScss v}") item)})"
+            else if builtins.isList item then
+              "(${builtins.concatStringsSep ", " (map (v: itemToScss v))})"
+            else if builtins.typeOf item == "string" then
+              ''"${item}"''
+            else
+              toString item;
         in
         if builtins.isAttrs value then
           [ (toScssVars value varName) ] # Recursively process nested sets
+        else if builtins.isList value then
+          if builtins.length value == 0 then
+            [ ]
+          else
+            [ "\$${varName}: ${builtins.concatStringsSep ", " (map itemToScss value)};" ]
         else
           [ "\$${varName}: ${toString value};" ] # Convert key-value to SCSS variable
       ) (builtins.attrNames set)
@@ -97,30 +110,35 @@ let
           let
             raw = if pre ? source then builtins.readFile pre.source else pre.text;
             colors = toScssVars config.theme.color "";
+            fonts = toScssVars config.theme.fonts "";
           in
-          colors + "\n" + raw;
+          lib.concatLines [
+            colors
+            fonts
+            raw
+          ];
       }
     ));
 in
 {
   options.theme = rec {
     name = lib.mkOption { type = lib.types.str; };
-    font = {
-      mono = {
-        main = lib.mkOption { type = lib.types.str; };
-        secondary = lib.mkOption {
-          type = lib.types.str;
-          default = config.theme.font.mono.main;
-        };
+    fonts = {
+      monospace = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = [ ];
+        description = "monospace fonts (names) to use";
       };
-      propo = {
-        main = lib.mkOption { type = lib.types.str; };
-        secondary = lib.mkOption {
-          type = lib.types.str;
-          default = config.theme.font.prop.main;
-        };
+      sansSerif = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = [ ];
+        description = "sansSerif fonts (names) to use";
       };
-      packages = lib.mkOption { type = lib.types.listOf; };
+      serif = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = [ ];
+        description = "serif fonts (names) to use";
+      };
     };
 
     cursor = {
@@ -209,7 +227,7 @@ in
 
     awww.script = lib.mkOption { type = lib.types.str; };
 
-    btop.theme = lib.mkOption { type = with lib.types; either path str; };
+    btop.theme = lib.mkOption { type = lib.types.str; };
 
     zsh.theme = lib.mkOption {
       type = lib.types.str;

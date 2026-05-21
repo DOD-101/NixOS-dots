@@ -64,7 +64,6 @@
 
   # Enable config modules
   sound-config.enable = true;
-  font-config.enable = true;
   bluetooth-config.enable = true;
   borg-config.enable = true;
 

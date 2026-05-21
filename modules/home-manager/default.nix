@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.dod-shell.homeManagerModules.default
+    ./awww.nix
     ./btop.nix
     ./cava.nix
     ./cursor.nix
@@ -9,6 +10,7 @@
     ./dev.nix
     ./dod-shell.nix
     ./fastfetch.nix
+    ./fonts.nix
     ./hypr.nix
     ./igneous-md.nix
     ./mime.nix
@@ -17,7 +19,6 @@
     ./shell
     ./spotify-player.nix
     ./swayimg.nix
-    ./awww.nix
     ./syncthing.nix
     ./term
     ./vesktop.nix

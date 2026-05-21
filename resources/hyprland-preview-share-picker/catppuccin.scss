@@ -1,6 +1,8 @@
+@use "sass:list";
+
 * {
   all: unset;
-  font-family: JetBrains Mono NF;
+  font-family: list.nth($monospace, 1);
   color: $foreground;
   font-weight: bold;
   font-size: 16px;

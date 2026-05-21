@@ -68,14 +68,13 @@ in
       in
       rec {
         name = "catppuccin-${flavour}-${accent}";
-        font = {
-          mono = {
-            main = "FiraCode Nerd Font Mono";
-            secondary = "JetBrainsMono Nerd Font";
-          };
-          propo = {
-            main = "FiraCode Nerd Font Mono";
-          };
+        fonts = {
+          monospace = [
+            "FiraCode Nerd Font Mono"
+          ];
+          sansSerif = [
+            "FiraCode Nerd Font Propo"
+          ];
         };
 
         cursor = {
@@ -297,7 +296,7 @@ in
               text = "Hello There, $USER";
               color = "rgba(${config.theme.hashlessColor.white}ff)";
               font_size = 25;
-              font_family = "FiraCode Nerd Font Mono";
+              font_family = builtins.elemAt config.theme.fonts.monospace 0;
               rotate = 0;
               position = "0, 80";
               halign = "center";
@@ -317,7 +316,7 @@ in
                 "cmd[update:1000] sh ${file}";
               color = "rgba(${config.theme.hashlessColor.white}ff)";
               font_size = 20;
-              font_family = "FiraCode Nerd Font Mono";
+              font_family = builtins.elemAt config.theme.fonts.monospace 0;
               position = "0, 50";
               halign = "center";
               valign = "bottom";

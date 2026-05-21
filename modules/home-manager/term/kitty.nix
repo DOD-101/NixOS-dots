@@ -16,7 +16,7 @@
       enable = true;
 
       font = {
-        name = config.theme.font.mono.main;
+        name = builtins.elemAt config.theme.fonts.monospace 0;
         size = 14;
       };
 
