@@ -303,6 +303,7 @@ in
             "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
             "extensions.autoDisableScopes" = 0;
             "ui.systemUsesDarkTheme" = 1;
+            "browser.translations.neverTranslateLanguages" = "de";
 
             # Disable irritating first-run stuff
             "browser.disableResetPrompt" = true;
