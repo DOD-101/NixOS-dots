@@ -304,6 +304,7 @@ in
             "extensions.autoDisableScopes" = 0;
             "ui.systemUsesDarkTheme" = 1;
             "browser.translations.neverTranslateLanguages" = "de";
+            "general.autoScroll" = true;
 
             # Disable irritating first-run stuff
             "browser.disableResetPrompt" = true;
