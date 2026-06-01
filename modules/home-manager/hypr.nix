@@ -214,7 +214,9 @@ in
     # hyprlock
     programs.hyprlock = lib.mkIf config.hypr-config.hyprlock.enable {
       enable = true;
-      settings = config.theme.hyprlock.settings;
+      settings = lib.recursiveUpdate {
+        general.ignore_empty_input = true;
+      } config.theme.hyprlock.settings;
     };
 
     shell.completions = [ "config-store completions @shell@" ];

@@ -225,10 +225,6 @@ in
         };
 
         hyprlock.settings = {
-          general = {
-            ignore_empty_input = true;
-          };
-
           background = [
             {
               blur_passes = 1;
