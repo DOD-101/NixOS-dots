@@ -126,17 +126,17 @@ in
     fonts = {
       monospace = lib.mkOption {
         type = with lib.types; listOf str;
-        default = [ ];
+        default = [ "DejaVu Sans Mono" ];
         description = "monospace fonts (names) to use";
       };
       sansSerif = lib.mkOption {
         type = with lib.types; listOf str;
-        default = [ ];
+        default = [ "DejaVu Sans" ];
         description = "sansSerif fonts (names) to use";
       };
       serif = lib.mkOption {
         type = with lib.types; listOf str;
-        default = [ ];
+        default = [ "DejaVu Serif" ];
         description = "serif fonts (names) to use";
       };
     };
@@ -178,7 +178,19 @@ in
 
     rgbColor = color;
 
-    cava.color = lib.mkOption { type = lib.types.attrs; };
+    cava.color = lib.mkOption {
+      type = lib.types.attrs;
+      default = with color; {
+        gradient = 1;
+        gradient_color_1 = white;
+        gradient_color_2 = cyan;
+        gradient_color_3 = blue;
+        gradient_color_4 = green;
+        gradient_color_5 = magenta;
+        gradient_color_6 = yellow;
+        gradient_color_7 = red;
+      };
+    };
 
     yazi.theme = lib.mkOption {
       type = lib.types.attrs;
