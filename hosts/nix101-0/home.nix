@@ -148,6 +148,8 @@
   home.packages = with pkgs; [
     keepassxc
     signal-desktop
+    zip
+    unzip
 
     tor-browser
     qbittorrent
