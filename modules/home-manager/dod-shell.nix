@@ -73,6 +73,10 @@ in
               name = "Zen Browser";
             }
             {
+              name = "Zen Browser Private Window";
+              cmd = "zen --private-window";
+            }
+            {
               cmd = "thunderbird";
               name = "Thunderbird";
             }
