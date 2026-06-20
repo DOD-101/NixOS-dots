@@ -13,6 +13,13 @@
     XCURSOR_SIZE = config.home.pointerCursor.size;
   };
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    dconf = {
+      enable = true;
+      settings."org/gnome/desktop/interface".color-scheme = config.theme.dconf.color-scheme;
+    };
+    gtk4.theme = null;
+  };
   qt.enable = true;
 }

@@ -1,17 +1,11 @@
 {
   config,
-  lib,
+  common,
   ...
-}:
-{
-  options = {
-    fastfetch-config.enable = lib.mkEnableOption "enable fastfetch config";
+}@args:
+common.mkSimpleConfigModule "fastfetch" {
+  programs.fastfetch = {
+    inherit (config.theme.fastfetch) settings;
+    enable = true;
   };
-
-  config = lib.mkIf config.fastfetch-config.enable {
-    programs.fastfetch = {
-      inherit (config.theme.fastfetch) settings;
-      enable = true;
-    };
-  };
-}
+} args

@@ -21,8 +21,7 @@
 
     systemd.user.services.awww = {
       Unit = {
-        Description = "Swww wallpaper service.";
-
+        Description = "Awww wallpaper service.";
         After = [ "hyprland-session.target" ];
         BindsTo = [ "hyprland-session.target" ];
       };
@@ -41,6 +40,5 @@
         ''}";
       };
     };
-
   };
 }

@@ -1,14 +1,30 @@
 {
   pkgs,
   config,
+  common,
   ...
 }:
-{
-  imports = [
-    ../../modules/home-manager
-    ../../themes
+let
+  modules = common.enabledModules [
+    "awww"
+    "cava"
+    "dev"
+    "fastfetch"
+    "font"
+    "igneous-md"
+    "mime"
+    "mpv"
+    "office"
+    "spotify-player"
+    "swayimg"
+    "vesktop"
+    "yazi"
+    "zathura"
+    "zen"
   ];
-
+in
+modules
+// {
   home.username = "david";
   home.homeDirectory = "/home/david";
 
@@ -18,29 +34,11 @@
     enable = true;
     battery = "BAT0";
   };
-  fastfetch-config.enable = true;
-  foot-config.enable = true;
-  igneous-config.enable = true;
 
-  kitty-config.default = true;
-  kitty-config.enable = true;
-
-  mime-config.enable = true;
-  mpv-config.enable = true;
-  office-config.enable = true;
-  spotify-player-config.enable = true;
-  swayimg-config.enable = true;
-  awww-config.enable = true;
-  font-config.enable = true;
-  cava-config.enable = true;
-
-  yazi-config.enable = true;
-
-  vesktop-config.enable = true;
-
-  zathura-config.enable = true;
-
-  zen-config.enable = true;
+  kitty-config = {
+    enable = true;
+    default = true;
+  };
 
   dod-shell-config = {
     enable = true;
@@ -57,17 +55,12 @@
 
   hypr-config = {
     enable = true;
-    hypridle.enable = true;
-    hyprlock = {
-      enable = true;
-    };
     hyprland = {
-      enable = true;
       # INFO: Here we could not name zen explicitly
       extraConfig = ''
         # Monitors
         monitor=eDP-1,1920x1200,0x0,1
-        monitor=HDMI-A-1,preferred, auto, 1, mirror, eDP-1
+        monitor=HDMI-A-1,preferred, auto, 1
 
         # Execs
         exec-once = [workspace 1 silent] ${config.term}
@@ -87,12 +80,6 @@
       plugins.hyprgrass.enable = true;
     };
   };
-
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-  gtk.gtk4.theme = null;
 
   syncthing-config = {
     enable = true;
@@ -119,41 +106,30 @@
     };
   };
 
-  # Dev config
-  dev-config = {
-    enable = true;
-    git.enable = true;
-    nvim.enable = true;
+  programs = {
+    thunderbird.enable = true;
+    keepassxc.enable = true;
+
+    prismlauncher = {
+      enable = true;
+      package = pkgs.prismlauncher.override {
+        additionalLibs = with pkgs; [
+          jdk17
+        ];
+      };
+    };
+
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
   };
 
   home.packages = with pkgs; [
-    keepassxc
-    signal-desktop
-    zip
-    unzip
-
-    # email
-    thunderbird
-
-    # art
-    gimp
-    inkscape
-
-    # blender
     drawio
+    gimp
+    signal-desktop
+    unzip
+    zip
   ];
-
-  programs.prismlauncher = {
-    enable = true;
-    package = pkgs.prismlauncher.override {
-      additionalLibs = with pkgs; [
-        jdk17
-      ];
-    };
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

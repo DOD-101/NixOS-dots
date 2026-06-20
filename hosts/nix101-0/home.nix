@@ -2,43 +2,41 @@
   pkgs,
   config,
   inputs,
+  common,
   ...
 }:
-{
-  imports = [
-    ../../modules/home-manager
-    ../../themes
+let
+  modules = common.enabledModules [
+    "awww"
+    "btop"
+    "cava"
+    "dev"
+    "fastfetch"
+    "font"
+    "foot"
+    "igneous"
+    "mime"
+    "mpv"
+    "office"
+    "spotify-player"
+    "swayimg"
+    "vesktop"
+    "yazi"
+    "zathura"
+    "zen"
   ];
-
+in
+modules
+// {
   home.username = "david";
   home.homeDirectory = "/home/david";
 
   theme.theme = "catppuccin-macchiato-mauve";
 
-  btop-config.enable = true;
-  fastfetch-config.enable = true;
-  foot-config.enable = true;
-  igneous-config.enable = true;
-
-  kitty-config.default = true;
-  kitty-config.enable = true;
-
-  mime-config.enable = true;
-  mpv-config.enable = true;
-  office-config.enable = true;
-  spotify-player-config.enable = true;
-  swayimg-config.enable = true;
-  awww-config.enable = true;
-  font-config.enable = true;
-  cava-config.enable = true;
-
-  yazi-config.enable = true;
-
-  vesktop-config.enable = true;
-
-  zathura-config.enable = true;
-
-  zen-config.enable = true;
+  kitty-config = {
+    default = true;
+    enable = true;
+  };
 
   dod-shell-config = {
     enable = true;
@@ -54,17 +52,9 @@
     };
   };
 
-  programs.opencode.enable = true;
-
   hypr-config = {
-    enable = true;
-    hypridle = {
-      enable = true;
-      lock_time = 3600; # 1h
-    };
-    hyprlock.enable = true;
+    hypridle.lock_time = 3600; # 1h
     hyprland = {
-      enable = true;
       extraConfig = ''
         # Monitors
 
@@ -106,12 +96,6 @@
     };
   };
 
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-  gtk.gtk4.theme = null;
-
   # Syncthing config
   syncthing-config = {
     enable = true;
@@ -138,53 +122,41 @@
     };
   };
 
-  # Dev config
-  dev-config = {
-    enable = true;
-    git.enable = true;
-    nvim.enable = true;
-  };
-
   home.packages = with pkgs; [
-    keepassxc
-    signal-desktop
-    zip
-    unzip
-
-    tor-browser
-    qbittorrent
-
-    # email
-    thunderbird
-
     ckan
-    heroic
-
-    # art
-    gimp
-    inkscape
-    # blender
     drawio
+    gimp
+    heroic
+    inkscape
+    qbittorrent
+    signal-desktop
+    tor-browser
+    unzip
+    zip
   ];
 
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-pipewire-audio-capture
-    ];
-  };
-
-  programs.prismlauncher = {
-    enable = true;
-    package = pkgs.prismlauncher.override {
-      additionalLibs = with pkgs; [
-        jdk17
+  programs = {
+    thunderbird.enable = true;
+    keepassxc.enable = true;
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
       ];
     };
-  };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    prismlauncher = {
+      enable = true;
+      package = pkgs.prismlauncher.override {
+        additionalLibs = with pkgs; [
+          jdk17
+        ];
+      };
+    };
+
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

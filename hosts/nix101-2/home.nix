@@ -1,32 +1,22 @@
 {
+  common,
   ...
 }:
-{
-  imports = [
-    ../../modules/home-manager
-    ../../themes
+let
+  modules = common.enabledModules [
+    "btop"
+    "fastfetch"
+    "git"
+    "yazi"
   ];
+in
+modules
+// {
 
   home.username = "server";
   home.homeDirectory = "/home/server";
 
   theme.theme = "catppuccin-macchiato-red";
-
-  fastfetch-config.enable = true;
-  btop-config.enable = true;
-
-  yazi-config.enable = true;
-  git-config.enable = true;
-
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-  };
-  gtk.gtk4.theme = null;
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  # home.packages = with pkgs; [ ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

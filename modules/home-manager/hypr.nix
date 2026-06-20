@@ -1,14 +1,16 @@
 {
-
   config,
   osConfig,
   pkgs,
   lib,
   inputs,
+  common,
   ...
 }:
 let
   hypr-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+  cfg = config.hypr-config;
+  hyprSubOption = common.mkSubOption cfg.enable;
 in
 # TODO: When Hyprland releases 0.55 the config will need to be changed since
 # lua is now used instead of hyprlang, currently still waiting for nix-support
@@ -17,7 +19,7 @@ in
   options.hypr-config = {
     enable = lib.mkEnableOption "enable hypr config";
     hyprland = {
-      enable = lib.mkEnableOption "enable hyprland config";
+      enable = hyprSubOption "enable hyprland config";
       extraConfig = lib.mkOption {
         type = lib.types.str;
         default = "";
@@ -28,7 +30,7 @@ in
       };
     };
     hypridle = {
-      enable = lib.mkEnableOption "enable hypridle config";
+      enable = hyprSubOption "enable hypridle config";
       screen_off_time = lib.mkOption {
         type = lib.types.number;
         default = 330; # 5.5min
@@ -41,7 +43,7 @@ in
       };
     };
     hyprlock = {
-      enable = lib.mkEnableOption "enable hyprlock config";
+      enable = hyprSubOption "enable hyprlock config";
       battery = lib.mkOption {
         type = lib.types.str;
         default =
@@ -55,7 +57,6 @@ in
   };
 
   config = lib.mkIf config.hypr-config.enable {
-
     home.packages = with pkgs; [
       slurp
       grim

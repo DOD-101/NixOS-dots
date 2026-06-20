@@ -6,11 +6,7 @@
   ...
 }:
 {
-  options = {
-    nvim-config.enable = lib.mkEnableOption "enable nvim config. Should not be used outside of dev.";
-  };
-
-  config = lib.mkIf config.nvim-config.enable {
+  config = lib.mkIf config.dev-config.nvim.enable {
     programs.neovim = {
       enable = true;
       defaultEditor = true;

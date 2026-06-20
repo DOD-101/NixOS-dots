@@ -201,31 +201,10 @@ in
     spotify-player = {
       # This value needs to be kept in relation to the terminal font size
       cover_img_scale = lib.mkOption { type = lib.types.int; };
-      component_style = {
-        border = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        selection = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_metadata = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_track = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_album = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_artists = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_progress_bar = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
-        playback_progress_bar_unfilled = {
-          fg = lib.mkOption { type = lib.types.str; };
-        };
+      theme = lib.mkOption {
+        type = lib.types.attrs;
+        default = { };
+        description = "Theme for spotify player";
       };
     };
 
@@ -284,6 +263,12 @@ in
     igneous-md = lib.mkOption { type = with lib.types; listOf str; };
 
     dod-shell = mkScssOption { };
+
+    dconf.color-scheme = lib.mkOption {
+      type = lib.types.str;
+      default = "prefer-dark";
+      description = "Value for dconf desktop interface color-scheme";
+    };
   };
 
   config = {

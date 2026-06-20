@@ -133,30 +133,35 @@ in
 
         spotify-player = {
           cover_img_scale = 2;
-          component_style = {
-            border = {
-              fg = color.magenta;
-            };
-            selection = {
-              fg = color.yellow;
-            };
-            playback_metadata = {
-              fg = color.blue;
-            };
-            playback_track = {
-              fg = color.white;
-            };
-            playback_album = {
-              fg = color.white;
-            };
-            playback_artists = {
-              fg = color.white;
-            };
-            playback_progress_bar = {
-              fg = color.green;
-            };
-            playback_progress_bar_unfilled = {
-              fg = color.red;
+          theme = {
+            component_style = {
+              border = {
+                fg = color.magenta;
+              };
+              selection = {
+                fg = color.yellow;
+              };
+              playback_metadata = {
+                fg = color.blue;
+              };
+              playback_track = {
+                fg = color.white;
+                modifiers = [ "Bold" ];
+              };
+              playback_album = {
+                fg = color.white;
+                modifiers = [ "Bold" ];
+              };
+              playback_artists = {
+                fg = color.white;
+                modifiers = [ "Bold" ];
+              };
+              playback_progress_bar = {
+                fg = color.green;
+              };
+              playback_progress_bar_unfilled = {
+                fg = color.red;
+              };
             };
           };
         };

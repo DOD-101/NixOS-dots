@@ -117,6 +117,7 @@
       ...
     }@inputs:
     let
+      common = (import ./common.nix { lib = nixpkgs.lib; });
       palettes = {
         catppuccin = import ./resources/palettes/catppuccin.nix;
       };
@@ -127,7 +128,7 @@
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs palettes;
+            inherit inputs palettes common;
           };
 
           modules = [
@@ -141,8 +142,12 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit inputs palettes;
+                  inherit inputs palettes common;
                 };
+                sharedModules = [
+                  ./modules/home-manager
+                  ./themes
+                ];
                 backupFileExtension = "bck";
                 useGlobalPkgs = true;
                 useUserPackages = true;

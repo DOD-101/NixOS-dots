@@ -1,10 +1,6 @@
 { lib, config, ... }:
 {
-  options = {
-    git-config.enable = lib.mkEnableOption "enable git config. Should not be used outside of dev.";
-  };
-
-  config = lib.mkIf config.git-config.enable {
+  config = lib.mkIf config.dev-config.git.enable {
     programs.git = {
       enable = true;
       settings = {

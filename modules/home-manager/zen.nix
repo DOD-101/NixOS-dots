@@ -12,13 +12,13 @@ let
   theme = config.theme.zen-browser;
 in
 {
-  options.zen-config = {
-    enable = lib.mkEnableOption "enable zen config";
-  };
-
   imports = [
     inputs.zen-browser.homeModules.${zenBranch}
   ];
+
+  options.zen-config = {
+    enable = lib.mkEnableOption "enable zen config";
+  };
 
   config =
     let
