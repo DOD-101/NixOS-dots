@@ -14,7 +14,7 @@ let
     "fastfetch"
     "font"
     "foot"
-    "igneous"
+    "igneous-md"
     "mime"
     "mpv"
     "office"
@@ -53,6 +53,7 @@ modules
   };
 
   hypr-config = {
+    enable = true;
     hypridle.lock_time = 3600; # 1h
     hyprland = {
       extraConfig = ''
