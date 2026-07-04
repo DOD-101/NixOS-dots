@@ -117,6 +117,27 @@
   .muted * {
     color: $extras-maroon;
   }
+
+  $time-playing-progressbar-height: 4px;
+
+  .time-playing-progressbar {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 3px;
+    margin-bottom: -7px;
+  }
+
+  .time-playing-progressbar > trough {
+    background-color: $extras-crust;
+    border-radius: 6px;
+    min-height: $time-playing-progressbar-height;
+  }
+
+  .time-playing-progressbar > trough > progress {
+    background-color: $extras-accent;
+    border-radius: 6px;
+    min-height: $time-playing-progressbar-height;
+  }
 }
 
 .launcher-main-window {
