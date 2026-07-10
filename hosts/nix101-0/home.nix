@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   inputs,
   common,
   ...
@@ -55,46 +54,6 @@ modules
   hypr-config = {
     enable = true;
     hypridle.lock_time = 3600; # 1h
-    hyprland = {
-      extraConfig = ''
-        # Monitors
-
-        monitorv2 {
-          output = DP-4
-          mode = 3440x1440@180
-          position = 0x0
-          scale = 1
-        }
-
-        monitorv2 {
-          output = DP-6
-          mode = 3440x1440@180
-          position = 3440x0
-          scale = 1
-        }
-
-        # Execs
-        exec-once = [workspace 1 silent] ${config.term}
-        exec-once = [workspace 4 silent] zen
-
-        # Workspaces
-        workspace = 1, monitor:DP-4, default:true, persistent:true
-        workspace = 2, monitor:DP-4, persistent:true
-        workspace = 3, monitor:DP-4, persistent:true
-
-        workspace = 4, monitor:DP-6, default:true, persistent:true
-        workspace = 5, monitor:DP-6, persistent:true
-        workspace = 6, monitor:DP-6, persistent:true
-
-        # Bindings
-        bind = , XF86Tools, exec, $terminal
-        bind = , XF86Launch6, exec, zen
-        bind = , XF86Launch7, exec, thunderbird
-        bind = , XF86Launch8, exec, gimp
-        bind = , XF86Launch9, exec, keepassxc
-        bind = , XF86Launch5, exec, vesktop
-      '';
-    };
   };
 
   # Syncthing config

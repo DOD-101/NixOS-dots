@@ -24,12 +24,19 @@ in
   imports = [
     ./theme-base.nix
     ./catppuccin.nix
+    # ./nordic.nix
     # ./ocean-breeze.nix # WARN: unmaintained, doesn't currently work
   ];
 
   options.theme = {
     theme = lib.mkOption {
-      type = lib.types.enum ([ "ocean-breeze" ] ++ catppuccin-variations);
+      type = lib.types.enum (
+        [
+          "ocean-breeze"
+          "nordic"
+        ]
+        ++ catppuccin-variations
+      );
       description = "which theme to use";
     };
   };

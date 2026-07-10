@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   common,
   ...
 }:
@@ -55,30 +54,7 @@ modules
 
   hypr-config = {
     enable = true;
-    hyprland = {
-      # INFO: Here we could not name zen explicitly
-      extraConfig = ''
-        # Monitors
-        monitor=eDP-1,1920x1200,0x0,1
-        monitor=HDMI-A-1,preferred, auto, 1
-
-        # Execs
-        exec-once = [workspace 1 silent] ${config.term}
-        exec-once = [workspace 2 silent] zen
-
-        # Workspaces
-        workspace = 1, monitor:eDP-1, default:true, persistent:true
-        workspace = 2, monitor:eDP-1, persistent:true
-        workspace = 3, monitor:eDP-1, persistent:true
-
-        device {
-          name=elan06fa:00-04f3:31ad-touchpad
-          enabled=$touchpadEnabled
-        }
-      '';
-
-      plugins.hyprgrass.enable = true;
-    };
+    hyprland.plugins.hyprgrass.enable = true;
   };
 
   syncthing-config = {

@@ -1,6 +1,7 @@
 { config, ... }:
 {
   home.pointerCursor = {
+    enable = true;
     package = config.theme.cursor.package;
     name = config.theme.cursor.name;
     size = 18;

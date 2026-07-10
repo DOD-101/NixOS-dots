@@ -166,68 +166,7 @@ in
           };
         };
 
-        hyprland = {
-          themeSettings = {
-
-            general = {
-              gaps_in = 10;
-              gaps_out = "10,15,15,15";
-              border_size = 2;
-              "col.active_border" = "rgb(${config.theme.hashlessColor.extras.accent})";
-              "col.inactive_border" = "rgb(${config.theme.hashlessColor.black})";
-            };
-
-            windowrule = [
-              "match:class .*, opacity 0.95 override 0.90"
-            ];
-
-            decoration = {
-              # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-              rounding = 12;
-
-              blur = {
-                enabled = true;
-                size = 2;
-                passes = 2;
-                noise = 0;
-              };
-
-              shadow = {
-                enabled = false;
-                range = 5;
-                render_power = 3;
-                color = "rgba(${config.theme.hashlessColor.black}ff)";
-              };
-            };
-
-            animations = {
-              enabled = "yes";
-
-              bezier = [
-                "windows, 0.39, 0.575, 0.565, 1"
-                "windowsIn, 0.55,0.055,0.675,0.19"
-                "border, 0.5, 0.5, 0.5, 0.5"
-                "workspaces, 0.455, 0.03, 0.515, 0.955"
-                "fade, 0.19,1,0.22,1"
-                "fadeIn,0.785,0.135,0.15,0.86"
-                "fadeSwitch, 0.77,0,0.175,1"
-              ];
-
-              animation = [
-                "windows, 1, 7, windows"
-                "windowsIn, 1, 3, windows, popin 50%"
-                "windowsMove, 1, 5, windows"
-                "fade, 1, 7, fade"
-                "fadeIn, 0, 3, fadeIn"
-                "fadeSwitch, 1, 5, fadeSwitch"
-                "border, 1, 4, border"
-                "borderangle, 0"
-                "workspaces, 1, 5, workspaces"
-              ];
-            };
-          };
-        };
+        hyprland.themeSettings.source = ../resources/hypr/lua/theme/catppuccin.lua;
 
         hyprlock.settings = {
           background = [
@@ -306,13 +245,13 @@ in
             {
               text =
                 let
-                  contents = builtins.readFile ../resources/hypr/scripts/lock_time.sh;
+                  contents = builtins.readFile ../resources/hypr/scripts/lock-time.sh;
 
                   replaced-contents =
                     builtins.replaceStrings [ "@HYPRLOCK_BATTERY@" ] [ config.hypr-config.hyprlock.battery ]
                       contents;
 
-                  file = builtins.toFile "lock_time.sh" replaced-contents;
+                  file = builtins.toFile "lock-time.sh" replaced-contents;
                 in
                 "cmd[update:1000] sh ${file}";
               color = "rgba(${config.theme.hashlessColor.white}ff)";

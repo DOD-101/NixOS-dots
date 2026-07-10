@@ -69,12 +69,12 @@ in
               name = "Draw.io";
             }
             {
-              cmd = "zen";
+              cmd = "${config.zen-config.cmd}";
               name = "Zen Browser";
             }
             {
               name = "Zen Browser Private Window";
-              cmd = "zen --private-window";
+              cmd = "${config.zen-config.cmd} --private-window";
             }
             {
               cmd = "thunderbird";

@@ -1,3 +1,19 @@
+# Config related to everything hypr-
+#
+# ## How it all works
+# Since version 0.55 of Hyprland it uses a lua config. Since I don't like
+# writing lua inside nix I have opted to largely write the config as standalone
+# lua files, which are then linked into place.
+#
+# These standalone modules are then required into the main `hyprland.lua` via
+# `wayland.windowManager.hyprland.extraConfig`. In a similar manner the lua
+# config for the themes any other parts of the NixOS / hm config are included.
+#
+# To bridge the gap between the nix and lua side the `vars.lua` file is
+# generated with any variables from nix that are needed in the lua config.
+#
+# Each host has a separate file in `../../resources/hypr/hosts` which is also
+# included via `extraConfig`.
 {
   config,
   osConfig,
@@ -12,19 +28,11 @@ let
   cfg = config.hypr-config;
   hyprSubOption = common.mkSubOption cfg.enable;
 in
-# TODO: When Hyprland releases 0.55 the config will need to be changed since
-# lua is now used instead of hyprlang, currently still waiting for nix-support
-# before migrating
 {
   options.hypr-config = {
     enable = lib.mkEnableOption "enable hypr config";
     hyprland = {
       enable = hyprSubOption "enable hyprland config";
-      extraConfig = lib.mkOption {
-        type = lib.types.str;
-        default = "";
-        description = "additional config for hyprland, passed to wayland.windowManager.hyprland.extraConfig";
-      };
       plugins = {
         hyprgrass.enable = lib.mkEnableOption "enable hyprgrass plugin for touch gestures";
       };
@@ -56,7 +64,7 @@ in
     };
   };
 
-  config = lib.mkIf config.hypr-config.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       slurp
       grim
@@ -65,104 +73,67 @@ in
       config-store
       inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
       (pkgs.writeShellScriptBin "dpms-toggle" (
-        builtins.readFile ../../resources/hypr/scripts/dpms_toggle.sh
+        builtins.readFile ../../resources/hypr/scripts/dpms-toggle.sh
+      ))
+      (pkgs.writeShellScriptBin "osk-toggle" (
+        builtins.readFile ../../resources/hypr/scripts/osk-toggle.sh
       ))
     ];
 
     # hyprland
-    wayland.windowManager.hyprland = lib.mkIf config.hypr-config.hyprland.enable {
+    wayland.windowManager.hyprland = lib.mkIf cfg.hyprland.enable {
       enable = true;
       package = hypr-pkgs.hyprland;
       portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
       systemd.enable = true;
       plugins =
         [ ]
-        ++ lib.optionals config.hypr-config.hyprland.plugins.hyprgrass.enable [
+        ++ lib.optionals cfg.hyprland.plugins.hyprgrass.enable [
           inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
-
-      # Additional style related config is done through the selected theme
-      settings = {
-        source = [
-          "${../../resources/hypr/hyprgeneral.conf}"
-          "${../../resources/hypr/hyprbinds.conf}"
+      configType = "lua";
+      extraConfig =
+        let
+          luaRequires = modules: builtins.foldl' (acc: x: acc + "require(\"${x}\")\n") "" modules;
+        in
+        lib.concatLines [
+          (luaRequires (
+            [
+              "core"
+              "window_rules"
+              "binds"
+              "hosts.${osConfig.networking.hostName}"
+              "hyprgrass"
+            ]
+            ++ lib.optionals osConfig.razer-config.enable [ "razer" ]
+          ))
+          config.theme.hyprland.themeSettings
         ];
-
-        workspace = [
-          "special:minimized"
-        ];
-
-        env = [
-          "EGL_PLATFORM,wayland"
-          "MOZ_ENABLE_WAYLAND,1"
-        ];
-
-        "$terminal" = config.term;
-        "$menu" = if config.dod-shell-config.enable then "dod-shell-launcher" else "";
-        "$mainMod" = "Super";
-        "$touchpadEnabled" = "true";
-
-        windowrule = [
-          "match:class ${config.term}, opacity 0.95 override 0.7 override,"
-        ];
-
-        misc = {
-          force_default_wallpaper = 0;
-        };
-
-        input = {
-          kb_options = "caps:escape";
-        };
-
-        exec-once = [
-          "wl-paste --watch cliphist store"
-        ]
-        ++ lib.optionals osConfig.razer-config.enable [ "openrazer-daemon" ];
-
-        bind =
-          [ ]
-          ++ lib.optionals config.hypr-config.hyprlock.enable [ "$mainMod, Delete, exec, hyprlock" ]
-          ++ lib.optionals config.dod-shell-config.enable [
-            "CTRL ALT, V, exec, dod-shell-launcher '&'"
-            "$mainMod, O, exec, ${../../resources/hypr/scripts/toggle_osk.sh}"
-          ];
-
-        plugin = {
-          touch_gestures = lib.mkIf config.hypr-config.hyprland.plugins.hyprgrass.enable {
-            sensitivity = 4.0;
-            edge_margin = 40;
-            hyprgrass-bind = [
-              # swipe left from right edge
-              ", edge:r:l, workspace, +1"
-              # swipe right from left edge
-              ", edge:l:r, workspace, -1"
-              # swipe up from bottom edge
-              ", edge:d:u, killactive"
-              # swipe down from left edge
-              ", edge:l:d, exec, pactl set-sink-volume @DEFAULT_SINK@ -4%"
-              # tap with 3 fingers
-              ", tap:3, exec, ${config.term}"
-              # tap with 4 fingers
-              ", tap:4, exec, xournalpp"
-            ];
-
-            # longpress can trigger mouse binds:
-            hyprgrass-bindm = [
-              ", longpress:3, resizewindow"
-              ", longpress:2, movewindow"
-            ];
-          };
-        };
-      }
-      // config.theme.hyprland.themeSettings;
-
-      extraConfig = config.hypr-config.hyprland.extraConfig + "\n" + osConfig.razer-config.hyprlandConfig;
     };
 
-    xdg.configFile = lib.mkIf config.hypr-config.hyprland.enable {
+    xdg.configFile = lib.mkIf cfg.hyprland.enable {
       "hypr/scripts" = {
         source = ../../resources/hypr/scripts;
         recursive = true;
+      };
+      "hypr" = {
+        source = ../../resources/hypr/lua;
+        recursive = true;
+      };
+      "hypr/vars.lua" = {
+        text =
+          let
+            toLua = lib.generators.toLua { multiline = false; };
+            val = toLua {
+              terminal = config.term;
+              menu = if config.dod-shell-config.enable then "dod-shell-launcher" else null;
+              mainMod = "SUPER +";
+              browser = config.zen-config.cmd;
+              dod_shell_config.enable = config.dod-shell-config.enable;
+              hypr_config.hyprlock.enable = cfg.hyprlock.enable;
+            };
+          in
+          "return ${val}";
       };
       # hyprland-preview-share-picker
       "hypr/xdph.conf" = {
@@ -185,7 +156,7 @@ in
     };
 
     # hypridle
-    services.hypridle = lib.mkIf config.hypr-config.hypridle.enable {
+    services.hypridle = lib.mkIf cfg.hypridle.enable {
       enable = true;
       settings = {
         general = {
@@ -196,12 +167,12 @@ in
 
         listener = [
           {
-            timeout = config.hypr-config.hypridle.screen_off_time;
+            timeout = cfg.hypridle.screen_off_time;
             on-timeout = "dpms-toggle off";
             on-resume = "dpms-toggle on";
           }
           {
-            timeout = config.hypr-config.hypridle.lock_time;
+            timeout = cfg.hypridle.lock_time;
             on-timeout = "loginctl lock-session"; # lock screen when timeout has passed
           }
           {
@@ -213,13 +184,11 @@ in
     };
 
     # hyprlock
-    programs.hyprlock = lib.mkIf config.hypr-config.hyprlock.enable {
+    programs.hyprlock = lib.mkIf cfg.hyprlock.enable {
       enable = true;
       settings = lib.recursiveUpdate {
         general.ignore_empty_input = true;
       } config.theme.hyprlock.settings;
     };
-
-    shell.completions = [ "config-store completions @shell@" ];
   };
 }

@@ -209,7 +209,17 @@ in
     };
 
     hyprland.themeSettings = lib.mkOption {
-      description = "Additional style related config passed to wayland.windowManager.hyprland.settings";
+      description = "Additional style related lua config for hyprland";
+      apply =
+        pre:
+        let
+          raw = if pre ? source then builtins.readFile pre.source else pre.text;
+          colors = lib.generators.toLua { multiline = false; } config.theme.color;
+        in
+        lib.concatLines [
+          "local color = ${colors}"
+          raw
+        ];
     };
 
     hyprlock.settings = lib.mkOption { };

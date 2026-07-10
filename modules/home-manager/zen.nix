@@ -18,6 +18,12 @@ in
 
   options.zen-config = {
     enable = lib.mkEnableOption "enable zen config";
+    cmd = lib.mkOption {
+      type = lib.types.str;
+      default = "zen-${zenBranch}";
+      description = "Read only value for the command used to launch zen browser.";
+      readOnly = true;
+    };
   };
 
   config =
@@ -327,7 +333,7 @@ in
 
       home.packages = with pkgs; [
         (writeShellScriptBin "zen" ''
-          setsid zen-${zenBranch} $@
+          zen-${zenBranch} $@ 2>/dev/null & disown
         '')
       ];
 

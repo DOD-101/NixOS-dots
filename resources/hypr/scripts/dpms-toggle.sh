@@ -15,7 +15,7 @@ if [ -z "$action" ]; then
     fi
 fi
 
-hyprctl dispatch dpms "$action"
+hyprctl dispatch "hl.dsp.dpms({ action = \"$action\" })"
 
 if which polychromatic-cli >/dev/null 2>/dev/null; then
     if [ "$action" = "on" ]; then

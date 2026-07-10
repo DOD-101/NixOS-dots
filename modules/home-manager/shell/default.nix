@@ -94,5 +94,7 @@
         nix-direnv.enable = true;
       };
     };
+
+    shell.completions = [ "config-store completions @shell@" ];
   };
 }

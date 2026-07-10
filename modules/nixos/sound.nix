@@ -1,24 +1,17 @@
 {
   pkgs,
-  lib,
-  config,
+  common,
   ...
-}:
-{
-  options = {
-    sound-config.enable = lib.mkEnableOption "enable sound config";
+}@args:
+common.mkSimpleConfigModule "sound" {
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
   };
 
-  config = lib.mkIf config.sound-config.enable {
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-    };
-
-    environment.systemPackages = with pkgs; [
-      playerctl
-      pulsemixer
-    ];
-  };
-}
+  environment.systemPackages = with pkgs; [
+    playerctl
+    pulsemixer
+  ];
+} args

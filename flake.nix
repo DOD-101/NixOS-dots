@@ -65,16 +65,15 @@
 
     spotify-player = {
       url = "github:aome510/spotify-player";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     commit-lsp = {
-      # HACK: temp until https://github.com/texel-sensei/commit-lsp/pull/15
-      url = "github:dod-101/commit-lsp/add-flake";
+      url = "github:dod-101/commit-lsp/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # catppuccin inputs
-
     catppuccin-zen = {
       # HACK: temp until https://github.com/catppuccin/zen-browser/pull/75
       url = "github:gkze/zen-browser/fix/frappe-zen-twilight-acrylic-gap";
