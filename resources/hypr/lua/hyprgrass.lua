@@ -48,13 +48,50 @@ hl.plugin.hyprgrass.bind({
 	action = hl.dsp.exec_cmd("xournalpp"),
 })
 
--- TODO: add dynamic window close (by dragging to top of screen)
+hl.window_rule({
+	match = {
+		tag = "closing",
+	},
+	border_color = "#FF0000",
+})
+
+local function cursorInTop()
+	local top_border = hl.get_active_monitor().height / 10
+	return hl.get_cursor_pos().y < top_border
+end
+
+local close_animation_timer = hl.timer(function()
+	if cursorInTop() then
+		hl.dispatch(hl.dsp.window.tag({ tag = "+closing" }))
+	else
+		hl.dispatch(hl.dsp.window.tag({ tag = "-closing" }))
+	end
+end, { timeout = 100, type = "repeat" })
+
+close_animation_timer:set_enabled(false)
+
+local longpress_release = false
 hl.plugin.hyprgrass.bind({
 	pattern = {
 		kind = "longpress",
 		fingers = 2,
 	},
-	action = hl.dsp.window.drag(),
+	action = function()
+		if longpress_release then
+			if cursorInTop() then
+				hl.dispatch(hl.dsp.window.close())
+				-- if the window didn't close for some reason remove the closing tag again
+				hl.dispatch(hl.dsp.window.tag({ tag = "-closing" }))
+			end
+
+			close_animation_timer:set_enabled(false)
+		else
+			close_animation_timer:set_enabled(true)
+		end
+		hl.dispatch(hl.dsp.window.drag())
+
+		longpress_release = not longpress_release
+	end,
 	mouse = true,
 })
 
