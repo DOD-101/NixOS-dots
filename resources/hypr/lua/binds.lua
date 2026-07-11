@@ -109,8 +109,3 @@ hl.bind(mainMod .. "i", hl.dsp.window.tag({ tag = "non_transparent" }))
 if vars.hypr_config.hyprlock.enable then
 	hl.bind(vars.mainMod .. "Delete", hl.dsp.exec_cmd("hyprlock"))
 end
-
-if vars.dod_shell_config.enable then
-	hl.bind("CTRL + ALT + v", hl.dsp.exec_cmd("dod-shell-launcher '&'"))
-	hl.bind(vars.mainMod .. "o", hl.dsp.exec_cmd("osk-toggle"))
-end

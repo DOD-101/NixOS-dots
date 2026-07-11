@@ -106,6 +106,7 @@ in
               "hyprgrass"
             ]
             ++ lib.optionals osConfig.razer-config.enable [ "razer" ]
+            ++ lib.optionals config.dod-shell-config.enable [ "dod-shell" ]
           ))
           config.theme.hyprland.themeSettings
         ];
@@ -129,7 +130,6 @@ in
               menu = if config.dod-shell-config.enable then "dod-shell-launcher" else null;
               mainMod = "SUPER +";
               browser = config.zen-config.cmd;
-              dod_shell_config.enable = config.dod-shell-config.enable;
               hypr_config.hyprlock.enable = cfg.hyprlock.enable;
             };
           in
