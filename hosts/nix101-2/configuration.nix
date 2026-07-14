@@ -50,7 +50,6 @@
   users.users.server = {
     isNormalUser = true;
     home = "/home/server";
-    # TODO: this needs to be changed
     hashedPassword = "$y$j9T$0QvrKa4enFuufCu14r0NC/$Xvij.zytnbXdHt64yoJZxA4JF99LtFuhNsJMzxM1md1";
     extraGroups = [
       "wheel"
@@ -97,14 +96,14 @@
     services."duck-dns" = {
       serviceConfig = {
         Type = "oneshot";
-	User = "server";
+        User = "server";
         ExecStart = "${pkgs.bash}/bin/bash /home/server/duckdns.sh";
       };
 
       path = with pkgs; [
-	curl
-	bash
-	coreutils
+        curl
+        bash
+        coreutils
       ];
     };
   };

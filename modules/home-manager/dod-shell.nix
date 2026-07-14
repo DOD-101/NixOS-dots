@@ -30,7 +30,6 @@ in
 
         launcher = {
           max_results = 30;
-          # NOTE: Upstream changes needed to get rid of this unnecessarily long list
           launch_mode.apps = [
             {
               cmd = "foot";
