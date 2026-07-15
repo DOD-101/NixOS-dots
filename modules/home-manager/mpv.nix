@@ -18,6 +18,8 @@ common.mkSimpleConfigModule "mpv" {
       m = "no-osd cycle mute; script-binding uosc/flash-volume";
       "shift+right" = "no-osd seek  30; script-binding uosc/flash-timeline";
       "shift+left" = "no-osd seek -30; script-binding uosc/flash-timeline";
+      right = "no-osd seek  10; script-binding uosc/flash-timeline";
+      left = "no-osd seek -10; script-binding uosc/flash-timeline";
       "[" = "no-osd add speed -0.25; script-binding uosc/flash-speed";
       "]" = "no-osd add speed  0.25; script-binding uosc/flash-speed";
       "\\" = "no-osd set speed 1; script-binding uosc/flash-speed";
@@ -29,13 +31,18 @@ common.mkSimpleConfigModule "mpv" {
 
     config = {
       keep-open = true;
+      osd-bar = false;
     };
 
-    scripts = [ pkgs.mpvScripts.uosc ];
+    scripts = with pkgs.mpvScripts; [
+      uosc
+      thumbfast
+      mpris
+    ];
     scriptOpts = {
       uosc = {
         volume_size = 30;
-        top_bar_controls = true;
+        top_bar_controls = false;
         languages = "slang,en,de";
         color =
           let
