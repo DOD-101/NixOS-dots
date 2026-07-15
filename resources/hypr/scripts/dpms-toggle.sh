@@ -17,13 +17,20 @@ fi
 
 hyprctl dispatch "hl.dsp.dpms({ action = \"$action\" })"
 
-if which polychromatic-cli >/dev/null 2>/dev/null; then
+if busctl --user status org.razer >/dev/null 2>/dev/null; then
     if [ "$action" = "on" ]; then
         brightness=100
     else
         brightness=0
     fi
 
-    polychromatic-cli -d keyboard -o brightness -p "$brightness"
-    polychromatic-cli -d mouse -o brightness -p "$brightness"
+    for device in $(busctl tree --user org.razer |
+        awk '/\/org\/razer\/device\// {print $NF}'); do
+        busctl call --user \
+            org.razer \
+            "$device" \
+            razer.device.lighting.brightness \
+            setBrightness \
+            d "$brightness"
+    done
 fi
