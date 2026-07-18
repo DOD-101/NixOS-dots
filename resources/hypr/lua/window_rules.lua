@@ -23,6 +23,7 @@ hl.window_rule({
 		title = ".*YouTube.*",
 		class = vars.browser,
 	},
+	opacity = "1.0 override",
 })
 
 -- thunderbird mail pop-up
