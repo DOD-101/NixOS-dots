@@ -57,6 +57,7 @@ in
         keepassxc-browser
         privacy-badger
         clearurls
+        youtube-shorts-block
       ];
 
       extensionsData = map (ext: {
