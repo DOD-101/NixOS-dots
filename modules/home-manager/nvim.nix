@@ -20,6 +20,7 @@
       fzf
       gh
       live-server
+      lsof
 
       # Lua
       lua
