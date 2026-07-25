@@ -1019,11 +1019,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783025171,
-        "narHash": "sha256-ewPh67yWQqx7x6eZba2GrBiE0QnczUu8Nt2cZ+pzAXo=",
+        "lastModified": 1784559366,
+        "narHash": "sha256-+GADmRl4XMwV8TfYZjEeyKDDfda3bDPzeerhYryX6vA=",
         "owner": "aome510",
         "repo": "spotify-player",
-        "rev": "c78df6e34f366aa6cd0fb7d07da96ea86198b33d",
+        "rev": "598777791a96fe35cf2c2cce4cbe8bfefb7cbbd9",
         "type": "github"
       },
       "original": {

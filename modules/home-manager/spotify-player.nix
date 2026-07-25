@@ -17,21 +17,20 @@ common.mkSimpleConfigModule "spotify-player" {
 
     settings = {
       theme = "main";
-      client_id = "fb9c6f0fd604439e8a6ac868290354c3";
-      client_port = 8080;
-      playback_format = "{track} • {album} • {artists}\n\n\n\n{metadata}";
-      tracks_playback_limit = 500;
+      client_id = "d420a117a32841c2b3474932e49fb54b";
+      playback_format = "{track} • {album} • {artists}\n{genres}\n\n\n{metadata}";
+      tracks_playback_limit = 50;
       app_refresh_duration_in_ms = 32;
       page_size_in_rows = 20;
       play_icon = "";
       pause_icon = "󰏥";
       liked_icon = "󰣐";
+      genre_num = 2;
       border_type = "Rounded";
       progress_bar_type = "Line";
       enable_media_control = true;
       enable_streaming = "Never";
       enable_cover_image_cache = true;
-      default_device = "${osConfig.networking.hostName}-daemon";
       cover_img_scale = config.theme.spotify-player.cover_img_scale;
 
       copy_command = {
@@ -62,19 +61,19 @@ common.mkSimpleConfigModule "spotify-player" {
   # daemon config
   xdg.configFile = {
     "spotify-player/daemon/app.toml" = {
-      source = (pkgs.formats.toml { }).generate "spotify-player-daemon-app" {
-        client_id = "fb9c6f0fd604439e8a6ac868290354c3";
-        client_port = 8080;
-        tracks_playback_limit = 500;
+      source = (pkgs.formats.toml { }).generate "spotify-player-daemon-config" {
+        client_id = "d420a117a32841c2b3474932e49fb54b";
+        tracks_playback_limit = 50;
         enable_media_control = true;
         enable_streaming = "Always";
         device = {
           name = "${osConfig.networking.hostName}-daemon";
-          device_type = "speaker";
-          volume = 70;
+          device_type = "computer";
+          volume = 80;
           bitrate = 320;
           audio_cache = true;
           normalization = false;
+          autoplay = true;
         };
       };
     };
@@ -95,15 +94,5 @@ common.mkSimpleConfigModule "spotify-player" {
     };
   };
 
-  home.shellAliases = {
-    sp = "${pkgs.writeShellScript "spotify-player" ''
-      #!/run/current-system/sw/bin/bash
-
-      if ! pgrep spotify_player > /dev/null; then
-       systemctl --user restart spotify-player-daemon.service
-      fi
-
-      spotify_player "$@"
-    ''}";
-  };
+  home.shellAliases.sp = "spotify_player";
 } args
