@@ -28,7 +28,10 @@
   ];
 
   boot.tmp.cleanOnBoot = true;
-  programs.fuse.userAllowOther = true;
+  programs.fuse = {
+    enable = true;
+    userAllowOther = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.trusted-users = [ "david" ];
@@ -113,6 +116,7 @@
       "plugdev"
       "input"
       "docker"
+      "fuse"
     ];
   };
 
