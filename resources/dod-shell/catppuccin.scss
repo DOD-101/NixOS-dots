@@ -141,21 +141,41 @@
 }
 
 .launcher-main-window {
-  .main-entry {
-    background-color: $background;
-    color: $yellow;
-    border-radius: 5px;
-  }
-  .results-box {
-    background-color: rgba($background, 0.95);
-    border-radius: 5px;
+  background-color: rgba($background, 0.9);
+  border-radius: 5px;
 
-    label.active {
-      border-radius: 5px;
-      background-color: $background;
-      color: $green;
-      border: 3px $green solid;
-      font-weight: bold;
+  .main-entry {
+    color: $yellow;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 5px;
+  }
+
+  .mode-name {
+    color: $extras-accent;
+    padding: 4px;
+    border: 2px solid $extras-accent;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: rgba($extras-accent, 0.07);
+  }
+
+  .result-box {
+    border-top: 2px solid $black;
+    border-bottom: 2px solid $black;
+
+    .result-category-label {
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 5px;
+    }
+
+    .result-entry-label {
+      margin-left: 1rem;
+      &.active {
+        border-radius: 5px;
+        color: $green;
+        font-weight: bold;
+      }
     }
   }
 }

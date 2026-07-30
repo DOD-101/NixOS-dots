@@ -27,79 +27,8 @@ in
       removed-components = cfg.removed-components;
       scss.text = config.theme.dod-shell;
       config.config = lib.attrsets.recursiveUpdate cfg.settings {
-
         launcher = {
-          max_results = 30;
-          launch_mode.apps = [
-            {
-              cmd = "foot";
-              name = "Foot";
-            }
-            {
-              cmd = "kitty -e spotify_player";
-              name = "Spotify Player";
-            }
-            {
-              cmd = "kitty";
-              name = "Kitty";
-            }
-            {
-              cmd = "steam";
-              name = "Steam";
-            }
-            {
-              cmd = "vesktop";
-              name = "Vesktop";
-            }
-            {
-              cmd = "heroic";
-              name = "Heroic Launcher";
-            }
-            {
-              cmd = "signal-desktop";
-              name = "Signal";
-            }
-            {
-              cmd = "prismlauncher";
-              name = "Prism";
-            }
-            {
-              cmd = "drawio";
-              name = "Draw.io";
-            }
-            {
-              cmd = "${config.zen-config.cmd}";
-              name = "Zen Browser";
-            }
-            {
-              name = "Zen Browser Private Window";
-              cmd = "${config.zen-config.cmd} --private-window";
-            }
-            {
-              cmd = "thunderbird";
-              name = "Thunderbird";
-            }
-            {
-              cmd = "xournalpp";
-              name = "Xournal++";
-            }
-            {
-              cmd = "teams-for-linux";
-              name = "Teams for Linux";
-            }
-            {
-              cmd = "keepassxc";
-              name = "Keepass XC";
-            }
-            {
-              cmd = "libreoffice";
-              name = "Libre Office";
-            }
-            {
-              cmd = "inkscape";
-              name = "Inkscape";
-            }
-          ];
+          results_height = 500;
         };
       };
     };
