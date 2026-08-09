@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "advisory-db": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785312467,
-        "narHash": "sha256-etAnhDh+ogh90GxzSGhI+9BRU7sB5lt/7z5Eh/JNcoo=",
-        "owner": "rustsec",
-        "repo": "advisory-db",
-        "rev": "4f8684ecc2345f53b1df7cba2f20ebe5e4385691",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rustsec",
-        "repo": "advisory-db",
-        "type": "github"
-      }
-    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -201,7 +185,6 @@
     },
     "dod-shell": {
       "inputs": {
-        "advisory-db": "advisory-db",
         "crane": "crane",
         "flake-utils": "flake-utils",
         "nixpkgs": [
@@ -209,11 +192,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785444281,
-        "narHash": "sha256-57+zmfnHT1suhmGUyFifMbnqvZmjb5l0WXoZSXYd9vY=",
+        "lastModified": 1786135571,
+        "narHash": "sha256-TILaOZzO9M5xKUHr7v1TDj8nFqr7DKDDPm/KEnPdAM8=",
         "owner": "DOD-101",
         "repo": "dod-shell",
-        "rev": "f8695047d6f9d74ec707a2cf56cd4d8bab8b31e4",
+        "rev": "628db164ae32800c97e273bd6eb9222d3dc39fd0",
         "type": "github"
       },
       "original": {
