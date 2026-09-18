@@ -27,11 +27,21 @@ in
       };
       functions = {
         mkcd = "mkdir -p $argv[1] && cd $argv[1]";
+        __disown_last_command = ''
+          if test -z (commandline)
+            exit
+          else
+            commandline -a ' & disown'
+          end
+        '';
       };
       interactiveShellInit = lib.strings.concatLines (
         [
           ''
             fish_vi_key_bindings
+
+            bind -M insert \cd __disown_last_command
+            bind -M default \cd __disown_last_command
 
             set -U fish_greeting
 
