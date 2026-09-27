@@ -22,6 +22,20 @@ modules
     opencode.enable = false;
   };
 
+  syncthing-config = {
+    enable = true;
+    folders = {
+      main = {
+        enable = true;
+        devices = [
+          "nix101-0"
+          "nix101-1"
+          "android101-2"
+        ];
+      };
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

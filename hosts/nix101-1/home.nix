@@ -64,6 +64,7 @@ modules
         enable = true;
         devices = [
           "nix101-0"
+          "nix101-3"
           "android101-2"
         ];
       };

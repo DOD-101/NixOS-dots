@@ -56,7 +56,6 @@ modules
     hypridle.lock_time = 3600; # 1h
   };
 
-  # Syncthing config
   syncthing-config = {
     enable = true;
     folders = {
@@ -64,6 +63,7 @@ modules
         enable = true;
         devices = [
           "nix101-1"
+          "nix101-3"
           "android101-2"
         ];
       };
