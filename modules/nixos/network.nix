@@ -45,6 +45,9 @@
             "test-s1.battleye.com"
             "paradiseenhanced-s1.battleye.com"
           ];
+          "192.168.178.37" = [
+            "nix101-3"
+          ];
         };
 
         firewall = {

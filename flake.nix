@@ -164,6 +164,10 @@
           host = "nix101-2";
           mainUser = "server";
         };
+        nix101-3 = mkSystem {
+          host = "nix101-3";
+          mainUser = "server";
+        };
       };
     };
 
