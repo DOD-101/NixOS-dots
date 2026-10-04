@@ -3,7 +3,7 @@
 
 }:
 {
-  services.home-assitant = {
+  services.home-assistant = {
     enable = true;
     config = {
       # Includes dependencies for a basic setup
