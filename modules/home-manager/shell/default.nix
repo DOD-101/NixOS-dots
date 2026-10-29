@@ -49,7 +49,7 @@
         ls = "ls --color=auto";
         grep = "grep --color=auto";
       }
-      // lib.optionalAttrs config.network-config.enable {
+      // lib.optionalAttrs osConfig.network-config.enable {
         ndwc = "nmcli device wifi connect";
       };
 
