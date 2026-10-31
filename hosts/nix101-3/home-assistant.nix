@@ -2,6 +2,9 @@
   ...
 
 }:
+let
+  z2mFrontendPort = 8790;
+in
 {
   # 1. MQTT broker
   services.mosquitto = {
@@ -35,11 +38,13 @@
       };
       frontend = {
         port = 8080;
-        host = "127.0.0.1"; # put a reverse proxy in front if you want remote access
+        host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
       advanced.network_key = "GENERATE"; # generated once and stored in the data dir
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ z2mFrontendPort ];
 
   services.home-assistant = {
     enable = true;
