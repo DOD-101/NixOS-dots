@@ -1,6 +1,5 @@
 {
   ...
-
 }:
 let
   z2mFrontendPort = 8790;
@@ -26,7 +25,7 @@ in
   services.zigbee2mqtt = {
     enable = true;
     settings = {
-      homeassistant.enable = true;
+      homeassistant.enabled = true;
       mqtt = {
         server = "mqtt://127.0.0.1:1883";
         base_topic = "zigbee2mqtt";
@@ -37,6 +36,7 @@ in
         baudrate = 115200;
       };
       frontend = {
+        enable = true;
         port = z2mFrontendPort;
         host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
