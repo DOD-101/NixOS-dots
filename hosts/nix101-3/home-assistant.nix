@@ -36,7 +36,7 @@ in
         baudrate = 115200;
       };
       frontend = {
-        enable = true;
+        enabled = true;
         port = z2mFrontendPort;
         host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
