@@ -37,7 +37,7 @@ in
         baudrate = 115200;
       };
       frontend = {
-        port = 8080;
+        port = z2mFrontendPort;
         host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
       advanced.network_key = "GENERATE"; # generated once and stored in the data dir
