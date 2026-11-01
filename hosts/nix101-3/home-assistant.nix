@@ -40,7 +40,7 @@ in
         port = z2mFrontendPort;
         host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
-      advanced.network_key = "!secret network_key";
+      advanced.network_key = "!secret z2m_network_key";
     };
   };
 
