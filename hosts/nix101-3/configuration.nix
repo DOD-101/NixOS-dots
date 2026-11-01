@@ -140,6 +140,16 @@
         owner = "server";
         mode = "0400";
       };
+      z2m_network_key = { };
+    };
+    templates = {
+      "z2m-secrets.yaml" = {
+        content = ''
+          network_key: ${config.sops.placeholder.z2m_network_key}
+        '';
+        owner = "zigbee2mqtt";
+        restartUnits = [ "zigbee2mqtt.service" ];
+      };
     };
   };
 
