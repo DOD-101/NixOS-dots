@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   ...
 }:
 let
@@ -49,6 +50,9 @@ in
 
   services.home-assistant = {
     enable = true;
+    customComponents = with pkgs.home-assistant-custom-components; [
+      scene_presets
+    ];
     extraComponents = [
       "mqtt"
     ];
