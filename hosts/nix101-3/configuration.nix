@@ -43,6 +43,12 @@
 
   services.udisks2.enable = true;
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+
   # Enable config modules
   sound-config.enable = true;
 
