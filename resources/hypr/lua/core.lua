@@ -38,10 +38,12 @@ hl.gesture({
 	action = "workspace",
 })
 
-hl.workspace_rule({
-	workspace = "special:float",
-	on_created_empty = vars.terminal,
-})
+hl.on("workspace.created", function(ws)
+	if ws.name ~= "special:float" or not ws.is_empty then
+		return
+	end
+	hl.exec_cmd(vars.terminal, { workspace = ws.name .. " silent" })
+end)
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("wl-paste --watch cliphist store")

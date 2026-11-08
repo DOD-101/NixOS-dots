@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  patchedPkgs,
   ...
 }:
 {
@@ -89,6 +90,7 @@
 
   services.open-webui = {
     enable = true;
+    package = patchedPkgs.open-webui;
     host = "0.0.0.0";
     port = 8100;
     environment = {

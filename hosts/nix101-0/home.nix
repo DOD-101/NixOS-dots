@@ -93,7 +93,6 @@ modules
     tor-browser
     unzip
     zip
-    jmtpfs
   ];
 
   programs = {

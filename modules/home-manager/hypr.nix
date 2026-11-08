@@ -21,6 +21,7 @@
   lib,
   inputs,
   common,
+  patchedPkgs,
   ...
 }:
 let
@@ -70,7 +71,7 @@ in
       grim
       cliphist
       brightnessctl
-      config-store
+      patchedPkgs.config-store
       inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
       (pkgs.writeShellScriptBin "dpms-toggle" (
         builtins.readFile ../../resources/hypr/scripts/dpms-toggle.sh

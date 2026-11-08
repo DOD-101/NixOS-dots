@@ -11,6 +11,5 @@ common.mkSimpleConfigModule "razer" {
 
   environment.systemPackages = with pkgs; [
     polychromatic
-    config-store
   ];
 } args

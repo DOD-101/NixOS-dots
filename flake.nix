@@ -3,11 +3,9 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cuda-maintainers.cachix.org"
       "https://hyprland.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
@@ -120,6 +118,36 @@
       palettes = {
         catppuccin = import ./resources/palettes/catppuccin.nix;
       };
+
+      # HACK: until PRs are merged / in unstable
+      patchedNixpkgs =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in
+        pkgs.applyPatches {
+          name = "nixpkgs-config-store-1.0.1";
+          src = nixpkgs;
+          patches = [
+            (pkgs.fetchpatch {
+              url = "https://github.com/NixOS/nixpkgs/pull/585070.patch";
+              hash = "sha256-LFYO7q8Kj/ZRh/L+2WyI1NYmZ2carktRx34ytZLeeVg=";
+            })
+            (pkgs.fetchpatch {
+              url = "https://github.com/NixOS/nixpkgs/pull/584290.patch";
+              hash = "sha256-66Ybt81Sx12ZCKwtqKqrYvpVN3c3ejubsR4XR5CEfpU=";
+            })
+            (pkgs.fetchpatch {
+              url = "https://github.com/NixOS/nixpkgs/pull/584283.patch";
+              hash = "sha256-+qQ3o+aJenYyO0BFNt4+Fhqsh2uU9eClgCdZOXwKSGg=";
+            })
+          ];
+        };
+
+      patchedPkgs = import patchedNixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+
       mkSystem =
         {
           host,
@@ -127,7 +155,12 @@
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs palettes common;
+            inherit
+              inputs
+              palettes
+              common
+              patchedPkgs
+              ;
           };
 
           modules = [
@@ -141,7 +174,12 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit inputs palettes common;
+                  inherit
+                    inputs
+                    palettes
+                    common
+                    patchedPkgs
+                    ;
                 };
                 sharedModules = [
                   ./modules/home-manager
