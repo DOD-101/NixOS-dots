@@ -10,10 +10,13 @@
     ./binary-cache.nix
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    trusted-users = [ "server" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   hardware.enableAllFirmware = true;
 
