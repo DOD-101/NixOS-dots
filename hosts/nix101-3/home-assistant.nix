@@ -5,6 +5,7 @@
 }:
 let
   z2mFrontendPort = 8790;
+  haFrontendPort = 8123;
 in
 {
   # 1. MQTT broker
@@ -46,7 +47,10 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ z2mFrontendPort ];
+  networking.firewall.allowedTCPPorts = [
+    z2mFrontendPort
+    haFrontendPort
+  ];
 
   services.home-assistant = {
     enable = true;
@@ -61,6 +65,5 @@ in
       # https://www.home-assistant.io/integrations/default_config/
       default_config = { };
     };
-    openFirewall = true;
   };
 }
