@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./home-assistant.nix
+    ./binary-cache.nix
   ];
 
   nix.settings.experimental-features = [

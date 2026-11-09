@@ -4,9 +4,11 @@
   nixConfig = {
     extra-substituters = [
       "https://hyprland.cachix.org"
+      "http://nix101-3:5000"
     ];
     extra-trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix101-3-cache:0nzU602c7kLvJcWd1npOYUVqCg7fuBjfFhEMukFGjOo="
     ];
   };
 
