@@ -132,7 +132,7 @@
           patches = [
             (pkgs.fetchpatch {
               url = "https://github.com/NixOS/nixpkgs/pull/585070.patch";
-              hash = "sha256-LFYO7q8Kj/ZRh/L+2WyI1NYmZ2carktRx34ytZLeeVg=";
+              hash = "sha256-l70Q+0PvdVokWfpqJEkghuusIJjEI1rGderRmHAysjM=";
             })
             (pkgs.fetchpatch {
               url = "https://github.com/NixOS/nixpkgs/pull/584290.patch";

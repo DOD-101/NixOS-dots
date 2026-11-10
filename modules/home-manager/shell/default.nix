@@ -36,10 +36,15 @@
 
   config = {
     home = {
-      packages = with pkgs; [
-        gtrash
-        eza
-      ];
+      packages =
+        with pkgs;
+        [
+          gtrash
+          eza
+        ]
+        ++ lib.optionals config.syncthing-config.folders.main.enable [
+          (writeScriptBin "todo" (builtins.readFile ../../../resources/todo.sh))
+        ];
 
       shellAliases = {
         rt = "gtrash put";
