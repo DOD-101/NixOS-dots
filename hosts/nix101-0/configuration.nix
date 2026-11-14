@@ -3,6 +3,7 @@
   inputs,
   config,
   patchedPkgs,
+  lib,
   ...
 }:
 {
@@ -82,6 +83,10 @@
     hostName = "nix101-0";
     protonVpn = true;
   };
+
+  networking.nameservers = lib.mkBefore [
+    "192.168.178.37"
+  ];
 
   services.ollama = {
     enable = true;

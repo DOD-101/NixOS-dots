@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./home-assistant.nix
     ./binary-cache.nix
+    ./network.nix
   ];
 
   nix.settings = {

@@ -4,8 +4,7 @@
   ...
 }:
 let
-  z2mFrontendPort = 8790;
-  haFrontendPort = 8123;
+  v = import ./vars.nix;
 in
 {
   # 1. MQTT broker
@@ -40,7 +39,7 @@ in
       };
       frontend = {
         enabled = true;
-        port = z2mFrontendPort;
+        port = v.z2mFrontendPort;
         host = "0.0.0.0"; # put a reverse proxy in front if you want remote access
       };
       advanced.network_key = "!${config.sops.templates."z2m-secrets.yaml".path} network_key";
@@ -48,8 +47,8 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [
-    z2mFrontendPort
-    haFrontendPort
+    v.z2mFrontendPort
+    v.haFrontendPort
   ];
 
   services.home-assistant = {
@@ -66,4 +65,46 @@ in
       default_config = { };
     };
   };
+
+  # HACK: We have to do this to allow ha to use the reverse-proxy, but there is
+  # not proper way to configure this declaratively
+  systemd.services.home-assistant.preStart =
+    let
+      http = {
+        version = 2;
+        minor_version = 2;
+        key = "http";
+        data = {
+          pending = null;
+          stable = {
+            cors_allowed_origins = [ "https://cast.home-assistant.io" ];
+            created_at = "2026-11-12T20:18:10.646009+00:00";
+            error = null;
+            error_message = null;
+            ip_ban_enabled = true;
+            login_attempts_threshold = -1;
+            server_host = [
+              "0.0.0.0"
+              "::"
+            ];
+            server_port = v.haFrontendPort;
+            ssl_profile = "modern";
+            use_x_forwarded_for = true;
+            # the options we care about for the proxy
+            use_x_frame_options = true;
+            trusted_proxies = [
+              "127.0.0.1"
+              "::1"
+            ];
+          };
+          yaml_migration_done = true;
+        };
+      };
+
+      httpFile = builtins.toFile "http" (builtins.toJSON http);
+    in
+    ''
+      p="/var/lib/hass/.storage/"
+      ${pkgs.coreutils}/bin/install -D -m 0600 ${httpFile} "$p/http"
+    '';
 }
