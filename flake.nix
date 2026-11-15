@@ -170,6 +170,7 @@
             sops-nix.nixosModules.sops
             {
               nixpkgs.overlays = [ nur.overlays.default ];
+              networking.hostName = host;
             }
             ./hosts/${host}/configuration.nix
             ./modules/nixos

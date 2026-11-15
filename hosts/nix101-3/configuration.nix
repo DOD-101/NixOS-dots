@@ -124,7 +124,6 @@
 
   network-config = {
     enable = true;
-    hostName = "nix101-3";
     protonVpn = false;
   };
 

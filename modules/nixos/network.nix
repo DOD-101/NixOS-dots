@@ -9,11 +9,6 @@
     network-config = {
       enable = lib.mkEnableOption "enable network config";
 
-      hostName = lib.mkOption {
-        type = lib.types.str;
-        description = "passed to networking.hostName";
-      };
-
       protonVpn = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -28,7 +23,6 @@
     in
     lib.mkIf cfg.enable {
       networking = {
-        hostName = cfg.hostName;
         networkmanager = {
           enable = true;
           dns = "none";

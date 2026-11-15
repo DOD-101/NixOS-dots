@@ -80,7 +80,6 @@
 
   network-config = {
     enable = true;
-    hostName = "nix101-0";
     protonVpn = true;
   };
 

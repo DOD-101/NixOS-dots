@@ -110,7 +110,6 @@
 
   network-config = {
     enable = true;
-    hostName = "nix101-2";
     protonVpn = false;
   };
 
