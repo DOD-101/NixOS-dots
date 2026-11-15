@@ -14,6 +14,12 @@
         default = false;
         description = "Weather to install proton vpn";
       };
+
+      tailscale = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable tailscale (client).";
+      };
     };
   };
 
@@ -58,6 +64,13 @@
             }
           ];
         };
+      };
+
+      services.tailscale = {
+        enable = true;
+        openFirewall = true;
+        useRoutingFeatures = "client";
+        extraSetFlags = [ "--accept-routes" ];
       };
 
       environment.systemPackages = with pkgs; [

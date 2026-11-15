@@ -46,6 +46,20 @@ in
     };
   };
 
+  # NOTE: When setting up the server again you first need to run `sudo
+  # tailscale up` and log in
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+    useRoutingFeatures = "server";
+
+    extraSetFlags = [
+      "--advertise-routes=192.168.178.0/24"
+      "--accept-dns=false"
+    ];
+  };
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   # Make sure nothing else holds port 53
   services.resolved.enable = false;
 

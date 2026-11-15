@@ -71,8 +71,6 @@
     ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -122,17 +120,9 @@
     };
   };
 
-  network-config = {
+  networking.networkmanager = {
     enable = true;
-    protonVpn = false;
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [
-      22
-      25565
-    ];
-    allowedUDPPorts = [ 25565 ];
+    dns = "none";
   };
 
   # Use default config

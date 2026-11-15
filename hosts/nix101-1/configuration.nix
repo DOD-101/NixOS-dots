@@ -72,6 +72,7 @@
   network-config = {
     enable = true;
     protonVpn = true;
+    tailscale = true;
   };
 
   users.users.david = {
