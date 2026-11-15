@@ -4,7 +4,7 @@
   ...
 }:
 {
-  config = lib.mkIf (config.shell.shell == "zsh") {
+  config = lib.mkIf (config.shell.name == "zsh") {
     home.shell.enableZshIntegration = true;
 
     home.file.".oh-my-zsh/custom" = {

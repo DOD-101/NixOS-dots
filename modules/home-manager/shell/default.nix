@@ -5,27 +5,24 @@
   osConfig,
   ...
 }:
+let
+  shell = osConfig.users.users.${config.home.username}.shell.meta.mainProgram;
+in
 {
   options.shell = {
-    shell = lib.mkOption {
-      type = lib.types.enum [
-        "zsh"
-        "fish"
-      ];
-      default =
-        if osConfig.users.defaultUserShell == pkgs.zsh then
-          "zsh"
-        else if osConfig.users.defaultUserShell == pkgs.fish then
-          "fish"
-        else
-          "";
-      description = "which shell to use";
+    name = lib.mkOption {
+      type = lib.types.str;
+      readOnly = true;
+      default = shell;
+      description = "Main program name of the user's login shell.";
     };
+
+    # TODO: remove this once igneous-md and config-store have proper completions
     completions = lib.mkOption {
       type = lib.types.listOf (lib.types.strMatching ".*@shell@.*");
       description = "List of commands to run to get completions, with the concrete shell replaced by @shell@.";
       default = [ ];
-      apply = value: map (c: lib.strings.replaceString "@shell@" config.shell.shell c) value;
+      apply = value: map (c: lib.strings.replaceString "@shell@" shell c) value;
     };
   };
 

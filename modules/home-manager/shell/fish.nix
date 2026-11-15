@@ -12,7 +12,7 @@ let
   setFishVars = vars: lib.strings.concatLines (map (var: "set -U ${var}") vars);
 in
 {
-  config = lib.mkIf (config.shell.shell == "fish") {
+  config = lib.mkIf (config.shell.name == "fish") {
     home.shell.enableFishIntegration = true;
     programs.fish = {
       enable = true;
