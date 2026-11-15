@@ -734,11 +734,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787647525,
-        "narHash": "sha256-doOyO6EMBM+9z+BZBle8Epct3xkSsVIelpel26ql84g=",
+        "lastModified": 1794756449,
+        "narHash": "sha256-aVToTpRh2qF9E4Qcf6FEDHz96ufdia6bCnxt5ezLvzg=",
         "owner": "DOD-101",
         "repo": "igneous-md",
-        "rev": "7febc2ad53afd64353bd039bfb3f9de8344473bb",
+        "rev": "7ddbed68b00adcf25ab04d89370cd57cd0ddf1b8",
         "type": "github"
       },
       "original": {

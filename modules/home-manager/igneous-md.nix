@@ -19,6 +19,4 @@ common.mkSimpleConfigModule "igneous-md" {
       };
     }) config.theme.igneous-md
   );
-
-  shell.completions = [ "igneous-md completions @shell@" ];
 } args

@@ -16,14 +16,6 @@ in
       default = shell;
       description = "Main program name of the user's login shell.";
     };
-
-    # TODO: remove this once igneous-md and config-store have proper completions
-    completions = lib.mkOption {
-      type = lib.types.listOf (lib.types.strMatching ".*@shell@.*");
-      description = "List of commands to run to get completions, with the concrete shell replaced by @shell@.";
-      default = [ ];
-      apply = value: map (c: lib.strings.replaceString "@shell@" shell c) value;
-    };
   };
 
   imports = [
@@ -99,7 +91,5 @@ in
         nix-direnv.enable = true;
       };
     };
-
-    shell.completions = [ "config-store completions @shell@" ];
   };
 }

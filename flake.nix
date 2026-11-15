@@ -142,6 +142,10 @@
               url = "https://github.com/NixOS/nixpkgs/pull/584283.patch";
               hash = "sha256-+qQ3o+aJenYyO0BFNt4+Fhqsh2uU9eClgCdZOXwKSGg=";
             })
+            (pkgs.fetchpatch {
+              url = "https://github.com/NixOS/nixpkgs/pull/588643.patch";
+              hash = "sha256-FoBzVKU3qjWmnqmY0QYwilpn+0NjuwDppdCTBM9uOMs=";
+            })
           ];
         };
 

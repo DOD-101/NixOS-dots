@@ -35,32 +35,27 @@ in
           end
         '';
       };
-      interactiveShellInit = lib.strings.concatLines (
-        [
-          ''
-            fish_vi_key_bindings
+      interactiveShellInit = ''
+        fish_vi_key_bindings
 
-            bind -M insert \cd __disown_last_command
-            bind -M default \cd __disown_last_command
+        bind -M insert \cd __disown_last_command
+        bind -M default \cd __disown_last_command
 
-            set -U fish_greeting
+        set -U fish_greeting
 
-            # fish theme
-            ${setFishVars config.theme.fish.theme}
+        # fish theme
+        ${setFishVars config.theme.fish.theme}
 
-            if test "$(tty)" = "/dev/tty1"
-                if command -v Hyprland &> /dev/null
-                    start-hyprland
-                else if command -v fastfetch &> /dev/null
-                    fastfetch
-                else
-                    echo "Current time: $(date)"
-                end
+        if test "$(tty)" = "/dev/tty1"
+            if command -v Hyprland &> /dev/null
+                start-hyprland
+            else if command -v fastfetch &> /dev/null
+                fastfetch
+            else
+                echo "Current time: $(date)"
             end
-          ''
-        ]
-        ++ map (c: "${c} | source") config.shell.completions
-      );
+        end
+      '';
     };
   };
 }
