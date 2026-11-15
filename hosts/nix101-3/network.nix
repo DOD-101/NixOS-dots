@@ -30,11 +30,17 @@ in
         }
       ];
 
-      # all internal domains go to the server
+      # internal domains go to the server
       customDNS.mapping.${internal} = serverIp;
 
-      # Fritz!Box names go to the router
-      conditional.mapping."fritz.box" = routerIp;
+      # resolve local names
+      conditional = {
+        fallbackUpstream = false;
+        mapping = {
+          "fritz.box" = routerIp;
+          "." = routerIp;
+        };
+      };
 
       # Show device names instead of IPs in logs (reverse lookup via the router)
       clientLookup.upstream = routerIp;
