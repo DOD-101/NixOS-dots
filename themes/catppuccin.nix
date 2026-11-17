@@ -415,9 +415,14 @@ in
               fg,
               bg ? color.background,
             }:
-            icon: "(fg:${bg} bg:${bg})[](fg:${fg} bg:${bg})${icon}(fg:${bg} bg:${fg})[](fg:${fg} bg:none) ";
+            icon: "${bubble_left { inherit fg; }}${icon}(fg:${bg} bg:${fg})${bubble_right { inherit fg; }}";
+
+          bubble_left = { fg }: "[](fg:${fg} bg:none)";
+
+          bubble_right = { fg }: "[](fg:${fg} bg:none) ";
 
         in
+        # TODO: hostname and username
         {
           format = "$all";
           right_format = "$nix_shell$git_metrics$git_branch$cmd_duration";
@@ -432,7 +437,6 @@ in
 
           directory = with color; {
             format = bubble { fg = extras.accent; } "[ $path]";
-            # style = "fg:${extras.crust} bg:${background}";
             truncation_length = 3;
             truncate_to_repo = true;
           };
@@ -448,6 +452,21 @@ in
           git_metrics = {
             format = "([+$added]($added_style)/)([-$deleted]($deleted_style) )";
             disabled = false;
+          };
+
+          username =
+            with color;
+            let
+              bg = extras.mauve;
+            in
+            {
+              format = "${bubble_left { fg = bg; }}[](fg:${background} bold bg:${bg})[ $user]($style)[@](fg:${background} bold bg:${bg})";
+              style_root = "fg:${extras.maroon} bold bg:${bg}";
+              style_user = "fg:${background} bg:${bg}";
+            };
+
+          hostname = with color; {
+            format = "[$hostname](fg:${extras.crust} bg:${extras.mauve})${bubble_right { fg = extras.mauve; }}";
           };
 
           package = with color; {
