@@ -45,4 +45,8 @@ if [ ${#files[@]} -ne 0 ]; then
   countdown 5
 fi
 
+# shellcheck disable=SC2164
+# reason: can't fail because we checked that dir exists
+cd "$DIR"
+
 $EDITOR "${DIR}Todo.md"
